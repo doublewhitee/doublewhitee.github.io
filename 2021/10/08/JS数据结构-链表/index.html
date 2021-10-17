@@ -20,19 +20,20 @@
     var CONFIG = {"hostname":"doublewhite.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="DoubleWhite今天也要加油鸭，决定再也不当咸鱼了">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="http://doublewhite.top/about/index.html">
+  <meta name="description" content="1. 链表结构1.1 简介链表和数组一样，可以用于存储一系列的元素，但是链表和数组的实现机制完全不同。 要存储多个元素，数组可能是最常用的数据结构，但数组也有很多缺点：数组的创建通常需要申请一段连续的内存空间（一整块的内存），并且大小是固定的，所以当当前数组不能满足容量需求时，需要扩容。同时，在数组开头或中间位置插入数据的成本很高，需要进行大量元素的位移。 要存储多个元素的另一个选择就是链表。但不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS数据结构-链表">
+<meta property="og:url" content="http://doublewhite.top/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="DoubleWhite">
-<meta property="og:description" content="DoubleWhite今天也要加油鸭，决定再也不当咸鱼了">
+<meta property="og:description" content="1. 链表结构1.1 简介链表和数组一样，可以用于存储一系列的元素，但是链表和数组的实现机制完全不同。 要存储多个元素，数组可能是最常用的数据结构，但数组也有很多缺点：数组的创建通常需要申请一段连续的内存空间（一整块的内存），并且大小是固定的，所以当当前数组不能满足容量需求时，需要扩容。同时，在数组开头或中间位置插入数据的成本很高，需要进行大量元素的位移。 要存储多个元素的另一个选择就是链表。但不">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-12T21:02:11.000Z">
-<meta property="article:modified_time" content="2021-05-12T14:03:54.000Z">
+<meta property="article:published_time" content="2021-10-08T22:37:40.000Z">
+<meta property="article:modified_time" content="2021-10-17T21:39:27.760Z">
 <meta property="article:author" content="doublewhite">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://doublewhite.top/about/">
+<link rel="canonical" href="http://doublewhite.top/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/">
 
 
 <script id="page-configurations">
@@ -40,13 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>关于我 | DoubleWhite
-</title>
+  <title>JS数据结构-链表 | DoubleWhite</title>
   
 
 
@@ -183,44 +183,123 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS数据结构-链表
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">关于我
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-<div class="post-meta">
+              <time title="创建时间：2021-10-08 23:37:40" itemprop="dateCreated datePublished" datetime="2021-10-08T23:37:40+01:00">2021-10-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">基础</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>476</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-链表结构"><a href="#1-链表结构" class="headerlink" title="1. 链表结构"></a>1. 链表结构</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><p>链表和数组一样，可以用于存储一系列的元素，但是链表和数组的实现机制完全不同。</p>
+<p>要存储多个元素，数组可能是最常用的数据结构，但数组也有很多缺点：数组的创建通常需要申请一段连续的内存空间（一整块的内存），并且大小是固定的，所以当当前数组不能满足容量需求时，需要扩容。同时，在数组开头或中间位置插入数据的成本很高，需要进行大量元素的位移。</p>
+<p>要存储多个元素的另一个选择就是<strong>链表</strong>。但不同于数组，链表中的元素在内存中不必是连续的空间。链表的每个元素由一个<strong>存储元素本身的节点</strong>和一个<strong>指向下一个元素的引用</strong>（有些语言称为指针或连接）组成。</p>
+<p>相对于数组，链表的优点在于：内存空间不是必须连续的，可以充分利用计算机的内存，实现灵活的内存动态管理。链表不必在创建时就确定大小，且大小可以无线的延伸下去。链表在插入和删除数据时，时间复杂度可以达到O(1)，相对数组效率高很多。</p>
+<p>相对于数组，链表的缺点在于：链表访问任何一个位置的元素时，都需要从头开始访问（无法跳过第一个元素访问任何一个元素）。同时，无法通过下标直接访问元素，需要从头一个个访问，直到找到对应的元素。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/" rel="prev" title="JS数据结构-栈、队列">
+      <i class="fa fa-chevron-left"></i> JS数据结构-栈、队列
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <h2 id="DoubleWhite"><a href="#DoubleWhite" class="headerlink" title="DoubleWhite"></a>DoubleWhite</h2><p>今天也要加油鸭，决定再也不当咸鱼了</p>
-
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -272,7 +351,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DoubleWhite"><span class="nav-text">DoubleWhite</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-链表结构"><span class="nav-text">1. 链表结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-简介"><span class="nav-text">1.1 简介</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

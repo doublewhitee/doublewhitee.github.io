@@ -187,6 +187,356 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">JS数据结构-链表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-08 23:37:40" itemprop="dateCreated datePublished" datetime="2021-10-08T23:37:40+01:00">2021-10-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">基础</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>476</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-链表结构"><a href="#1-链表结构" class="headerlink" title="1. 链表结构"></a>1. 链表结构</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><p>链表和数组一样，可以用于存储一系列的元素，但是链表和数组的实现机制完全不同。</p>
+<p>要存储多个元素，数组可能是最常用的数据结构，但数组也有很多缺点：数组的创建通常需要申请一段连续的内存空间（一整块的内存），并且大小是固定的，所以当当前数组不能满足容量需求时，需要扩容。同时，在数组开头或中间位置插入数据的成本很高，需要进行大量元素的位移。</p>
+<p>要存储多个元素的另一个选择就是<strong>链表</strong>。但不同于数组，链表中的元素在内存中不必是连续的空间。链表的每个元素由一个<strong>存储元素本身的节点</strong>和一个<strong>指向下一个元素的引用</strong>（有些语言称为指针或连接）组成。</p>
+<p>相对于数组，链表的优点在于：内存空间不是必须连续的，可以充分利用计算机的内存，实现灵活的内存动态管理。链表不必在创建时就确定大小，且大小可以无线的延伸下去。链表在插入和删除数据时，时间复杂度可以达到O(1)，相对数组效率高很多。</p>
+<p>相对于数组，链表的缺点在于：链表访问任何一个位置的元素时，都需要从头开始访问（无法跳过第一个元素访问任何一个元素）。同时，无法通过下标直接访问元素，需要从头一个个访问，直到找到对应的元素。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">JS数据结构-栈、队列</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-08 23:37:40" itemprop="dateCreated datePublished" datetime="2021-10-08T23:37:40+01:00">2021-10-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">基础</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-栈结构"><a href="#1-栈结构" class="headerlink" title="1. 栈结构"></a>1. 栈结构</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><p>栈（stack）是一种受限的线性表，后进先出（LIFO）。</p>
+<p><img src="/.top//stack.png" alt="stack"></p>
+<p>其限制是仅允许在表的一端进行插入和删除运算，这一端被称为栈顶。相对地，把另一端称为栈底。</p>
+<p>LIFO（last in first out）代表后进入的元素第一个弹出栈空间。</p>
+<p>向一个栈插入新元素又称作<strong>进栈</strong>、<strong>入栈</strong>或者<strong>压栈</strong>，即把新元素放到栈元素的上面，使之成为新的栈顶元素。从一个栈删除元素又称作<strong>出栈</strong>、<strong>退栈</strong>，即把栈顶元素删除掉，使其相邻元素成为新的栈顶元素。</p>
+<h2 id="1-2-栈结构封装"><a href="#1-2-栈结构封装" class="headerlink" title="1.2 栈结构封装"></a>1.2 栈结构封装</h2><h3 id="1-2-1-栈常见操作"><a href="#1-2-1-栈常见操作" class="headerlink" title="1.2.1 栈常见操作"></a>1.2.1 栈常见操作</h3><ul>
+<li>push(element)：添加一个新元素到栈顶位置；</li>
+<li>pop()：移除栈顶的元素，同时返回被移除的元素；</li>
+<li>peek()：返回栈顶的元素，不对栈做任何修改（这个方法不会移除栈顶的元素）</li>
+<li>isEmpty()：如果栈里没有任何元素就返回true，反之返回false；</li>
+<li>size()：返回栈里的元素个数。这个方法和数组的length属性类似;</li>
+<li>toString()：将栈结构的内容以字符形式返回。</li>
+</ul>
+<h3 id="1-2-2-实现"><a href="#1-2-2-实现" class="headerlink" title="1.2.2 实现"></a>1.2.2 实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.items = []</span><br><span class="line"></span><br><span class="line">  Stack.prototype.push = <span class="function"><span class="keyword">function</span> (<span class="params">element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.items.push(element)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Stack.prototype.pop = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.pop()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Stack.prototype.peek = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="keyword">this</span>.items.length - <span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Stack.prototype.isEmpty = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.length === <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Stack.prototype.size = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.length</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Stack.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.join(<span class="string">' '</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stack = <span class="keyword">new</span> Stack()</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-十进制转二进制"><a href="#1-3-十进制转二进制" class="headerlink" title="1.3 十进制转二进制"></a>1.3 十进制转二进制</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dec2bin</span>(<span class="params">decNumber</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> stack = <span class="keyword">new</span> Stack()</span><br><span class="line">  <span class="comment">// 循环</span></span><br><span class="line">  <span class="keyword">while</span> (decNumber &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    stack.push(decNumber % <span class="number">2</span>)</span><br><span class="line">    decNumber = <span class="built_in">Math</span>.floor(decNumber / <span class="number">2</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> binaryString = <span class="string">''</span></span><br><span class="line">  <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">    binaryString += stack.pop()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> binaryString</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-队列结构"><a href="#2-队列结构" class="headerlink" title="2. 队列结构"></a>2. 队列结构</h1><h2 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h2><p>队列（Queue）是一种受限的线性表，先进先出（FIFO）。</p>
+<p><img src="/.top//queue.png" alt="stack"></p>
+<p>它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作。</p>
+<h2 id="1-2-队列结构封装"><a href="#1-2-队列结构封装" class="headerlink" title="1.2 队列结构封装"></a>1.2 队列结构封装</h2><h3 id="1-2-1-队列常见操作"><a href="#1-2-1-队列常见操作" class="headerlink" title="1.2.1 队列常见操作"></a>1.2.1 队列常见操作</h3><ul>
+<li>enqueue(element)：向队列尾部添加一个（或多个）新的项；</li>
+<li>dequeue()：移除队列的第一项，同时返回被移除的元素；</li>
+<li>front()：返回队列中的第一个元素，不对队列做任何修改（不移除元素，只返回元素信息）</li>
+<li>isEmpty()：如果队列中没有任何元素就返回true，反之返回false；</li>
+<li>size()：返回队列里的元素个数。与数组的length属性类似;</li>
+<li>toString()：将队列中的内容以字符形式返回。</li>
+</ul>
+<h3 id="2-2-2-实现"><a href="#2-2-2-实现" class="headerlink" title="2.2.2 实现"></a>2.2.2 实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Queue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.items = []</span><br><span class="line"></span><br><span class="line">  Queue.prototype.enqueue = <span class="function"><span class="keyword">function</span> (<span class="params">element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.items.push(element)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Queue.prototype.dequeue = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.shift()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Queue.prototype.front = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="number">0</span>] </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Queue.prototype.isEmpty = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.length === <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Queue.prototype.size = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.length</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Queue.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.join(<span class="string">' '</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> queue = <span class="keyword">new</span> Queue()</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-击鼓传花"><a href="#1-3-击鼓传花" class="headerlink" title="1.3 击鼓传花"></a>1.3 击鼓传花</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">passName</span>(<span class="params">nameList, num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> queue = <span class="keyword">new</span> Queue()</span><br><span class="line">  nameList.forEach(<span class="function"><span class="params">i</span> =&gt;</span> queue.enqueue(i))</span><br><span class="line">  <span class="keyword">while</span> (queue.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; num - <span class="number">1</span>; i++) &#123;</span><br><span class="line">      queue.enqueue(queue.dequeue())</span><br><span class="line">    &#125;</span><br><span class="line">    queue.dequeue()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> queue.front()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-优先级队列"><a href="#3-优先级队列" class="headerlink" title="3. 优先级队列"></a>3. 优先级队列</h1><h2 id="3-1-简介"><a href="#3-1-简介" class="headerlink" title="3.1 简介"></a>3.1 简介</h2><p>普通的队列插入一个元素，数据会被放在后端，且需要前面所有的元素都处理完成后才会处理后面的数据。</p>
+<p>但优先级队列在插入一个元素时会考虑该数据的优先级，和其他数据优先级进行比较。比较完成后，可以得出这个元素在队列中正确的位置，其他处理方式和基本队列的处理方式相同。</p>
+<h2 id="3-2-封装"><a href="#3-2-封装" class="headerlink" title="3.2 封装"></a>3.2 封装</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PriorityQueue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 内部类</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">QueueElement</span>(<span class="params">element, priority</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.element = element</span><br><span class="line">    <span class="keyword">this</span>.priority = priority</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.items = []</span><br><span class="line"></span><br><span class="line">  PriorityQueue.prototype.enqueue  =<span class="function"><span class="keyword">function</span> (<span class="params">element, priority</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> queueElement = <span class="keyword">new</span> QueueElement(element, priority)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.items.length === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.items.push(queueElement)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> isAdd = <span class="keyword">this</span>.items.some(<span class="function">(<span class="params">i, index</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (queueElement.priority &lt; i.priority) &#123;</span><br><span class="line">          <span class="keyword">this</span>.items.splice(index, <span class="number">0</span>, queueElement)</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">if</span> (!isAdd) &#123;</span><br><span class="line">        <span class="keyword">this</span>.items.push(queueElement)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  PriorityQueue.prototype.dequeue = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.shift()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  PriorityQueue.prototype.front = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items[<span class="number">0</span>] </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  PriorityQueue.prototype.isEmpty = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.length === <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  PriorityQueue.prototype.size = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.length</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  PriorityQueue.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.map(<span class="function"><span class="params">i</span> =&gt;</span> i.priority + <span class="string">'-'</span> + i.element).join(<span class="string">' '</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pq = <span class="keyword">new</span> PriorityQueue()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/09/24/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/24/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250/" class="post-title-link" itemprop="url">python爬取豆瓣电影Top250</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-24 14:08:14" itemprop="dateCreated datePublished" datetime="2021-09-24T14:08:14+01:00">2021-09-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/09/24/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/24/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-准备"><a href="#1-准备" class="headerlink" title="1. 准备"></a>1. 准备</h1><p>网络爬虫，是一种按照一定规则，自动抓取互联网信息的程序或者脚本。由于互联网数据的多样性和资源的有限性，根据用户需求定向抓取相关网页并分析已成为如今主流的爬取策略。爬虫的本质即为模拟浏览器打开网页，获取网页中想要的那部分数据。</p>
+<h2 id="1-1-urllib"><a href="#1-1-urllib" class="headerlink" title="1.1 urllib"></a>1.1 urllib</h2><p>urllib库用于操作网页url，并对网页内容进行抓取。Python一般采用urllib获取页面。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个get请求</span></span><br><span class="line">response = urllib.request.urlopen(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">print(response.read().decode(<span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个post请求</span></span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"></span><br><span class="line">data = bytes(urllib.parse.urlencode(&#123;<span class="string">'hello'</span>: <span class="string">'world'</span>&#125;), encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">response = urllib.request.urlopen(<span class="string">'http://httpbin.org/post'</span>, data=data)</span><br><span class="line">print(response.read().decode(<span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 完整请求</span></span><br><span class="line">url = <span class="string">'http://httpbin.org/post'</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line">data = bytes(urllib.parse.urlencode(&#123;<span class="string">'hello'</span>: <span class="string">'world'</span>&#125;), encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">req = urllib.request.Request(url=url, data=data, headers=headers, method=<span class="string">'POST'</span>)</span><br><span class="line">response = urllib.request.urlopen(req)</span><br><span class="line">print(response.read().decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-BeautifulSoup4"><a href="#1-2-BeautifulSoup4" class="headerlink" title="1.2 BeautifulSoup4"></a>1.2 BeautifulSoup4</h2><p>Beautiful Soup是一个可以从HTML或XML文件中提取数据的Python库。BeautifulSoup4将复杂HTML文档转换成一个复杂的树形结构，每个节点都是Python对象，所有对象可以归纳为四种：</p>
+<ul>
+<li>Tag：标签及其内容</li>
+<li>NavigableString：标签里的内容（字符串）</li>
+<li>BeautifulSoup：一个文档的全部内容</li>
+<li>Comment：一个特殊的NavigableString，输出内容不包含注释符号</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">file = open(<span class="string">'./test.html'</span>, <span class="string">'rb'</span>)</span><br><span class="line">html = file.read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line">soup = BeautifulSoup(html, <span class="string">'html.parser'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.文档的搜索</span></span><br><span class="line"><span class="comment"># 字符串过滤：会查找与字符串完全匹配的内容</span></span><br><span class="line">t_list = soup.fina_all(<span class="string">'a'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 正则表达式搜索：使用match()方法来匹配内容</span></span><br><span class="line">t_list = soup.find_all(re.compile(<span class="string">'a'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法：传入一个函数，根据函数的要求来搜索</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">name_is_exists</span><span class="params">(tag)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tag.has_attr(<span class="string">'name'</span>)</span><br><span class="line">t_list = soup.find_all(name_is_exists)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.kwargs 参数</span></span><br><span class="line">t_list = soup.find_all(id=<span class="string">'head'</span>)</span><br><span class="line">t_list = soup.find_all(class_=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.text 参数</span></span><br><span class="line">t_list = soup.find_all(text=[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>])</span><br><span class="line">t_list = soup.find_all(re.compile(<span class="string">'\d'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. limit 参数</span></span><br><span class="line">t_list = soup.find_all(<span class="string">'a'</span>, limit=<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># css选择器</span></span><br><span class="line">t_list = soup.select(<span class="string">'title'</span>) <span class="comment"># 通过标签查找</span></span><br><span class="line">t_list = soup.select(<span class="string">'.menu'</span>) <span class="comment"># 通过类名来查找</span></span><br><span class="line">t_list = soup.select(<span class="string">'#id'</span>) <span class="comment"># 通过id来查找</span></span><br><span class="line">t_list = soup.select(<span class="string">'a[class="menu"]'</span>) <span class="comment"># 通过属性来查找</span></span><br><span class="line">t_list = soup.select(<span class="string">'head &gt; title'</span>) <span class="comment"># 通过子标签来查找</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-获取数据"><a href="#2-获取数据" class="headerlink" title="2. 获取数据"></a>2. 获取数据</h1><p>通过对豆瓣电影Top250的网页进行分析，可以发现相应规律，并因此通过代码获得相应链接：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">baseUrl = <span class="string">'https://movie.douban.com/top250?start='</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">	url = baseUrl + str(i * <span class="number">25</span>)</span><br><span class="line">    print(url)</span><br></pre></td></tr></table></figure>
+
+<p>通过urllib对网页进行抓取。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getData</span><span class="params">(url)</span>:</span></span><br><span class="line">    head = &#123;</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'</span></span><br><span class="line">    &#125;</span><br><span class="line">    request = urllib.request.Request(url, headers=head)</span><br><span class="line">    html = <span class="string">''</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = urllib.request.urlopen(request)</span><br><span class="line">        html = response.read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line">        print(html)</span><br><span class="line">    <span class="keyword">except</span> urllib.error.URLError <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">if</span> hasattr(e, <span class="string">'code'</span>):</span><br><span class="line">            print(e.code)</span><br><span class="line">        <span class="keyword">if</span> hasattr(e, <span class="string">'reason'</span>):</span><br><span class="line">            print(e.reason)</span><br><span class="line">    <span class="keyword">return</span> html</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-解析内容"><a href="#3-解析内容" class="headerlink" title="3. 解析内容"></a>3. 解析内容</h1><p>首先通过bs4库解析网页，接着使用正则表达式对标签进行提取，获取所需要的内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">html = getData(url)</span><br><span class="line"><span class="comment"># 逐一解析网页</span></span><br><span class="line">soup = BeautifulSoup(html, <span class="string">'html.parser'</span>)</span><br><span class="line"><span class="comment"># 查找符合要求的字符串，形成列表</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> soup.find_all(<span class="string">'div'</span>, class_=<span class="string">'item'</span>):</span><br><span class="line">	data = &#123;&#125;  <span class="comment"># 保存一部电影的所有信息</span></span><br><span class="line">	str_item = str(item)</span><br><span class="line">    data[<span class="string">'link'</span>] = re.findall(<span class="string">r'&lt;a href="(.*?)"&gt;'</span>, str_item)[<span class="number">0</span>]  <span class="comment"># 链接</span></span><br><span class="line">    data[<span class="string">'img'</span>] = re.findall(<span class="string">r'&lt;img.*src="(.*?)"'</span>, str_item)[<span class="number">0</span>]  <span class="comment"># 图片</span></span><br><span class="line">    data[<span class="string">'title'</span>] = re.findall(<span class="string">r'&lt;span class="title"&gt;(.*)&lt;/span&gt;'</span>, str_item)[<span class="number">0</span>]  <span class="comment"># 标题</span></span><br><span class="line">    data[<span class="string">'rating'</span>] = re.findall(<span class="string">r'&lt;span class="rating_num" property="v:average"&gt;(.*)&lt;/span&gt;'</span>, str_item)[<span class="number">0</span>]  <span class="comment"># 评分</span></span><br><span class="line">    data[<span class="string">'judge'</span>] = re.findall(<span class="string">r'&lt;span&gt;(.*)人评价&lt;/span&gt;'</span>, str_item)[<span class="number">0</span>]  <span class="comment"># 评价人数</span></span><br><span class="line">    data[<span class="string">'inq'</span>] = re.findall(<span class="string">r'&lt;span class="inq"&gt;(.*)&lt;/span&gt;'</span>, str_item)  <span class="comment"># 简介</span></span><br><span class="line">    <span class="keyword">if</span> len(data[<span class="string">'inq'</span>]) &gt; <span class="number">0</span>:</span><br><span class="line">        data[<span class="string">'inq'</span>] = data[<span class="string">'inq'</span>][<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        data[<span class="string">'inq'</span>] = <span class="string">''</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="4-保存数据"><a href="#4-保存数据" class="headerlink" title="4. 保存数据"></a>4. 保存数据</h1><p>最后，利用Python中的xlwt库将抽取的数据写入Excel表格中，即可成功获取相应数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xlwt</span><br><span class="line"></span><br><span class="line">savePath = <span class="string">'./豆瓣电影Top250.xls'</span></span><br><span class="line">book = xlwt.Workbook(encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">sheet = book.add_sheet(<span class="string">'豆瓣电影Top250'</span>, cell_overwrite_ok=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 生成首行</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(datalist[<span class="number">0</span>].keys())):</span><br><span class="line">	sheet.write(<span class="number">0</span>, i, list(datalist[<span class="number">0</span>].keys())[i])</span><br><span class="line"><span class="comment"># 存储数据</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(datalist)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, len(datalist[<span class="number">0</span>].keys())):</span><br><span class="line">        key = list(datalist[<span class="number">0</span>].keys())[j]</span><br><span class="line">        sheet.write(i + <span class="number">1</span>, j, datalist[i][key])</span><br><span class="line"></span><br><span class="line">book.save(savePath)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/08/12/React%E6%89%A9%E5%B1%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -912,101 +1262,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2020/05/24/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="doublewhite">
-      <meta itemprop="description" content="我偏要勉强">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DoubleWhite">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/24/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-24 16:24:47" itemprop="dateCreated datePublished" datetime="2020-05-24T16:24:47+01:00">2020-05-24</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/05/24/hello-world/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/24/hello-world/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>357</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/24/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1073,20 +1333,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1144,12 +1404,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">75k</span>
+    <span title="站点总字数">83k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:08</span>
+    <span title="站点阅读时长">1:15</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
