@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"doublewhite.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. 简介几乎每种编程语言中，都有集合结构。集合比较常见的实现方式是哈希表。集合通常是由一组无序的、不能重复的元素构成。ES6中包含了Set类，可以直接使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS数据结构-集合">
+<meta property="og:url" content="http://doublewhite.top/2021/10/24/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9B%86%E5%90%88/index.html">
+<meta property="og:site_name" content="DoubleWhite">
+<meta property="og:description" content="1. 简介几乎每种编程语言中，都有集合结构。集合比较常见的实现方式是哈希表。集合通常是由一组无序的、不能重复的元素构成。ES6中包含了Set类，可以直接使用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bkimg.cdn.bcebos.com/pic/c9fcc3cec3fdfc035f8e2b9cd63f8794a4c22624?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto">
+<meta property="article:published_time" content="2021-10-23T23:19:38.000Z">
+<meta property="article:modified_time" content="2021-10-27T21:56:08.519Z">
+<meta property="article:author" content="doublewhite">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bkimg.cdn.bcebos.com/pic/c9fcc3cec3fdfc035f8e2b9cd63f8794a4c22624?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto">
+
+<link rel="canonical" href="http://doublewhite.top/2021/10/24/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9B%86%E5%90%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JS数据结构-集合 | DoubleWhite</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DoubleWhite</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/10/24/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9B%86%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS数据结构-集合
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-10-24 00:19:38" itemprop="dateCreated datePublished" datetime="2021-10-24T00:19:38+01:00">2021-10-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">基础</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/10/24/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9B%86%E5%90%88/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/24/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%9B%86%E5%90%88/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>几乎每种编程语言中，都有集合结构。集合比较常见的实现方式是<strong>哈希表</strong>。集合通常是由一组<strong>无序的、不能重复的</strong>元素构成。ES6中包含了Set类，可以直接使用。</p>
+<a id="more"></a>
+
+<h1 id="2-集合结构实现"><a href="#2-集合结构实现" class="headerlink" title="2. 集合结构实现"></a>2. 集合结构实现</h1><h2 id="2-1-常用方法"><a href="#2-1-常用方法" class="headerlink" title="2.1 常用方法"></a>2.1 常用方法</h2><ul>
+<li>add(value)：向集合添加一个新的项；</li>
+<li>remove(value)：从集合移除一个项；</li>
+<li>has(value)：如果值在集合中，返回true，反之返回false；</li>
+<li>clear()：移除集合中的所有项；</li>
+<li>size()：返回集合所包含的元素的数量；</li>
+<li>values()：返回一个包含集合中所有值的数组。</li>
+</ul>
+<h2 id="2-2-实现"><a href="#2-2-实现" class="headerlink" title="2.2 实现"></a>2.2 实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 集合</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Set</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.items = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Set</span>.prototype.add = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.has(value)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.items[value] = value</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Set</span>.prototype.remove = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.has(value)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">delete</span> <span class="keyword">this</span>.items[value]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Set</span>.prototype.has = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.items.hasOwnProperty(value)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Set</span>.prototype.clear = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.items = &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Set</span>.prototype.size = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.items).length</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Set</span>.prototype.values = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.items)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-集合间操作"><a href="#3-集合间操作" class="headerlink" title="3. 集合间操作"></a>3. 集合间操作</h1><p>集合间操作通常有：并集、交集、差集、子集。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 并集</span></span><br><span class="line"><span class="built_in">Set</span>.prototype.union = <span class="function"><span class="keyword">function</span> (<span class="params">otherSet</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> unionSet = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line">  <span class="keyword">let</span> values = <span class="keyword">this</span>.values()</span><br><span class="line">  values.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    unionSet.add(i)</span><br><span class="line">  &#125;)</span><br><span class="line">  values = otherSet.values()</span><br><span class="line">  values.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    unionSet.add(i)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> unionSet</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 交集</span></span><br><span class="line"><span class="built_in">Set</span>.prototype.intersection = <span class="function"><span class="keyword">function</span> (<span class="params">otherSet</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> intersectionSet = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line">  <span class="keyword">const</span> values = <span class="keyword">this</span>.values()</span><br><span class="line">  values.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (otherSet.has(i)) &#123;</span><br><span class="line">      intersectionSet.add(i)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> intersectionSet</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 差集</span></span><br><span class="line"><span class="built_in">Set</span>.prototype.difference = <span class="function"><span class="keyword">function</span> (<span class="params">otherSet</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> differenceSet = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line">  <span class="keyword">const</span> values = <span class="keyword">this</span>.values()</span><br><span class="line">  values.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!otherSet.has(i)) &#123;</span><br><span class="line">      differenceSet.add(i)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> differenceSet</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子集</span></span><br><span class="line"><span class="built_in">Set</span>.prototype.subset = <span class="function"><span class="keyword">function</span> (<span class="params">otherSet</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> values = <span class="keyword">this</span>.values()</span><br><span class="line">  values.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!otherSet.has(i)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-哈希表"><a href="#4-哈希表" class="headerlink" title="4. 哈希表"></a>4. 哈希表</h1><p>哈希表通常是基于数组进行实现的，但是相对于数组，它具有很多优势：（1）它可以提供非常快速的插入-删除-查找操作（2）无论多少数据，插入和删除需要接近常量的时间，即O(1)的时间级。实际上，只需要几个机器指令即可完成。（3）哈希表的速度比树还要快，基本可以瞬间查到想要的元素（4）哈希表相对于树来说编码要容易很多。</p>
+<p>哈希表相对于数组的一些不足：（1）哈希表中的数据是没有顺序的，所以不能以一种固定的方式（例如从小到大）来遍历其中的元素。（2）通常情况下，哈希表中的key是不允许重复的，不能放置相同的key，用于保存不同的元素。</p>
+<p>哈希表（散列表）是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。</p>
+<h2 id="4-1-哈希化-amp-冲突"><a href="#4-1-哈希化-amp-冲突" class="headerlink" title="4.1 哈希化 &amp; 冲突"></a>4.1 哈希化 &amp; 冲突</h2><p><strong>哈希化</strong>：将大数字转化成数组范围内下标的过程。</p>
+<p><strong>哈希函数</strong>：通常我们会将单词转成大数字，大数字在进行哈希化的代码实现放在一个函数中，这个函数称为哈希函数。</p>
+<p><strong>哈希表</strong>：最终将数据插入到的这个数组，对整个结构的封装称之为一个哈希表。</p>
+<p><strong>冲突</strong>：如果两个关键字映射到了同一个位置，则称为哈希冲突（k1 != k2, f(k1) = f(k2)）。冲突不可避免，我们只能解决冲突。</p>
+<p>解决冲突通常有两种方法：<strong>链地址法</strong>、<strong>开放地址法</strong></p>
+<h3 id="4-1-1-链地址法"><a href="#4-1-1-链地址法" class="headerlink" title="4.1.1 链地址法"></a>4.1.1 链地址法</h3><p><img src="https://bkimg.cdn.bcebos.com/pic/c9fcc3cec3fdfc035f8e2b9cd63f8794a4c22624?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto" alt="img"></p>
+<p>链地址法解决冲突的做法是：将所有关键字为同义词的结点链接在同一个单链表中。若选定的散列表长度为m，则可将散列表定义为一个由m个头指针组成的指针数组T[0..m-1]。凡是散列地址为 i 的结点，均插入到以T[i]为头指针的单链表中。</p>
+<h3 id="4-1-2-开放地址法"><a href="#4-1-2-开放地址法" class="headerlink" title="4.1.2 开放地址法"></a>4.1.2 开放地址法</h3><p>开放地址法的主要工作方式是寻找空白的位置来放置冲突的数据。但是探索这个位置的方式不同，有三种方法：（1）线性探测（2）二次探测（3）再哈希法。</p>
+<p><strong>线性探测</strong>：线性的查找空白的单元。注意在删除操作时不可以将这个位置的下表内容设置为null，因为可能会影响后续查询其他操作。所以通常删除一个位置的数据项时，可以将它进行特殊处理（比如设置为-1）。线性探测有一个比较严重的问题：<strong>聚集</strong>。聚集是一连串的填充单元，会影响哈希表的性能（插入、查询、删除），通过二次探测可以解决一部分这个问题。</p>
+<p><strong>二次探测</strong>：二次探测主要优化的是探测是的步长，一次性探测比较长的距离，避免聚集带来的影响。但是二次探测依然存在一些问题。例如连续插入步长相同数据，这种情况会造成步长不一的一种聚集。</p>
+<p><strong>再哈希法</strong>：我们需要一种依赖关键字的探测顺序，而不是每个关键字都一样。那么不同关键字即使映射到相同的数组下标，也可以使用不同的探测序列。再哈希化的做法为：把关键字用另外一个哈希函数再做一次哈希化，用这次哈希化的结果作为步长。对于指定的关键字，步长在整个探测序列中是不变的，不过不同的关键字使用不同的步长。</p>
+<p>第二次哈希化需要具备以下特点：（1）和第一个哈希函数不同（2）不能输出为0（否则没有步长）</p>
+<blockquote>
+<p>stepSize = constant - ( key % constant )</p>
+<p>其中constant是质数，且小于数组的容量</p>
+</blockquote>
+<h3 id="4-1-3-哈希表的效率"><a href="#4-1-3-哈希表的效率" class="headerlink" title="4.1.3 哈希表的效率"></a>4.1.3 哈希表的效率</h3><p>哈希表中执行插入和搜索的效率是非常高的。如果没有发生冲突，效率就会更高；如果发生冲突，存取时间就依赖后来的探测长度。</p>
+<p>平均探测长度以及平均存取时间取决于<strong>填装因子</strong>，随着填装因子变大，探测长度也越来越长。随着填装因子变大，效率下降的情况，在不同开放地址法中比链地址法更严重。</p>
+<p><strong>填装因子</strong>：表示当前哈希表中已经包含的数据项和整个哈希表长度的比值。</p>
+<blockquote>
+<p>填装因子 = 总数据项 / 哈希表长度</p>
+</blockquote>
+<p>开放地址法的装填因子最大为1，因为必须找到空白的单元才能将元素放入。</p>
+<p>链地址法的装填因子可以大于1，因为拉链法可以无限的延伸下去。</p>
+<h2 id="4-2-实现"><a href="#4-2-实现" class="headerlink" title="4.2 实现"></a>4.2 实现</h2><h3 id="4-2-1-哈希函数"><a href="#4-2-1-哈希函数" class="headerlink" title="4.2.1 哈希函数"></a>4.2.1 哈希函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将字符串转成比较大的数字：hashCode</span></span><br><span class="line"><span class="comment">// 将大数字hashCode压缩到数组范围之内</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hashFunc</span> (<span class="params">str, size</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> hashCode = <span class="number">0</span></span><br><span class="line">  <span class="comment">// 霍纳算法来计算hashCode的值</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">    <span class="comment">// charCodeAt：获取Unicode编码</span></span><br><span class="line">    hashCode = <span class="number">37</span> * hashCode + str.charCodeAt(i)</span><br><span class="line">    <span class="comment">// 取余</span></span><br><span class="line">    <span class="keyword">const</span> index = hashCode % size</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-2-封装"><a href="#4-2-2-封装" class="headerlink" title="4.2.2 封装"></a>4.2.2 封装</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HashTable</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.storage = []</span><br><span class="line">  <span class="keyword">this</span>.count = <span class="number">0</span></span><br><span class="line">  <span class="keyword">this</span>.limit = <span class="number">7</span> <span class="comment">// 最好是质数</span></span><br><span class="line">  </span><br><span class="line">  HashTable.prototype.hashFunc = <span class="function"><span class="keyword">function</span> (<span class="params">str, size</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> hashCode = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 霍纳算法来计算hashCode的值</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">      <span class="comment">// charCodeAt：获取Unicode编码</span></span><br><span class="line">      hashCode = <span class="number">37</span> * hashCode + str.charCodeAt(i)</span><br><span class="line">      <span class="comment">// 取余</span></span><br><span class="line">      <span class="keyword">const</span> index = hashCode % size</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-3-插入-amp-修改数据"><a href="#4-2-3-插入-amp-修改数据" class="headerlink" title="4.2.3 插入&amp;修改数据"></a>4.2.3 插入&amp;修改数据</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">HashTable.prototype.put = <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> index = <span class="keyword">this</span>.hashFunc(key, <span class="keyword">this</span>.limit)</span><br><span class="line">  <span class="keyword">let</span> bucket = <span class="keyword">this</span>.storage[index]</span><br><span class="line">  <span class="keyword">if</span> (bucket === <span class="literal">null</span>) &#123;</span><br><span class="line">    bucket = []</span><br><span class="line">    <span class="keyword">this</span>.storage[index] = bucket</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 判断是否是修改数据</span></span><br><span class="line">  bucket.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> tuple = i</span><br><span class="line">    <span class="keyword">if</span> (tuple[<span class="number">0</span>] === key) &#123;</span><br><span class="line">      tuple[<span class="number">1</span>] = value</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 进行添加操作</span></span><br><span class="line">  bucket.push([key, value])</span><br><span class="line">  <span class="keyword">this</span>.count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断是否需要扩容</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.count &gt; <span class="keyword">this</span>.limit * <span class="number">0.75</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> newSize = <span class="built_in">Math</span>.floor(<span class="keyword">this</span>.limit * <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">this</span>.resize(<span class="keyword">this</span>.getPrime(newSize))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-4-获取"><a href="#4-2-4-获取" class="headerlink" title="4.2.4 获取"></a>4.2.4 获取</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">HashTable.prototype.get = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> index = <span class="keyword">this</span>.hashFunc(key, <span class="keyword">this</span>.limit)</span><br><span class="line">  <span class="keyword">const</span> bucket = <span class="keyword">this</span>.storage[index]</span><br><span class="line">  <span class="keyword">if</span> (bucket === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    bucket.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (i[<span class="number">0</span>] === key) &#123;</span><br><span class="line">        <span class="keyword">return</span> i[<span class="number">1</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-5-删除"><a href="#4-2-5-删除" class="headerlink" title="4.2.5 删除"></a>4.2.5 删除</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">HashTable.prototype.remove = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> index = <span class="keyword">this</span>.hashFunc(key, <span class="keyword">this</span>.limit)</span><br><span class="line">  <span class="keyword">const</span> bucket = <span class="keyword">this</span>.storage[index]</span><br><span class="line">  <span class="keyword">if</span> (bucket === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    bucket.forEach(<span class="function">(<span class="params">i, index</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (i[<span class="number">0</span>] === key) &#123;</span><br><span class="line">        bucket.splice(index, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">this</span>.count -= <span class="number">1</span></span><br><span class="line">        <span class="comment">// 缩小容量(最小为7)</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.limit &gt; <span class="number">7</span> &amp;&amp; <span class="keyword">this</span>.count &lt; <span class="keyword">this</span>.limit * <span class="number">0.25</span>) &#123;</span><br><span class="line">          <span class="keyword">const</span> newSize = <span class="built_in">Math</span>.floor(<span class="keyword">this</span>.limit / <span class="number">2</span>)</span><br><span class="line">          <span class="keyword">this</span>.resize(<span class="keyword">this</span>.getPrime(newSize))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> i[<span class="number">1</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-6-哈希表扩容"><a href="#4-2-6-哈希表扩容" class="headerlink" title="4.2.6 哈希表扩容"></a>4.2.6 哈希表扩容</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">HashTable.prototype.isPrime = <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> temp = <span class="built_in">Math</span>.ceil(<span class="built_in">Math</span>.sqrt(num))</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= temp; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (num % i === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">HashTable.prototype.getPrime = <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">while</span> (!<span class="keyword">this</span>.isPrime(num)) &#123;</span><br><span class="line">    num++</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> num</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">HashTable.prototype.resize = <span class="function"><span class="keyword">function</span> (<span class="params">newLimit</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> oldStorage = <span class="keyword">this</span>.storage</span><br><span class="line">  <span class="keyword">this</span>.storage = []</span><br><span class="line">  <span class="keyword">this</span>.count = <span class="number">0</span></span><br><span class="line">  <span class="keyword">this</span>.limit = newLimit</span><br><span class="line">  oldStorage.forEach(<span class="function"><span class="params">bucket</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (bucket === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    bucket.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.put(i[<span class="number">0</span>], i[<span class="number">1</span>])</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/" rel="prev" title="JS数据结构-链表">
+      <i class="fa fa-chevron-left"></i> JS数据结构-链表
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-简介"><span class="nav-text">1. 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-集合结构实现"><span class="nav-text">2. 集合结构实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-常用方法"><span class="nav-text">2.1 常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-实现"><span class="nav-text">2.2 实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-集合间操作"><span class="nav-text">3. 集合间操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-哈希表"><span class="nav-text">4. 哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-哈希化-amp-冲突"><span class="nav-text">4.1 哈希化 &amp; 冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-链地址法"><span class="nav-text">4.1.1 链地址法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-开放地址法"><span class="nav-text">4.1.2 开放地址法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-哈希表的效率"><span class="nav-text">4.1.3 哈希表的效率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-实现"><span class="nav-text">4.2 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-哈希函数"><span class="nav-text">4.2.1 哈希函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-封装"><span class="nav-text">4.2.2 封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-插入-amp-修改数据"><span class="nav-text">4.2.3 插入&amp;修改数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-获取"><span class="nav-text">4.2.4 获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-5-删除"><span class="nav-text">4.2.5 删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-6-哈希表扩容"><span class="nav-text">4.2.6 哈希表扩容</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="doublewhite"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">doublewhite</p>
+  <div class="site-description" itemprop="description">我偏要勉强</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/doublewhite233" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;doublewhite233" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2715336213@qq.com" title="E-Mail → mailto:2715336213@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://doublewhite.top/" title="http:&#x2F;&#x2F;doublewhite.top&#x2F;">doublewhite</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">doublewhite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">98k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:29</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'lq2cJ6y8VqpN3wgXNPCMcfvf-gzGzoHsz',
+      appKey     : 'QqPTIia71estaRmGgI21mo4b',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-50},"mobile":{"show":false},"log":false,"tagMode":false});</script></body>
+</html>
