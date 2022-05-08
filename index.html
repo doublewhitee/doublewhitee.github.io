@@ -187,6 +187,1133 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2022/04/13/%E6%8F%8F%E8%BF%B0%E9%80%BB%E8%BE%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/13/%E6%8F%8F%E8%BF%B0%E9%80%BB%E8%BE%91/" class="post-title-link" itemprop="url">描述逻辑</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-13 22:14:42" itemprop="dateCreated datePublished" datetime="2022-04-13T22:14:42+01:00">2022-04-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E4%B9%89%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">语义网</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/04/13/%E6%8F%8F%E8%BF%B0%E9%80%BB%E8%BE%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/13/%E6%8F%8F%E8%BF%B0%E9%80%BB%E8%BE%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><h2 id="1-1-Description-Logics"><a href="#1-1-Description-Logics" class="headerlink" title="1.1 Description Logics"></a>1.1 Description Logics</h2><p>为什么使用DL：由于RDFS并不满足于所有的任务，有些内容无法被表达或推断。</p>
+<p>描述逻辑（Description Logic）是基于对象的知识表示的形式化，是一阶谓词逻辑（FOPL）的一个子集。它是模型理论的形式语义，比FOPL更简单的语法。它具有以下两个重要特征：</p>
+<ul>
+<li><p>可判别的（Decidable）：表达能力与算法复杂性的权衡</p>
+</li>
+<li><p>易于理解（Well understood）：源于80年代中期到90年代早期的工作</p>
+</li>
+</ul>
+<p>描述逻辑限制了可以使用的谓词类型，其基本的依照造句法构建的模块有原子概念（一元谓词）、一元角色（二元谓词）和个体（常量）。</p>
+<ul>
+<li><p>一元谓词（Unary predicates）表示概念（concept membership）：$Person(x)$</p>
+</li>
+<li><p>二元谓词（Binary predicates）表示实例之间的角色（roles between instances）：$hasChild(x,y)$</p>
+</li>
+</ul>
+<p>关于术语的说明：DL文献中使用的术语与RDFS中的术语略有不同，类和概念（class and concept）是可以互换的术语；角色、关系和属性（role, relation and property）是可以互换的术语。</p>
+<h2 id="1-2-用描述逻辑定义本体"><a href="#1-2-用描述逻辑定义本体" class="headerlink" title="1.2 用描述逻辑定义本体"></a>1.2 用描述逻辑定义本体</h2><p>通过使用必要条件和充分条件来描述类（概念）的情况：</p>
+<p>考虑一个类C的一个属性A。</p>
+<ul>
+<li><p>属性A是C类的一个必要条件。</p>
+<ul>
+<li>如果一个对象是C的一个实例，那么它就有属性A</li>
+</ul>
+</li>
+<li><p>属性A是C类的充分条件。</p>
+<ul>
+<li>如果一个对象有属性A，那么它就是C的一个实例</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3-描述逻辑的推理任务"><a href="#1-3-描述逻辑的推理任务" class="headerlink" title="1.3 描述逻辑的推理任务"></a>1.3 描述逻辑的推理任务</h2><ul>
+<li><p>满足（Satisfaction）：这个类可以有任何实例吗？</p>
+</li>
+<li><p>归纳（Subsumption）：C类的每一个实例是否一定是D类的实例？</p>
+</li>
+<li><p>分类（Classification）：这个对象是哪些类的实例？</p>
+</li>
+</ul>
+<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h1><h2 id="2-1-Expressions"><a href="#2-1-Expressions" class="headerlink" title="2.1 Expressions"></a>2.1 Expressions</h2><p>描述逻辑的表达包括：</p>
+<ul>
+<li><p>概念和角色（concept &amp; role）描述：</p>
+<ul>
+<li><p>原子概念（Atomic concepts）：Person</p>
+</li>
+<li><p>原子角色（Atomic roles）： hasChild</p>
+</li>
+<li><p>复杂概念（Complex concepts）：“person with two living parents”</p>
+</li>
+<li><p>复杂角色（Complex roles）：“has parent’s brother” (i.e. “has uncle”) </p>
+</li>
+</ul>
+</li>
+<li><p>公理（Axioms），即对概念或角色之间的关系进行陈述：</p>
+<ul>
+<li><p>“Every person with two living parents is thankful”</p>
+</li>
+<li><p>“hasUncle is equivalent to has parent’s brother”</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-2-Concept-Constructors"><a href="#2-2-Concept-Constructors" class="headerlink" title="2.2 Concept Constructors"></a>2.2 Concept Constructors</h2><p>概念构造器用于构建复杂的概念。</p>
+<h3 id="2-2-1-布尔概念构造器（Boolean-Concept-Constructors）"><a href="#2-2-1-布尔概念构造器（Boolean-Concept-Constructors）" class="headerlink" title="2.2.1 布尔概念构造器（Boolean Concept Constructors）"></a>2.2.1 布尔概念构造器（Boolean Concept Constructors）</h3><ul>
+<li><p><strong>Intersection</strong></p>
+<ul>
+<li><p>$Child⊓Happy$</p>
+</li>
+<li><p><code>⊓</code> 代表“与”，即为既是 <code>Child</code> 又是 <code>Happy</code> 的一类事物，读作“Child AND Happy”</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Union</strong></p>
+<ul>
+<li><p>$Rich⊔Famous$</p>
+</li>
+<li><p><code>⊓</code> 代表“或”，即为是 <code>Rich</code> 或者是 <code>Famous</code> （或两者皆是）的一类事物，读作“Rich OR Famous”</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Complement</strong></p>
+<ul>
+<li><p>$¬Happy$</p>
+</li>
+<li><p><code>¬</code> 代表“非”，即为不是 <code>Happy</code> 的一类事物，读作“NOT Happy”</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-2-限制（Restrictions）"><a href="#2-2-2-限制（Restrictions）" class="headerlink" title="2.2.2 限制（Restrictions）"></a>2.2.2 限制（Restrictions）</h3><ul>
+<li><p><strong>Existential</strong></p>
+<ul>
+<li><p>$∃hasPet.Cat$</p>
+</li>
+<li><p><code>∃</code> 代表“存在”，即为有一些宠物是猫的一类事物，必须有 <strong>至少一个</strong> 宠物，读作“hasPet SOME Cat”</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Universal</strong></p>
+<ul>
+<li><p>$∀hasPet. Cat$</p>
+</li>
+<li><p><code>∀</code>代表“任意”，即为所有宠物都是猫（宠物只有猫）的一类事物，包括 <strong>没有</strong> 宠物，读作“hasPet ONLY Cat”</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Number</strong></p>
+<ul>
+<li><p>$=1 hasPet$：有且只有一只宠物的一类事物</p>
+</li>
+<li><p>$≥2 hasPet$：有至少两只宠物的一类事物</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-3-其他"><a href="#2-2-3-其他" class="headerlink" title="2.2.3 其他"></a>2.2.3 其他</h3><ul>
+<li><p><strong>Universal concept</strong></p>
+<ul>
+<li><code>⊤</code> 代表全集，读作“top”</li>
+</ul>
+</li>
+<li><p><strong>Contradiction</strong></p>
+<ul>
+<li><code>⊤</code> 代表空集，读作“bottom”</li>
+</ul>
+</li>
+<li><p><strong>Nominals (singleton concepts)</strong></p>
+<ul>
+<li>${𝑥}$</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-3-Role-Constructors"><a href="#2-3-Role-Constructors" class="headerlink" title="2.3 Role Constructors"></a>2.3 Role Constructors</h2><p>角色构造器用于构建复杂的角色。</p>
+<ul>
+<li><p>具体领域（数据类型）</p>
+</li>
+<li><p>Inverse roles：$R^-$</p>
+</li>
+<li><p>Role composition：$R ∘ S$</p>
+</li>
+<li><p>Transitive roles：$R^+$</p>
+</li>
+</ul>
+<h2 id="2-4-Knowledge-Bases"><a href="#2-4-Knowledge-Bases" class="headerlink" title="2.4 Knowledge Bases"></a>2.4 Knowledge Bases</h2><p>一个描述逻辑知识库（knowledge base, KB）由两个部分组成：</p>
+<ul>
+<li><p>TBox：术语（terminology）</p>
+<ul>
+<li><p>一组描述领域结构的公理（即概念模式）</p>
+</li>
+<li><p>Concepts, roles</p>
+</li>
+</ul>
+</li>
+<li><p>ABox：断言（assertions）</p>
+<ul>
+<li><p>一组描述具体情形（数据）的公理</p>
+</li>
+<li><p>Instances</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-1-TBox-Axioms"><a href="#2-4-1-TBox-Axioms" class="headerlink" title="2.4.1 TBox Axioms"></a>2.4.1 TBox Axioms</h3><table>
+<thead>
+<tr>
+<th align="center">含义</th>
+<th align="center">写法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Concept inclusion<br>(C是D的一个子类，即C是一个原始的或部分的类)</td>
+<td align="center">$C⊑D$</td>
+</tr>
+<tr>
+<td align="center">Concept equivalence<br> (C与D相等)</td>
+<td align="center">$C≡D$</td>
+</tr>
+<tr>
+<td align="center">Role inclusion<br> (R是S的一个子属性)</td>
+<td align="center">$R⊑S$</td>
+</tr>
+<tr>
+<td align="center">Role equivalence <br> (R与S相等)</td>
+<td align="center">$R≡S$</td>
+</tr>
+<tr>
+<td align="center">Role transitivity <br> (R composed with itself is a subproperty of R)</td>
+<td align="center">$R^+⊑R$</td>
+</tr>
+</tbody></table>
+<p>D是C的的一个必要条件：$𝐶⊑𝐷$</p>
+<p>D是C的一个充分条件：$𝐶⊒𝐷$</p>
+<p>D是C的充要条件：$C≡D$</p>
+<h3 id="2-4-2-ABox-Axioms"><a href="#2-4-2-ABox-Axioms" class="headerlink" title="2.4.2 ABox Axioms"></a>2.4.2 ABox Axioms</h3><ul>
+<li><p>概念实例化（Concept instantiation）</p>
+<ul>
+<li><p>$𝐶(𝑥)$</p>
+</li>
+<li><p>x is of type C</p>
+</li>
+</ul>
+</li>
+<li><p>角色实例化（Role instantiation）</p>
+<ul>
+<li><p>$𝑅(𝑥, 𝑦)$</p>
+</li>
+<li><p>x has R of y</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Every person is either living or dead：$Person⊑Living⊔Dead$</p>
+<p>Every child who eats only cake is unhealthy：$Child⊓∀eats.Cake⊓∃eats.Cake⊑¬Healthy$</p>
+<p>No elephants can fly：$Elephant⊓FlyingThing≡ ⊥$</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2022/03/23/Vue3%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/23/Vue3%E6%96%B0%E7%89%B9%E6%80%A7/" class="post-title-link" itemprop="url">Vue3新特性[组合式API].md</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-23 22:41:31" itemprop="dateCreated datePublished" datetime="2022-03-23T22:41:31+00:00">2022-03-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/03/23/Vue3%E6%96%B0%E7%89%B9%E6%80%A7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/23/Vue3%E6%96%B0%E7%89%B9%E6%80%A7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>16k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>14 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-组合式API-常用"><a href="#1-组合式API-常用" class="headerlink" title="1. 组合式API(常用)"></a>1. 组合式API(常用)</h1><h2 id="1-1-setup"><a href="#1-1-setup" class="headerlink" title="1.1 setup"></a>1.1 setup</h2><p>新的 <code>setup</code> 选项在组件创建<strong>之前</strong>执行，一旦 <code>props</code> 被解析，就将作为组合式 API 的入口。函数如果返回对象, 对象中的属性或方法, 模板中可以直接使用。</p>
+<h3 id="1-1-1-执行时机"><a href="#1-1-1-执行时机" class="headerlink" title="1.1.1 执行时机"></a>1.1.1 执行时机</h3><p><code>setup</code> 在 beforeCreate 之前执行(一次), 此时组件对象还没有创建，也就意味着此时this是 <code>undefined</code>, 不能通过 this 来访问 data / computed / methods / props（其实所有的composition API 相关回调函数中也都不可以）。</p>
+<h3 id="1-1-2-setup返回值"><a href="#1-1-2-setup返回值" class="headerlink" title="1.1.2 setup返回值"></a>1.1.2 setup返回值</h3><p><code>setup</code> 中一般都返回一个对象，为模板提供数据，也就是模板中可以直接使用此对象中的所有属性和方法。<code>setup</code> 返回对象中的属性会与 <code>data</code> 函数返回对象的属性合并成为组件对象的属性；返回对象中的方法会与 <code>methods</code> 中的方法合并成功组件对象的方法。如果有重名，则以<code>setup</code>优先。</p>
+<p>注意：</p>
+<ul>
+<li>一般不要混合使用：<code>methods</code> 中可以访问 <code>setup</code> 提供的属性和方法, 但在 <code>setup</code> 方法中不能访问 <code>data</code> 和 <code>methods</code></li>
+<li><code>setup</code> 不能是一个 async 函数: 因为返回值不再是 return 的对象, 而是 promise, 模板看不到 return 对象中的属性数据</li>
+</ul>
+<h3 id="1-1-3-setup的参数"><a href="#1-1-3-setup的参数" class="headerlink" title="1.1.3 setup的参数"></a>1.1.3 setup的参数</h3><ul>
+<li><p>setup(props, context) / setup(props, { attrs, slots, emit })</p>
+</li>
+<li><p>props: 包含 props 配置声明且传入了的所有属性的对象</p>
+</li>
+<li><p>attrs: 包含没有在 props 配置中声明的属性的对象, 相当于 this.$attrs</p>
+</li>
+<li><p>slots: 包含所有传入的插槽内容的对象, 相当于 this.$slots</p>
+</li>
+<li><p>emit: 用来分发自定义事件的函数, 相当于 this.$emit</p>
+</li>
+</ul>
+<h2 id="1-2-ref"><a href="#1-2-ref" class="headerlink" title="1.2 ref"></a>1.2 ref</h2><p><code>ref</code> 可以使任何响应式变量在任何地方起作用。</p>
+<p>语法: const xxx = ref(initValue)</p>
+<ul>
+<li><p>创建一个包含响应式数据的引用(reference)对象，对象中有一个value属性</p>
+</li>
+<li><p>js 中操作数据: xxx.value</p>
+</li>
+</ul>
+<ul>
+<li><p>模板中操作数据: 不需要.value</p>
+</li>
+<li><p><code>ref</code> 内部通过给 value 属性添加 getter/setter 来实现对数据的劫持</p>
+</li>
+</ul>
+<p>一般用来定义一个<strong>基本类型</strong>的响应式数据。如果用 <code>ref</code> 对象/数组, 内部会自动将对象/数组转换为 <code>reactive</code> 的代理对象</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; number &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"update"</span>&gt;</span>update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">// defineComponent函数，对setup函数进行封装，返回options的对象</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent (&#123;</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="comment">// const number = 0 这个数据并不是响应式的</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> number = ref(<span class="number">0</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> update = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line">      number.value += 1</span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      number,</span><br><span class="line">      update</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-reactive"><a href="#1-3-reactive" class="headerlink" title="1.3 reactive"></a>1.3 reactive</h2><p><code>reactive</code> 可以定义多个数据的响应式。</p>
+<p>语法: const proxy = reactive(obj)</p>
+<ul>
+<li><p>接收一个普通对象然后返回该普通对象的响应式代理器对象。</p>
+</li>
+<li><p>响应式转换是“深层的”：会影响对象内部所有嵌套的属性。</p>
+</li>
+<li><p>内部基于 ES6 的 Proxy 实现，通过代理对象操作源对象内部数据都是响应式的，返回的 proxy 是<strong>不</strong>等于原始对象的。</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>name: &#123;&#123; user.name &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>age: &#123;&#123; user.age &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>hobbies: &#123;&#123; user.hobbies &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"update"</span>&gt;</span>update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, reactive &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent (&#123;</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> user = reactive(&#123;</span></span><br><span class="line"><span class="actionscript">      name: <span class="string">'doublewhitee'</span>,</span></span><br><span class="line">      age: 18,</span><br><span class="line">      hobbies: [</span><br><span class="line"><span class="actionscript">        <span class="string">'study'</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="string">'read'</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="string">'sleep'</span></span></span><br><span class="line">      ]</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> update = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line">      user.age += 1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      user,</span><br><span class="line">      update</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-Vue2和Vue3响应式对比"><a href="#1-4-Vue2和Vue3响应式对比" class="headerlink" title="1.4 Vue2和Vue3响应式对比"></a>1.4 Vue2和Vue3响应式对比</h2><h3 id="1-4-1-Vue2"><a href="#1-4-1-Vue2" class="headerlink" title="1.4.1 Vue2"></a>1.4.1 Vue2</h3><ul>
+<li>核心:<ul>
+<li>对象: 通过 defineProperty 对对象的已有属性值的读取和修改进行劫持(监视/拦截)</li>
+<li>数组: 通过重写数组更新数组一系列更新元素的方法来实现元素修改的劫持</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(data, <span class="string">'count'</span>, &#123;</span><br><span class="line">  <span class="keyword">get</span>() &#123;&#125;,</span><br><span class="line">  <span class="keyword">set</span>() &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>问题<ul>
+<li>对象直接新添加的属性或删除已有属性, 界面不会自动更新</li>
+<li>直接通过下标替换元素或更新 length, 界面不会自动更新 arr[1] = {}</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-2-Vue3"><a href="#1-4-2-Vue3" class="headerlink" title="1.4.2 Vue3"></a>1.4.2 Vue3</h3><ul>
+<li>核心:<ul>
+<li>通过 Proxy(代理): 拦截对 data 任意属性的任意(13 种)操作, 包括属性值的读写, 属性的添加, 属性的删除等…</li>
+<li>通过 Reflect(反射): 动态对被代理对象的相应属性进行特定的操作</li>
+<li>文档:<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy(opens new window)</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect(opens new window)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Proxy</span>(data, &#123;</span><br><span class="line">  <span class="comment">// 拦截读取属性值</span></span><br><span class="line">  <span class="keyword">get</span>(target, prop) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, prop)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 拦截设置属性值或添加新属性</span></span><br><span class="line">  <span class="keyword">set</span>(target, prop, value) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(target, prop, value)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 拦截删除属性</span></span><br><span class="line">  deleteProperty(target, prop) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.deleteProperty(target, prop)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">proxy.name = <span class="string">'tom'</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> user = &#123;</span></span><br><span class="line"><span class="actionscript">    name: <span class="string">'John'</span>,</span></span><br><span class="line">    age: 12</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="comment">// proxyUser是代理对象, user是被代理对象(目标对象)</span></span></span><br><span class="line"><span class="actionscript">  <span class="comment">// 后面所有的操作都是通过代理对象来操作被代理对象内部属性</span></span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> proxyUser = <span class="keyword">new</span> <span class="built_in">Proxy</span>(user, &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">get</span>(target, prop) &#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">'劫持get()'</span>, prop)</span></span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, prop)</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">set</span>(target, prop, val) &#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">'劫持set()'</span>, prop, val)</span></span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(target, prop, val) <span class="comment">// (2)</span></span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    deleteProperty(target, prop) &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">'劫持delete属性'</span>, prop)</span></span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.deleteProperty(target, prop)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="actionscript">  <span class="comment">// 读取属性值</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(proxyUser === user)</span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(proxyUser.name, proxyUser.age)</span></span><br><span class="line"><span class="actionscript">  <span class="comment">// 设置属性值</span></span></span><br><span class="line"><span class="actionscript">  proxyUser.name = <span class="string">'bob'</span></span></span><br><span class="line">  proxyUser.age = 13</span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(user)</span></span><br><span class="line"><span class="actionscript">  <span class="comment">// 添加属性</span></span></span><br><span class="line"><span class="actionscript">  proxyUser.sex = <span class="string">'男'</span></span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(user)</span></span><br><span class="line"><span class="actionscript">  <span class="comment">// 删除属性</span></span></span><br><span class="line"><span class="actionscript">  <span class="keyword">delete</span> proxyUser.sex</span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(user)</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5-计算属性与监视"><a href="#1-5-计算属性与监视" class="headerlink" title="1.5 计算属性与监视"></a>1.5 计算属性与监视</h2><h3 id="1-5-1-computed-函数"><a href="#1-5-1-computed-函数" class="headerlink" title="1.5.1 computed 函数"></a>1.5.1 computed 函数</h3><ul>
+<li><p>与 computed 配置功能一致</p>
+</li>
+<li><p>写法1：接受一个 getter 函数，并根据 getter 的返回值返回一个不可变的响应式<code>ref</code>对象</p>
+</li>
+</ul>
+<ul>
+<li>写法2：接受一个具有 <code>get</code> 和 <code>set</code> 函数的对象，用来创建可写的 <code>ref</code> 对象</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>姓名操作<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    姓氏：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请输入姓氏"</span> <span class="attr">v-model</span>=<span class="string">"user.firstName"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    名字：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请输入名字"</span> <span class="attr">v-model</span>=<span class="string">"user.lastName"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>计算属性<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"显示姓名"</span> <span class="attr">v-model</span>=<span class="string">"fullName1"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    姓名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"显示姓名"</span> <span class="attr">v-model</span>=<span class="string">"fullName2"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; computed, defineComponent, reactive &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent (&#123;</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> user = reactive(&#123;</span></span><br><span class="line"><span class="actionscript">      firstName: <span class="string">'D'</span>,</span></span><br><span class="line"><span class="actionscript">      lastName: <span class="string">'W'</span></span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="comment">// vue3中的计算属性</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 只传入一个回调函数，表示get</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 返回的是一个ref类型对象</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> fullName1 = computed(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> user.firstName + <span class="string">'_'</span> +user.lastName</span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="actionscript">    <span class="comment">// 传入对象：包括get和set</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> fullName2 = computed(&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">get</span>() &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> user.firstName + <span class="string">'_'</span> + user.lastName</span></span><br><span class="line">      &#125;,</span><br><span class="line"><span class="javascript">      <span class="keyword">set</span>(val: string) &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> names = val.split(<span class="string">'_'</span>)</span></span><br><span class="line">        user.firstName = names[0]</span><br><span class="line">        user.lastName = names[1]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      user,</span><br><span class="line">      fullName1,</span><br><span class="line">      fullName2</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-2-watch-函数"><a href="#1-5-2-watch-函数" class="headerlink" title="1.5.2 watch 函数"></a>1.5.2 watch 函数</h3><ul>
+<li><p>与 watch 配置功能一致，监视指定数据</p>
+</li>
+<li><p>监视指定的一个或多个响应式数据, 一旦数据变化, 就自动执行监视回调</p>
+</li>
+<li><p>默认初始时不执行回调, 但可以通过配置 immediate 为 true, 来指定初始时立即执行第一次</p>
+</li>
+<li><p>通过配置 deep 为 true, 来指定深度监视</p>
+</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fullName3 = ref(<span class="string">''</span>)</span><br><span class="line">watch(user, <span class="function">(<span class="params">&#123; firstName, lastName &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  fullName3.value = firstName + <span class="string">'_'</span> + lastName</span><br><span class="line">&#125;, &#123; immediate: <span class="literal">true</span>, deep: <span class="literal">true</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>watch 同样可以监听多个数据：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// watch侦听多个源</span></span><br><span class="line"><span class="comment">// 如果为非响应式数据，采用 () =&gt; val 写法</span></span><br><span class="line">watch([<span class="function"><span class="params">()</span> =&gt;</span> user.firstName, <span class="function"><span class="params">()</span> =&gt;</span> user.lastName, fullName3], <span class="function">(<span class="params">[firstName, lastName, fullName]</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(firstName, lastName, fullName)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-3-watchEffect-函数"><a href="#1-5-3-watchEffect-函数" class="headerlink" title="1.5.3 watchEffect 函数"></a>1.5.3 watchEffect 函数</h3><ul>
+<li><p>不用直接指定要监视的数据, 回调函数中使用的哪些响应式数据就监视哪些响应式数据</p>
+</li>
+<li><p>默认初始时就会执行第一次, 从而可以收集需要监视的数据</p>
+</li>
+<li><p>监视数据发生变化时回调</p>
+</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不需要配置immediate,本身默认就会执行一次</span></span><br><span class="line">watchEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  fullName3.value = user.firstName + <span class="string">'_'</span> + user.lastName</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-6-Vue2和Vue3生命周期对比"><a href="#1-6-Vue2和Vue3生命周期对比" class="headerlink" title="1.6 Vue2和Vue3生命周期对比"></a>1.6 Vue2和Vue3生命周期对比</h2><p>部分与 2.x 版本生命周期相对应的组合式 API：</p>
+<ul>
+<li><p><code>beforeCreate</code> -&gt; 使用 <code>setup()</code></p>
+</li>
+<li><p><code>created</code> -&gt; 使用 <code>setup()</code></p>
+</li>
+<li><p><code>beforeMount</code> -&gt; <code>onBeforeMount</code></p>
+</li>
+<li><p><code>mounted</code> -&gt; <code>onMounted</code></p>
+</li>
+<li><p><code>beforeUpdate</code> -&gt; <code>onBeforeUpdate</code></p>
+</li>
+<li><p><code>updated</code> -&gt; <code>onUpdated</code></p>
+</li>
+<li><p><code>beforeDestroy</code> -&gt; <code>onBeforeUnmount</code></p>
+</li>
+<li><p><code>destroyed</code> -&gt; <code>onUnmounted</code></p>
+</li>
+<li><p><code>errorCaptured</code> -&gt; <code>onErrorCaptured</code></p>
+</li>
+</ul>
+<h2 id="1-7-自定义-hook-函数"><a href="#1-7-自定义-hook-函数" class="headerlink" title="1.7 自定义 hook 函数"></a>1.7 自定义 hook 函数</h2><p>自定义 hook 函数是使用 Vue3 的组合 API 封装的可复用的功能函数，作用类似于 Vue2 中的 <code>mixin</code>。</p>
+<h3 id="1-7-1-收集用户鼠标点击的页面坐标"><a href="#1-7-1-收集用户鼠标点击的页面坐标" class="headerlink" title="1.7.1 收集用户鼠标点击的页面坐标"></a>1.7.1 收集用户鼠标点击的页面坐标</h3><p>useMousePosition.ts：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; onBeforeUnmount, onMounted, ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> x = ref(<span class="number">-1</span>)</span><br><span class="line">  <span class="keyword">const</span> y = ref(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> clickHandler = <span class="function">(<span class="params">event: MouseEvent</span>) =&gt;</span> &#123;</span><br><span class="line">    x.value = event.pageX</span><br><span class="line">    y.value = event.pageY</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 添加点击事件监听</span></span><br><span class="line">  onMounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'click'</span>, clickHandler)</span><br><span class="line">  &#125;)</span><br><span class="line">  onBeforeUnmount(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.removeEventListener(<span class="string">'click'</span>, clickHandler)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    x,</span><br><span class="line">    y</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Component：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>自定义Hook<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>x: &#123;&#123; x &#125;&#125;, y: &#123;&#123; y &#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> useMousePosition <span class="keyword">from</span> <span class="string">'../hooks/useMousePosition'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line"><span class="actionscript">  name: <span class="string">'Hook'</span>,</span></span><br><span class="line">  setup () &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> &#123; x, y &#125; = useMousePosition()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-7-2-封装发送-ajax-请求的-hook-函数"><a href="#1-7-2-封装发送-ajax-请求的-hook-函数" class="headerlink" title="1.7.2 封装发送 ajax 请求的 hook 函数"></a>1.7.2 封装发送 ajax 请求的 hook 函数</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>&lt;<span class="title">T</span>&gt;(<span class="params">url: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> loading = ref(<span class="literal">true</span>)</span><br><span class="line">  <span class="keyword">const</span> data = ref&lt;T | <span class="literal">null</span>&gt;(<span class="literal">null</span>)</span><br><span class="line">  <span class="keyword">const</span> errorMsg = ref(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">  axios.get(url).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    loading.value = <span class="literal">false</span></span><br><span class="line">    data.value = response.data</span><br><span class="line">  &#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    loading.value = <span class="literal">false</span></span><br><span class="line">    errorMsg.value = err.message || <span class="string">'unknown error'</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    loading,</span><br><span class="line">    data,</span><br><span class="line">    errorMsg</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-8-toRefs"><a href="#1-8-toRefs" class="headerlink" title="1.8 toRefs"></a>1.8 toRefs</h2><p>将响应式对象转换为普通对象，其中结果对象的每个 property 都是指向原始对象相应 property 的 <code>ref</code>。当从组合式函数返回响应式对象时，<code>toRefs</code> 非常有用，这样消费组件就可以在不丢失响应性的情况下对返回的对象进行解构/展开。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; name &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; age &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, reactive, toRefs &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> state = reactive(&#123;</span></span><br><span class="line"><span class="actionscript">      name: <span class="string">'whitee'</span>,</span></span><br><span class="line">      age: 18</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="actionscript">    <span class="comment">// toRefs可以将响应式对象转换为普通对象</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 其中结果对象的每个 property 都是指向原始对象相应 property 的 ref</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> state2 = toRefs(state)</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 定时更新数据</span></span></span><br><span class="line"><span class="javascript">    setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line">      state.age += 1</span><br><span class="line">    &#125;, 2000)</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// ...state // 不是响应式的数据</span></span></span><br><span class="line">      ...state2</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; name &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; age &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, reactive, toRefs &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">useFeatureX</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> state = reactive(&#123;</span></span><br><span class="line"><span class="actionscript">    name: <span class="string">'whitee'</span>,</span></span><br><span class="line">    age: 18</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="actionscript">  <span class="keyword">return</span> &#123;</span></span><br><span class="line">    ...toRefs(state)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> &#123; name, age &#125; = useFeatureX()</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 定时更新数据</span></span></span><br><span class="line"><span class="javascript">    setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line">      age.value += 1</span><br><span class="line">    &#125;, 2000)</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      age,</span><br><span class="line">      name</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-9-ref-获取元素"><a href="#1-9-ref-获取元素" class="headerlink" title="1.9 ref 获取元素"></a>1.9 ref 获取元素</h2><p>利用 ref 函数可以获取组件中的标签元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ref</span>=<span class="string">"inputRef"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, onMounted, ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> inputRef = ref&lt;HTMLElement | <span class="literal">null</span>&gt;(<span class="literal">null</span>)</span></span><br><span class="line"><span class="javascript">    onMounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// 让输入框自动获取焦点</span></span></span><br><span class="line">      inputRef.value &amp;&amp; inputRef.value.focus()</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      inputRef</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-组合式API-其他"><a href="#2-组合式API-其他" class="headerlink" title="2. 组合式API(其他)"></a>2. 组合式API(其他)</h1><h2 id="2-1-shallowReactive-与-shallowRef"><a href="#2-1-shallowReactive-与-shallowRef" class="headerlink" title="2.1 shallowReactive 与 shallowRef"></a>2.1 shallowReactive 与 shallowRef</h2><ul>
+<li><p>shallowReactive : 只处理了对象内最外层属性的响应式(也就是浅响应式)</p>
+</li>
+<li><p>shallowRef: 只处理了value的响应式, 不进行对象的reactive处理</p>
+</li>
+</ul>
+<p>一般情况下使用 <code>ref</code> 和 <code>reactive</code> 即可，如果有一个对象数据, 结构比较深, 但变化时只是外层属性变化时适合使用 <code>shallowReactive</code>；如果有一个对象数据, 后面会产生新的对象来替换，适合使用 <code>shallowRef</code>。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; m1 &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; m2 &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; m3 &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; m4 &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"update"</span>&gt;</span>Update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, reactive, shallowReactive, ref, shallowRef &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> m1 = reactive(&#123;</span></span><br><span class="line"><span class="actionscript">      name: <span class="string">'A'</span>,</span></span><br><span class="line">      info: &#123;</span><br><span class="line">        age: 20</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> m2 = shallowReactive(&#123;</span></span><br><span class="line"><span class="actionscript">      name: <span class="string">'A'</span>,</span></span><br><span class="line">      info: &#123;</span><br><span class="line">        age: 20</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> m3 = ref(&#123;</span></span><br><span class="line"><span class="actionscript">      name: <span class="string">'A'</span>,</span></span><br><span class="line">      info: &#123;</span><br><span class="line">        age: 20</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> m4 = shallowRef(&#123;</span></span><br><span class="line"><span class="actionscript">      name: <span class="string">'A'</span>,</span></span><br><span class="line">      info: &#123;</span><br><span class="line">        age: 20</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> update = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// m1.info.age += 1 // 深度劫持</span></span></span><br><span class="line"><span class="actionscript">      <span class="comment">// m2.info.age += 1 // 页面不会更新，浅劫持</span></span></span><br><span class="line"><span class="actionscript">      <span class="comment">// m3.value.info.age += 1</span></span></span><br><span class="line">      m4.value.info.age += 1</span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      m1,</span><br><span class="line">      m2,</span><br><span class="line">      m3,</span><br><span class="line">      m4,</span><br><span class="line">      update</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-readonly-与-shallowReadonly"><a href="#2-2-readonly-与-shallowReadonly" class="headerlink" title="2.2 readonly 与 shallowReadonly"></a>2.2 readonly 与 shallowReadonly</h2><p>在某些特定情况下，我们可能不希望对数据进行更新的操作，那就可以包装生成一个只读代理对象来读取数据，而不能修改或删除。</p>
+<ul>
+<li><p>readonly:</p>
+<ul>
+<li><p>深度只读数据</p>
+</li>
+<li><p>获取一个对象 (响应式或纯对象) 或 ref 并返回原始代理的只读代理。</p>
+</li>
+<li><p>只读代理是深层的：访问的任何嵌套 property 也是只读的。</p>
+</li>
+</ul>
+</li>
+<li><p>shallowReadonly</p>
+<ul>
+<li><p>浅只读数据</p>
+</li>
+<li><p>创建一个代理，使其自身的 property 为只读，但不执行嵌套对象的深度只读转换</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-3-toRaw-与-markRaw"><a href="#2-3-toRaw-与-markRaw" class="headerlink" title="2.3 toRaw 与 markRaw"></a>2.3 toRaw 与 markRaw</h2><ul>
+<li><p>toRaw</p>
+<ul>
+<li><p>返回由 <code>reactive</code> 或 <code>readonly</code> 方法转换成响应式代理的普通对象。</p>
+</li>
+<li><p>这是一个还原方法，可用于临时读取，访问不会被代理/跟踪，写入时也不会触发界面更新。</p>
+</li>
+</ul>
+</li>
+<li><p>markRaw</p>
+<ul>
+<li><p>标记一个对象，使其永远不会转换为代理。返回对象本身。</p>
+</li>
+<li><p>当存在有些值不应被设置为响应式的，例如复杂的第三方类实例或 Vue 组件对象或当渲染具有不可变数据源的大列表时，跳过代理转换可以提高性能时可以使用 <code>markRaw</code> 。</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; state &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; user &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"testToRaw"</span>&gt;</span>Test toRaw<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"testMarkRaw"</span>&gt;</span>Test markRaw<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, reactive, toRaw, markRaw &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> state = reactive(&#123;</span></span><br><span class="line"><span class="actionscript">      name: <span class="string">'doublewhite'</span>,</span></span><br><span class="line">      age: 20,</span><br><span class="line"><span class="actionscript">      likes: [<span class="string">'sleep'</span>]</span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> user = toRaw(state)</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> likes = [<span class="string">'eat'</span>]</span></span><br><span class="line">    state.likes = markRaw(likes)</span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> testToRaw = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// 把代理对象变成普通对象，数据变化，界面不变化</span></span></span><br><span class="line">      user.age += 1</span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(user)</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> testMarkRaw = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// markRaw标记的对象数据，从此以后都不能再成为代理对象</span></span></span><br><span class="line"><span class="actionscript">      state.likes[<span class="number">0</span>] += <span class="string">'.'</span></span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(state.likes)</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      state,</span><br><span class="line">      user,</span><br><span class="line">      testToRaw,</span><br><span class="line">      testMarkRaw</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-toRef"><a href="#2-4-toRef" class="headerlink" title="2.4 toRef"></a>2.4 toRef</h2><ul>
+<li><p>为源响应式对象上的某个属性创建一个 <code>ref</code> 对象，二者内部操作的是同一个数据值，更新时二者是同步的</p>
+</li>
+<li><p>区别ref：拷贝了一份新的数据值单独操作, 更新时相互不影响</p>
+</li>
+<li><p>应用: 当要将某个prop 的 <code>ref</code> 传递给复合函数时，toRef 很有用</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; state &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; age &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; money &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"update"</span>&gt;</span>Update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Child</span> <span class="attr">:age</span>=<span class="string">"age"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">'ts'</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, reactive, ref, toRef &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Child <span class="keyword">from</span> <span class="string">'./11_toRef_Child.vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line">  components: &#123;</span><br><span class="line">    Child</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> state = reactive(&#123;</span></span><br><span class="line">      age: 10,</span><br><span class="line">      money: 100</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="actionscript">    <span class="comment">// 把响应式数据state中的某个属性[age]变成了ref对象</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> age = toRef(state, <span class="string">'age'</span>)</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 把响应式对象中某个属性[money]使用ref进行包装，变成ref对象</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> money = ref(state.money)</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> update = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">      state.age += <span class="number">1</span> <span class="comment">// 同时更新state和age</span></span></span><br><span class="line"><span class="actionscript">      age.value += <span class="number">1</span> <span class="comment">// 同时更新state和age</span></span></span><br><span class="line"><span class="actionscript">      money.value += <span class="number">10</span> <span class="comment">// 只更新money</span></span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      state,</span><br><span class="line">      age,</span><br><span class="line">      money,</span><br><span class="line">      update</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h4</span>&gt;</span>&#123;&#123; age &#125;&#125;<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h4</span>&gt;</span>&#123;&#123; length &#125;&#125;<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; computed, defineComponent, Ref, toRef &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">useGetLength</span><span class="params">(age: Ref)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">return</span> computed(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> age.value.toString().length</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line"><span class="actionscript">  name: <span class="string">'Child'</span>,</span></span><br><span class="line">  props: &#123;</span><br><span class="line">    age: &#123;</span><br><span class="line"><span class="javascript">      type: <span class="built_in">Number</span>,</span></span><br><span class="line"><span class="actionscript">      required: <span class="literal">true</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props) &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> length = useGetLength(toRef(props, <span class="string">'age'</span>))</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      length</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-customRef"><a href="#2-5-customRef" class="headerlink" title="2.5 customRef"></a>2.5 customRef</h2><p>创建一个自定义的 ref，并对其依赖项跟踪和更新触发进行显式控制。它需要一个工厂函数，该函数接收 <code>track</code> 和 <code>trigger</code> 函数作为参数，并且应该返回一个带有 <code>get</code> 和 <code>set</code> 的对象。</p>
+<ul>
+<li>需求：使用 customRef 实现 debounce 的示例</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"keyword"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123; keyword &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; customRef, defineComponent, ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">useDebouncedRef</span>&lt;<span class="title">T</span>&gt;(<span class="params">value: T, delay = <span class="number">200</span></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> timeoutId: number</span></span><br><span class="line"><span class="javascript">  <span class="keyword">return</span> customRef(<span class="function">(<span class="params">track, trigger</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// 返回数据</span></span></span><br><span class="line"><span class="javascript">      <span class="keyword">get</span>() &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="comment">// 告诉Vue追踪数据</span></span></span><br><span class="line">        track()</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> value</span></span><br><span class="line">      &#125;,</span><br><span class="line"><span class="actionscript">      <span class="comment">// 设置数据</span></span></span><br><span class="line"><span class="javascript">      <span class="keyword">set</span>(newVal: T) &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="comment">// 清理定时器</span></span></span><br><span class="line">        clearTimeout(timeoutId)</span><br><span class="line"><span class="actionscript">        <span class="comment">// 开启定时器</span></span></span><br><span class="line"><span class="javascript">        timeoutId = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line">          value = newVal</span><br><span class="line">          trigger()</span><br><span class="line">        &#125;, delay)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="comment">// const keyword = ref('abc')</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> keyword = useDebouncedRef(<span class="string">'abc'</span>, <span class="number">500</span>)</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      keyword</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-6-provide-与-inject"><a href="#2-6-provide-与-inject" class="headerlink" title="2.6 provide 与 inject"></a>2.6 provide 与 inject</h2><ul>
+<li><p><code>provide</code> 和 <code>inject</code> 提供依赖注入，功能类似 2.x 的<code>provide/inject</code></p>
+</li>
+<li><p>实现跨层级组件（祖孙）间通信</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>当前颜色：&#123;&#123; color &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"color = 'red'"</span>&gt;</span>红色<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"color = 'blue'"</span>&gt;</span>黄色<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"color = 'green'"</span>&gt;</span>绿色<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Son</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, provide, ref &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> Son <span class="keyword">from</span> <span class="string">'./13_son.vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line">  components: &#123;</span><br><span class="line">    Son</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> color = ref(<span class="string">'red'</span>)</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 提供数据</span></span></span><br><span class="line"><span class="actionscript">    provide(<span class="string">'color'</span>, color)</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      color</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Son<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">GrandSon</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> GrandSon <span class="keyword">from</span> <span class="string">'./13_grandson.vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line"><span class="actionscript">  name: <span class="string">'Son'</span>,</span></span><br><span class="line">  components: &#123;</span><br><span class="line">    GrandSon</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span> <span class="attr">:style</span>=<span class="string">"&#123; color &#125;"</span>&gt;</span>GrandSon<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; defineComponent, inject &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span></span><br><span class="line"><span class="actionscript">  name: <span class="string">'GrandSon'</span>,</span></span><br><span class="line">  setup() &#123;</span><br><span class="line"><span class="actionscript">    <span class="comment">// 注入</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> color = inject(<span class="string">'color'</span>)</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      color</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-7-响应式数据的判断"><a href="#2-7-响应式数据的判断" class="headerlink" title="2.7 响应式数据的判断"></a>2.7 响应式数据的判断</h2><ul>
+<li><p>isRef：检查一个值是否为一个 ref 对象</p>
+</li>
+<li><p>isReactive：检查一个对象是否是由 <code>reactive</code> 创建的响应式代理</p>
+</li>
+<li><p>isReadonly：检查一个对象是否是由 <code>readonly</code> 创建的只读代理</p>
+</li>
+<li><p>isProxy：检查一个对象是否是由 <code>reactive</code> 或者 <code>readonly</code> 方法创建的代理</p>
+</li>
+</ul>
+<h1 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2022/02/10/SPARQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/10/SPARQL/" class="post-title-link" itemprop="url">SPARQL</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-10 11:50:36" itemprop="dateCreated datePublished" datetime="2022-02-10T11:50:36+00:00">2022-02-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E4%B9%89%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">语义网</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/10/SPARQL/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/10/SPARQL/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>SPARQL(SPARQL Protocol and RDF Query Language)，是为RDF开发的一种查询语言和数据获取协议。</p>
+<p>对于从数据库读取数据的查询，SPARQL语言为不同目的指定了四种不同的查询变体。</p>
+<ul>
+<li><p>SELECT查询：用于从SPARQL端点提取原始值，结果以表格格式返回。</p>
+</li>
+<li><p>CONSTRUCT查询：用于从SPARQL端点提取信息并将结果转换为有效的RDF。</p>
+</li>
+<li><p>ASK查询：用于为SPARQL端点上的查询提供简单的True / False结果。</p>
+</li>
+<li><p>DESCRIBE查询：用于从SPARQL端点提取RDF图，其内容留给端点根据维护者认为有用的信息来决定。</p>
+</li>
+</ul>
+<p>这些查询表单中的每一个都使用WHERE块来限制查询，但是，在DESCRIBE查询的情况下，WHERE是可选的。</p>
+<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h1><h2 id="2-1-Simple-example"><a href="#2-1-Simple-example" class="headerlink" title="2.1 Simple example"></a>2.1 Simple example</h2><p>SPARQL中：</p>
+<ul>
+<li><p>变量的前缀是<code>?</code></p>
+</li>
+<li><p>用类似N3的语法表达三元组</p>
+</li>
+<li><p>查询返回一个变量的绑定结果集</p>
+</li>
+</ul>
+<blockquote>
+<p>_:a foaf:name “Johnny Lee Outlaw” .<br>_:a foaf:mbox &lt;mailto:<a href="mailto:jlow@example.com">jlow@example.com</a>&gt; .<br>_:b foaf:name “Peter Goodguy” .<br>_:b foaf:mbox &lt;mailto:<a href="mailto:peter@example.org">peter@example.org</a>&gt; .<br>_:c foaf:mbox &lt;mailto:<a href="mailto:carol@example.org">carol@example.org</a>&gt; .</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT ?name ?mbox</span><br><span class="line">WHERE &#123;</span><br><span class="line">    ?x foaf:name ?name .</span><br><span class="line">    ?x foaf:mbox ?mbox .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">?name</th>
+<th align="center">?mbox</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">“Johnny Lee Outlaw”</td>
+<td align="center"><a href="mailto:jlow@example.com">mailto:jlow@example.com</a></td>
+</tr>
+<tr>
+<td align="center">“Peter Goodguy”</td>
+<td align="center"><a href="mailto:peter@example.org">mailto:peter@example.org</a></td>
+</tr>
+</tbody></table>
+<h2 id="2-2-约束条件"><a href="#2-2-约束条件" class="headerlink" title="2.2 约束条件"></a>2.2 约束条件</h2><p>SPARQL中，限制条件可以应用于变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT ?title</span><br><span class="line">WHERE &#123;</span><br><span class="line">  ?x dc:title ?title .</span><br><span class="line">  FILTER regex(?title, &quot;^SPARQL&quot;)  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SELECT ?title ?price</span><br><span class="line">WHERE &#123;</span><br><span class="line">  ?x ns:price ?price .</span><br><span class="line">  FILTER (?price &lt; 30.5)</span><br><span class="line">  ?x dc:title ?title . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-Group-Graph-Patterns"><a href="#2-3-Group-Graph-Patterns" class="headerlink" title="2.3 Group Graph Patterns"></a>2.3 Group Graph Patterns</h2><p>Group Graph Patterns是用{ }括起来的一组模式，决定了FILTER操作符（和其他操作符）的作用范围。</p>
+<h3 id="2-3-1-Optional-Graph-Patterns"><a href="#2-3-1-Optional-Graph-Patterns" class="headerlink" title="2.3.1 Optional Graph Patterns"></a>2.3.1 Optional Graph Patterns</h3><p>OPTIONAL允许我们说明，为了产生绑定，不需要匹配Group Graph Patterns。</p>
+<blockquote>
+<p>_:a rdf:type foaf:Person .<br>_:a foaf:name “Alice” .<br>_:a foaf:mbox &lt;mailto:<a href="mailto:alice@example.com">alice@example.com</a>&gt; .<br>_:a foaf:mbox &lt;mailto:<a href="mailto:alice@work.example.com">alice@work.example.com</a>&gt; .<br>_:b rdf:type foaf:Person .<br>_:b foaf:name “Bob” .</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT ?name ?mbox</span><br><span class="line">WHERE &#123;</span><br><span class="line">  ?x  foaf:name  ?name .</span><br><span class="line">  OPTIONAL &#123;</span><br><span class="line">    ?x  foaf:mbox  ?mbox .</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">?name</th>
+<th align="center">?mbox</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">“Alice”</td>
+<td align="center"><a href="mailto:alice@example.com">mailto:alice@example.com</a></td>
+</tr>
+<tr>
+<td align="center">“Alice”</td>
+<td align="center"><a href="mailto:alice@work.example.com">mailto:alice@work.example.com</a></td>
+</tr>
+<tr>
+<td align="center">“Bob”</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="2-3-2-Union-Graph-Patterns"><a href="#2-3-2-Union-Graph-Patterns" class="headerlink" title="2.3.2 Union Graph Patterns"></a>2.3.2 Union Graph Patterns</h3><p>UNION有效地给我们提供了一个二择一的查询：要么匹配这个，要么匹配那个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PREFIX dc10: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.0&#x2F;&gt;</span><br><span class="line">PREFIX dc11: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt;</span><br><span class="line">SELECT ?title</span><br><span class="line">WHERE &#123;    </span><br><span class="line">  &#123; ?book dc10:title ?title . &#125; </span><br><span class="line">  UNION </span><br><span class="line">  &#123; ?book dc11:title ?title . &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-Default-Graph-amp-Named-Graphs"><a href="#2-4-Default-Graph-amp-Named-Graphs" class="headerlink" title="2.4 Default Graph &amp; Named Graphs"></a>2.4 Default Graph &amp; Named Graphs</h2><p>SPARQL 查询针对表示图形集合的RDF 数据集执行。一个 RDF 数据集包括一个图，即没有名称的默认图，以及0或多个命名图，其中每个命名图由 IRI 标识。</p>
+<h3 id="2-4-1-Default-Graph"><a href="#2-4-1-Default-Graph" class="headerlink" title="2.4.1 Default Graph"></a>2.4.1 Default Graph</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT  ?name</span><br><span class="line">FROM &lt;http:&#x2F;&#x2F;example.org&#x2F;foaf&#x2F;aliceFoaf&gt;</span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:name ?name .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>http://example.org/foaf/aliceFoaf</code>是默认图，除非另有说明，所有的triples都会来自该图。</p>
+<h3 id="2-4-2-Named-Graphs"><a href="#2-4-2-Named-Graphs" class="headerlink" title="2.4.2 Named Graphs"></a>2.4.2 Named Graphs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">PREFIX dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt;</span><br><span class="line">SELECT ?who ?g ?mbox</span><br><span class="line">FROM &lt;http:&#x2F;&#x2F;example.org&#x2F;dft.ttl&gt;</span><br><span class="line">FROM NAMED &lt;http:&#x2F;&#x2F;example.org&#x2F;alice&gt;</span><br><span class="line">FROM NAMED &lt;http:&#x2F;&#x2F;example.org&#x2F;bob&gt;</span><br><span class="line">WHERE &#123;</span><br><span class="line">  ?g dc:publisher ?who .</span><br><span class="line">  GRAPH ?g &#123; ?who foaf:mbox ?mbox . &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-Ordering-amp-LIMIT-amp-OFFSET-amp-DISTINCT"><a href="#2-5-Ordering-amp-LIMIT-amp-OFFSET-amp-DISTINCT" class="headerlink" title="2.5 Ordering &amp; LIMIT &amp; OFFSET &amp; DISTINCT"></a>2.5 Ordering &amp; LIMIT &amp; OFFSET &amp; DISTINCT</h2><h3 id="2-5-1-Ordering"><a href="#2-5-1-Ordering" class="headerlink" title="2.5.1 Ordering"></a>2.5.1 Ordering</h3><p>按<code>?name</code>升序排列结果，然后按<code>?emp</code>降序排列。ASC()：升序排序；DESC()降序排序。默认为升序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">PREFIX ont: &lt;http:&#x2F;&#x2F;example.org&#x2F;ontology&#x2F;&gt;</span><br><span class="line">SELECT ?name</span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:name ?name ; </span><br><span class="line">     ont:empId ?emp .</span><br><span class="line">&#125;</span><br><span class="line">ORDER BY ?name DESC(?emp)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-2-LIMIT-and-OFFSET"><a href="#2-5-2-LIMIT-and-OFFSET" class="headerlink" title="2.5.2 LIMIT and OFFSET"></a>2.5.2 LIMIT and OFFSET</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT ?name</span><br><span class="line">WHERE &#123;</span><br><span class="line">  ?x foaf:name ?name .</span><br><span class="line">&#125;</span><br><span class="line">ORDER BY ?name</span><br><span class="line">LIMIT   5</span><br><span class="line">OFFSET  10</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-3-DISTINCT"><a href="#2-5-3-DISTINCT" class="headerlink" title="2.5.3 DISTINCT"></a>2.5.3 DISTINCT</h3><p>DISTINCT：删除重复的结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT DISTINCT ?name </span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:name ?name .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-6-Other-SPARQL-Verbs"><a href="#2-6-Other-SPARQL-Verbs" class="headerlink" title="2.6 Other SPARQL Verbs"></a>2.6 Other SPARQL Verbs</h2><p>除了SELECT之外，还有CONSTRUCT、ASK和DESCRIBE。</p>
+<h3 id="2-6-1-CONSTRUCT"><a href="#2-6-1-CONSTRUCT" class="headerlink" title="2.6.1 CONSTRUCT"></a>2.6.1 CONSTRUCT</h3><h4 id="2-6-1-1-基本用法"><a href="#2-6-1-1-基本用法" class="headerlink" title="2.6.1.1 基本用法"></a>2.6.1.1 基本用法</h4><p>CONSTRUCT查询返回一个RDF图，由一个图模板指定。对于结果集中的每一行，用该行的值替换模板中的变量，将得到的图合并为一个图（set union of triples）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf:  &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">PREFIX vcard: &lt;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;vcard-rdf&#x2F;3.0#&gt;</span><br><span class="line">CONSTRUCT   &#123;</span><br><span class="line">  ?x vcard:FN ?name .</span><br><span class="line">  ?x vcard:EMAIL ?mail . </span><br><span class="line">&#125;</span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:name ?name .</span><br><span class="line">  ?x foaf:mbox ?mail . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-1-2-CONSTRUCT-and-bNodes"><a href="#2-6-1-2-CONSTRUCT-and-bNodes" class="headerlink" title="2.6.1.2 CONSTRUCT and bNodes"></a>2.6.1.2 CONSTRUCT and bNodes</h4><p>模板可以创建包含空白节点的 RDF 图。空白节点标签的范围仅限于每个解决方案的模板。如果同一个标签在模板中出现两次，那么每个查询解决方案都会创建一个空白节点，但不同查询解决方案生成的三元组会有不同的空白节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CONSTRUCT &#123; </span><br><span class="line">  ?x  vcard:N _:v .</span><br><span class="line">  _:v vcard:givenName ?gname .</span><br><span class="line">  _:v vcard:familyName ?fname .</span><br><span class="line">&#125;</span><br><span class="line">WHERE &#123;</span><br><span class="line">  &#123; ?x foaf:firstname ?gname &#125; UNION &#123; ?x foaf:givenname   ?gname &#125; .</span><br><span class="line">  &#123; ?x foaf:surname   ?fname &#125; UNION &#123; ?x foaf:family_name ?fname &#125; .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-1-3-访问-RDF-数据集中的图"><a href="#2-6-1-3-访问-RDF-数据集中的图" class="headerlink" title="2.6.1.3 访问 RDF 数据集中的图"></a>2.6.1.3 访问 RDF 数据集中的图</h4><p>使用<code>CONSTRUCT</code>，可以从目标 RDF 数据集中提取部分或全部图形。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CONSTRUCT &#123; </span><br><span class="line">  ?s ?p ?o .</span><br><span class="line">&#125; </span><br><span class="line">WHERE &#123; </span><br><span class="line">  GRAPH &lt;http:&#x2F;&#x2F;example.org&#x2F;aGraph&gt; &#123; ?s ?p ?o &#125; . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-2-ASK"><a href="#2-6-2-ASK" class="headerlink" title="2.6.2 ASK"></a>2.6.2 ASK</h3><p>ASK查询是用来检查一个查询模式是否有解决方案。不返回关于查询解决方案的信息（没有变量绑定），只有一个布尔值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_:a  foaf:name  &quot;Alice&quot; .</span><br><span class="line">_:a  foaf:homepage  &lt;http:&#x2F;&#x2F;work.example.org&#x2F;alice&#x2F;&gt; .</span><br><span class="line">_:b  foaf:name  &quot;Bob&quot; ._:b  foaf:mbox  &lt;mailto:bob@work.example&gt; .</span><br><span class="line"></span><br><span class="line">ASK &#123; ?x foaf:name  &quot;Alice&quot; &#125;</span><br><span class="line"></span><br><span class="line">(returns true)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-3-DESCRIBE"><a href="#2-6-3-DESCRIBE" class="headerlink" title="2.6.3 DESCRIBE"></a>2.6.3 DESCRIBE</h3><p><code>DESCRIBE</code>返回包含一个或多个资源信息的单一graph。返回数据的结构由SPARQL查询处理器决定。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DESCRIBE &lt;http:&#x2F;&#x2F;example.org&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">DESCRIBE ?x</span><br><span class="line">WHERE &#123; </span><br><span class="line">    ?x foaf:name &quot;Alice&quot; .</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DESCRIBE ?x ?y &lt;http:&#x2F;&#x2F;example.org&#x2F;&gt;</span><br><span class="line">WHERE &#123;</span><br><span class="line">    ?x foaf:knows ?y .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-SPARQL-1-1"><a href="#3-SPARQL-1-1" class="headerlink" title="3. SPARQL 1.1"></a>3. SPARQL 1.1</h2><p>SPARQL 1.0 在2008年被 W3C 认可为官方推荐，SPARQL 1.1在其基础上增加了一些新功能，2013年SPARQL 1.1被W3C认可。</p>
+<p>SPARQL只提供了一种查询数据库的方法，但许多应用程序需要的其他功能。SPARQL 1.1的更新源于早期的SPARUL提案。</p>
+<h2 id="3-1-Update"><a href="#3-1-Update" class="headerlink" title="3.1 Update"></a>3.1 Update</h2><h3 id="3-1-1-INSERT-DATA"><a href="#3-1-1-INSERT-DATA" class="headerlink" title="3.1.1 INSERT DATA"></a>3.1.1 INSERT DATA</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; </span><br><span class="line">INSERT DATA </span><br><span class="line">&#123; </span><br><span class="line">  &lt;http:&#x2F;&#x2F;example&#x2F;book1&gt; dc:title &quot;A new book&quot; ; </span><br><span class="line">                         dc:creator &quot;A.N.Other&quot; . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-2-DELETE-DATA"><a href="#3-1-2-DELETE-DATA" class="headerlink" title="3.1.2 DELETE DATA"></a>3.1.2 DELETE DATA</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; </span><br><span class="line">DELETE DATA </span><br><span class="line">&#123; </span><br><span class="line">  &lt;http:&#x2F;&#x2F;example&#x2F;book2&gt; dc:title &quot;David Copperfield&quot; ; </span><br><span class="line">                         dc:creator &quot;Edmund Wells&quot; . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-3-DELETE-INSERT"><a href="#3-1-3-DELETE-INSERT" class="headerlink" title="3.1.3 DELETE/INSERT"></a>3.1.3 DELETE/INSERT</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt; </span><br><span class="line">WITH &lt;http:&#x2F;&#x2F;example&#x2F;addresses&gt; </span><br><span class="line">DELETE </span><br><span class="line">&#123; </span><br><span class="line">  ?person foaf:givenName &#39;Bill&#39; </span><br><span class="line">&#125; </span><br><span class="line">INSERT </span><br><span class="line">&#123; </span><br><span class="line">  ?person foaf:givenName &#39;William&#39; </span><br><span class="line">&#125; </span><br><span class="line">WHERE </span><br><span class="line">&#123; </span><br><span class="line">  ?person a foaf:Person . </span><br><span class="line">  ?person foaf:givenName &#39;Bill&#39; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-4-Graph-Operations"><a href="#3-1-4-Graph-Operations" class="headerlink" title="3.1.4 Graph Operations"></a>3.1.4 Graph Operations</h3><ul>
+<li><p>LOAD: load triples from URI into graph</p>
+</li>
+<li><p>CLEAR: clear all triples from graph</p>
+</li>
+<li><p>CREATE: create new graph in store</p>
+</li>
+<li><p>DROP: remove graph from store</p>
+</li>
+<li><p>COPY: copy all triples from one graph to another</p>
+</li>
+<li><p>MOVE: move all triples from one graph to another (remove from source)</p>
+</li>
+<li><p>ADD: add all triples in one graph to another</p>
+</li>
+</ul>
+<h2 id="3-2-Aggregates"><a href="#3-2-Aggregates" class="headerlink" title="3.2 Aggregates"></a>3.2 Aggregates</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PREFIX : &lt;http:&#x2F;&#x2F;books.example&#x2F;&gt; </span><br><span class="line">SELECT (SUM(?lprice) AS ?totalPrice) </span><br><span class="line">WHERE &#123; </span><br><span class="line">    ?org :affiliates ?auth . </span><br><span class="line">    ?auth :writesBook ?book . </span><br><span class="line">    ?book :price ?lprice . </span><br><span class="line">&#125; </span><br><span class="line">GROUP BY ?org </span><br><span class="line">HAVING (SUM(?lprice) &gt; 10)</span><br></pre></td></tr></table></figure>
+
+<p>GROUP BY - 计算出的组的合计值（single implicit group if no GROUP BY statement）。</p>
+<p>HAVING - 对组的过滤。</p>
+<p>AS - 聚合投影限制。</p>
+<p>其他聚合函数: COUNT, MIN, MAX, GROUP_CONCAT, SAMPLE</p>
+<h2 id="3-3-Subqueries"><a href="#3-3-Subqueries" class="headerlink" title="3.3 Subqueries"></a>3.3 Subqueries</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PREFIX : &lt;http:&#x2F;&#x2F;people.example&#x2F;&gt; </span><br><span class="line">PREFIX : &lt;http:&#x2F;&#x2F;people.example&#x2F;&gt; </span><br><span class="line">SELECT ?y ?minName </span><br><span class="line">WHERE &#123; </span><br><span class="line">  :alice :knows ?y . </span><br><span class="line">  &#123; </span><br><span class="line">    SELECT ?y (MIN(?name) AS ?minName) </span><br><span class="line">    WHERE &#123; </span><br><span class="line">      ?y :name ?name . </span><br><span class="line">    &#125; </span><br><span class="line">    GROUP BY ?y </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4-SELECT-Expressions"><a href="#3-4-SELECT-Expressions" class="headerlink" title="3.4 SELECT Expressions"></a>3.4 SELECT Expressions</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PREFIX dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; </span><br><span class="line">PREFIX ns: &lt;http:&#x2F;&#x2F;example.org&#x2F;ns#&gt; </span><br><span class="line">SELECT ?title (?p*(1-?discount) AS ?price) </span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x ns:price ?p . </span><br><span class="line">  ?x dc:title ?title . </span><br><span class="line">  ?x ns:discount ?discount </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-5-Property-Paths"><a href="#3-5-Property-Paths" class="headerlink" title="3.5 Property Paths"></a>3.5 Property Paths</h2><h3 id="3-5-1-Alternatives"><a href="#3-5-1-Alternatives" class="headerlink" title="3.5.1 Alternatives"></a>3.5.1 Alternatives</h3><p>“|” 是 UNION 的语法糖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PREFIX dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt;</span><br><span class="line">SELECT ?displayString</span><br><span class="line">WHERE &#123; </span><br><span class="line">  :book1 dc:title|rdfs:label ?displayString </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-2-Sequences"><a href="#3-5-2-Sequences" class="headerlink" title="3.5.2 Sequences"></a>3.5.2 Sequences</h3><p><code>?x foaf:knows [ foaf:name ?name]</code>的语法糖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT ?name</span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:mbox &lt;mailto:alice@example&gt; . </span><br><span class="line">  ?x foaf:knows&#x2F;foaf:name ?name . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-3-Arbitrary-Sequences"><a href="#3-5-3-Arbitrary-Sequences" class="headerlink" title="3.5.3 Arbitrary Sequences"></a>3.5.3 Arbitrary Sequences</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT ?name</span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:mbox &lt;mailto:alice@example&gt; . </span><br><span class="line">  ?x foaf:knows+&#x2F;foaf:name ?name . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Repeat operators:</strong></p>
+<ul>
+<li>* (zero or more occurrences)</li>
+</ul>
+<ul>
+<li><p>+ (one or more occurrences)</p>
+</li>
+<li><p>{n} (exactly n occurrences)</p>
+</li>
+<li><p>{n,m} (between n and m occurrences)</p>
+</li>
+</ul>
+<h3 id="3-5-4-Inverses"><a href="#3-5-4-Inverses" class="headerlink" title="3.5.4 Inverses"></a>3.5.4 Inverses</h3><p>反转属性方向，交换主体和对象的角色。以下例子表示查找所有认识<code>?x</code>认识的人（Find all the people who know someone ?x knows）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT ?y</span><br><span class="line">WHERE &#123;</span><br><span class="line">    &lt;mailto:alice@example&gt; ^foaf:mbox ?x . </span><br><span class="line">    ?x foaf:knows&#x2F;^foaf:knows ?y . </span><br><span class="line">    FILTER(?x !&#x3D; ?y) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-6-Entailment-Regimes"><a href="#3-6-Entailment-Regimes" class="headerlink" title="3.6 Entailment Regimes"></a>3.6 Entailment Regimes</h2><p>到目前为止，我们只看了没有引用的图的查询。引用改变了问题：我们的模式可以与推理出的三元组相匹配，哪些三元组被推断出来取决于<code>Entailment Regimes</code>。</p>
+<p>多种<code>Entailment Regimes</code>，分别对应于：</p>
+<ul>
+<li><p>使用的本体语言：RDF、RDFS、OWL</p>
+</li>
+<li><p>数据类型的使用</p>
+</li>
+<li><p>规则语言的使用</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT ?pub WHERE &#123; ?pub rdf:type ex:Publication &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Without entailment: ex:book1</p>
+<p>With entailment: ex:book1, ex:book2, ex:book3</p>
+<p><img src="https://s1.ax1x.com/2022/03/24/q3X5jO.png" alt="img"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2022/02/03/%E8%B5%84%E6%BA%90%E6%8F%8F%E8%BF%B0%E6%A1%86%E6%9E%B6RDF%E5%8F%8ATurtle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/03/%E8%B5%84%E6%BA%90%E6%8F%8F%E8%BF%B0%E6%A1%86%E6%9E%B6RDF%E5%8F%8ATurtle/" class="post-title-link" itemprop="url">资源描述框架RDF及Turtle</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-03 17:55:28" itemprop="dateCreated datePublished" datetime="2022-02-03T17:55:28+00:00">2022-02-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E4%B9%89%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">语义网</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/03/%E8%B5%84%E6%BA%90%E6%8F%8F%E8%BF%B0%E6%A1%86%E6%9E%B6RDF%E5%8F%8ATurtle/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/03/%E8%B5%84%E6%BA%90%E6%8F%8F%E8%BF%B0%E6%A1%86%E6%9E%B6RDF%E5%8F%8ATurtle/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-RDF"><a href="#1-RDF" class="headerlink" title="1. RDF"></a>1. RDF</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><p>RDF（Resource Description Framework）语义网的标准数据模型，是一个用于描述 Web 上的资源的框架。RDF本身用XML文件的形式表示。</p>
+<p>RDF规定了主-谓-宾这种描述形式（in the form of subject-predicate-object triples）来表示资源之间的关系，RDF语句的集合代表了一个标记的、有方向的图。</p>
+<p>RDF被用来作为语义网中其他知识表示和本体语言的基础。</p>
+<img title src="https://s4.ax1x.com/2022/03/02/b1Ozy6.png" alt width="485" data-align="center">
+
+<h2 id="1-2-格式"><a href="#1-2-格式" class="headerlink" title="1.2 格式"></a>1.2 格式</h2><ul>
+<li><p><strong>RDF/XML</strong>：最古老的语法，几乎被所有的工具所支持，但在任何方面都不人性化</p>
+</li>
+<li><p><strong>RDF/N3 family</strong>：紧凑的、人性化的、非XML的语法：N3、NTriples、Turtle</p>
+</li>
+<li><p><strong>Other XML and non-XML syntaxes</strong>：TriX, JSON-LD, etc</p>
+</li>
+</ul>
+<h2 id="1-3-RDF的要求"><a href="#1-3-RDF的要求" class="headerlink" title="1.3 RDF的要求"></a>1.3 RDF的要求</h2><ul>
+<li><p>识别对象和词汇术语的手段（URIs）;</p>
+</li>
+<li><p>区分不同词汇的方法（namespaces and qualified names）；</p>
+<ul>
+<li><p>RDF语法使用命名空间将URIs缩写为限定名称（QNames）</p>
+</li>
+<li><p>一个 QName 由一个命名空间前缀、一个冒号和一个本地名称组成<br>例如：rdf:type, dc:creator, foaf:Person</p>
+</li>
+<li><p>命名空间前缀对应于URI前缀 </p>
+<p>例如：给定URI <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#" target="_blank" rel="noopener">http://www.w3.org/1999/02/22-rdf-syntax-ns#</a> 的命名空间前缀为rdf，则QName rdf:type 的QName将扩展为 <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" target="_blank" rel="noopener">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</a> 。</p>
+</li>
+</ul>
+</li>
+<li><p>一种序列化三要素的方法（a data format）。</p>
+</li>
+</ul>
+<h1 id="2-Turtle"><a href="#2-Turtle" class="headerlink" title="2. Turtle"></a>2. Turtle</h1><p>Turtle（Terse RDF Triple Language）由于其简单易读，易于编写的特点，成为常见的序列化RDF数据模型的标准。</p>
+<ul>
+<li><p>资源URIs写在尖括号里：<a href="http://example.org" target="_blank" rel="noopener">http://example.org</a></p>
+</li>
+<li><p>字面量写在双引号中：”like this”</p>
+</li>
+<li><p>三元组以句号结尾：.</p>
+</li>
+<li><p>空白字符（whitespace）不重要</p>
+</li>
+</ul>
+<h2 id="2-1-语法"><a href="#2-1-语法" class="headerlink" title="2.1 语法"></a>2.1 语法</h2><h3 id="2-1-1-简单三元组"><a href="#2-1-1-简单三元组" class="headerlink" title="2.1.1 简单三元组"></a>2.1.1 简单三元组</h3><p>字面量作为宾语:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;http:&#x2F;&#x2F;www.sciam.com&gt; &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;title&gt; &quot;Scientific American&quot; .</span><br></pre></td></tr></table></figure>
+
+<p>对于较长的字面量，可以使用三双引号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;http:&#x2F;&#x2F;www.sciam.com&gt; &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;title&gt; &quot;&quot;&quot;This is a multi-line</span><br><span class="line">literal&quot;&quot;&quot; .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-2-Turtle中的命名空间"><a href="#2-1-2-Turtle中的命名空间" class="headerlink" title="2.1.2 Turtle中的命名空间"></a>2.1.2 Turtle中的命名空间</h3><p>使用@prefix定义，使用时不需要加尖括号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;www.sciam.com&gt; dc:creator &lt;mailto:john @example.org&gt; .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-3-Base-URI"><a href="#2-1-3-Base-URI" class="headerlink" title="2.1.3 Base URI"></a>2.1.3 Base URI</h3><p>@base 引入了一个基础URI，所有URI片段的标识符都是相对于这个URI扩展的（类似于RDF/XML中xml:base的使用）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@base &lt;http:&#x2F;&#x2F;example.org&#x2F;data&gt; .</span><br><span class="line">@prefix foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt; .</span><br><span class="line">&lt;#john&gt; foaf:name “John Smith” .</span><br></pre></td></tr></table></figure>
+
+<p>相当于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;http:&#x2F;&#x2F;example.org&#x2F;data#john&gt; &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;name&gt; “John Smith” .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-4-谓语列表"><a href="#2-1-4-谓语列表" class="headerlink" title="2.1.4 谓语列表"></a>2.1.4 谓语列表</h3><p>对于一个主语被多个谓语所引用的情况，它们拥有重复的主语。使用分号 ; 隔开。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt; http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;example.org&gt; dc:title &quot;Example Inc. Homepage&quot; ;</span><br><span class="line">                     dc:creator &lt;mailto:john @example.org&gt; .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-5-宾语列表"><a href="#2-1-5-宾语列表" class="headerlink" title="2.1.5 宾语列表"></a>2.1.5 宾语列表</h3><p>与谓语一样，宾语经常与相同的主语和谓语重复。使用逗号 , 隔开。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt; http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;example.org&gt; dc:creator &lt;mailto:john @example.org&gt; ,</span><br><span class="line">                                &lt;mailto:sally@example.org&gt; .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-6-空白节点（bNodes）"><a href="#2-1-6-空白节点（bNodes）" class="headerlink" title="2.1.6 空白节点（bNodes）"></a>2.1.6 空白节点（bNodes）</h3><p>有时我们有一些资源，我们不希望用URI来识别它们。这些是空白节点或匿名资源。</p>
+<p><img src="https://s4.ax1x.com/2022/03/02/b8zgxJ.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt; http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">@prefix foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;www.example.org&#x2F;&gt; dc:creator [ foaf:name “John Smith” ] .</span><br></pre></td></tr></table></figure>
+
+<p>但是[]语法不足以明确地表示所有包含空白节点的图。例如下面的例子中难以说明这两个空白节点是相同的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt; http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">@prefix foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;example.org&#x2F;&gt; dc:creator [ foaf:name “John Smith” ] .</span><br><span class="line">&lt;http:&#x2F;&#x2F;test.example.org&#x2F;&gt; dc:creator [ foaf:name “John Smith” ] .</span><br></pre></td></tr></table></figure>
+
+<p>空白节点导致的歧义可以通过使用node IDs来解决。Node IDs是RDF图的一个特定序列化的本地标识符。</p>
+<ul>
+<li><p>Node IDs看起来像带有_（下划线）命名空间前缀的qNames。</p>
+</li>
+<li><p>例如：. _:a123、_:foo、 _:bar</p>
+</li>
+<li><p>Node IDs不能从定义图的范围之外被引用</p>
+</li>
+</ul>
+<p>当一个RDF文件被解析和序列化时，Node IDs不能保证保持不变：标识符字符串可能会改变，但图的结构将保持不变。使用Node IDs，上述例子可以改变为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt; http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">@prefix foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;example.org&#x2F;&gt; dc:creator _:foo .</span><br><span class="line">&lt;http:&#x2F;&#x2F;test.example.org&#x2F;&gt; dc:creator _:foo .</span><br><span class="line">_:foo foaf:name “John Smith” .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-7-数据类型"><a href="#2-1-7-数据类型" class="headerlink" title="2.1.7 数据类型"></a>2.1.7 数据类型</h3><p>许多应用程序需要能够区分不同类型的字面符号，例如：整数、日期与小数。RDF使用XML Schema数据类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt; http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">@prefix xsd: &lt;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema#&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;example.org&#x2F;&gt; dc:date “2020-01-27”^^xsd:date .</span><br></pre></td></tr></table></figure>
+
+<p>RDF支持字面量的语言注释。使用由ISO369-1双字母代码识别的语言：en、zh、fr、de、es。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt; http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;example.org&#x2F;foreword&gt; dc:title “Foreword”@en .</span><br><span class="line">&lt;http:&#x2F;&#x2F;example.org&#x2F;foreword&gt; dc:title “Avant-propos”@fr .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-8-Class-membership"><a href="#2-1-8-Class-membership" class="headerlink" title="2.1.8 Class membership"></a>2.1.8 Class membership</h3><p>一个对象在一个类中的成员资格是用rdf:type属性表示的。Turtle让我们用’a’来缩写rdf:type。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@prefix ex: &lt;http:&#x2F;&#x2F;example.org&#x2F;ontology&#x2F;&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;example.org&#x2F;&gt; a ex:Website .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-9-空URI"><a href="#2-1-9-空URI" class="headerlink" title="2.1.9 空URI"></a>2.1.9 空URI</h3><p>空URI使用&lt;&gt;表示。关于null URIref的断言是关于RDF图本身的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt; http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">@prefix xsd: &lt;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema#&gt; .</span><br><span class="line">&lt;&gt; dc:date “2020-01-26”^^xsd:date ;</span><br><span class="line">   dc:creator &lt;mailto:nmg@ecs.soton.ac.uk&gt; .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-10-集合"><a href="#2-1-10-集合" class="headerlink" title="2.1.10 集合"></a>2.1.10 集合</h3><p>集合（rdf:List）是RDF中表达有序组的一种方式。</p>
+<ul>
+<li><p>递归定义：一个集合由集合中的第一个项目和另一个集合组成，后者是剩余的项目。</p>
+</li>
+<li><p>代表一个空集合的资源 ：rdf:nil</p>
+</li>
+<li><p>类似于Lisp中的cons/car/cdr列表</p>
+<p>rdf:first等同于car：一个集合中的第一个项目</p>
+<p>rdf:rest相当于cdr：集合的其余部分</p>
+</li>
+<li><p>不变的：如果不改变集合的形式，就不能改变。</p>
+</li>
+</ul>
+<p>集合在普通RDF中相对不常见，但在OWL的RDF序列化中被广泛使用。</p>
+<p><img src="https://s4.ax1x.com/2022/03/02/bGFwSf.png" alt="img"></p>
+<p>集合的Turtle语法使用圆括号()。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;example.org&gt; dc:creator ( &lt;mailto:john@example.org&gt;</span><br><span class="line">                                  &lt;mailto:bill@example.org&gt;</span><br><span class="line">                                  &lt;mailto:sally@example.org&gt; ) .</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，这两张图说的是根本不同的事情。在上面这张图中，<a href="http://example.org/" target="_blank" rel="noopener">http://example.org/</a> 只有一个creator，也就是一个容器。但在下面这张图中<a href="http://example.org/有三个creator。因此这张图中的三个宾语也没有特定的顺序。" target="_blank" rel="noopener">http://example.org/有三个creator。因此这张图中的三个宾语也没有特定的顺序。</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@prefix dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; .</span><br><span class="line">&lt;http:&#x2F;&#x2F;example.org&gt; dc:creator &lt;mailto:john@example.org&gt; ,</span><br><span class="line">                                &lt;mailto:bill@example.org&gt; ,</span><br><span class="line">                                &lt;mailto:sally@example.org&gt; .</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/11/18/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -808,424 +1935,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="doublewhite">
-      <meta itemprop="description" content="我偏要勉强">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DoubleWhite">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">JS数据结构-栈、队列</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-08 23:37:40" itemprop="dateCreated datePublished" datetime="2021-10-08T23:37:40+01:00">2021-10-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">基础</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-栈结构"><a href="#1-栈结构" class="headerlink" title="1. 栈结构"></a>1. 栈结构</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><p>栈（stack）是一种受限的线性表，后进先出（LIFO）。</p>
-<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimgs.itxueyuan.com%2F454511-20190702081704226-59575462.png&refer=http%3A%2F%2Fimgs.itxueyuan.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637099431&t=b150857637a26dc0bc2a04c963882244" alt="stack"></p>
-<p>其限制是仅允许在表的一端进行插入和删除运算，这一端被称为栈顶。相对地，把另一端称为栈底。</p>
-<p>LIFO（last in first out）代表后进入的元素第一个弹出栈空间。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/09/24/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="doublewhite">
-      <meta itemprop="description" content="我偏要勉强">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DoubleWhite">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/24/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250/" class="post-title-link" itemprop="url">python爬取豆瓣电影Top250</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-24 14:08:14" itemprop="dateCreated datePublished" datetime="2021-09-24T14:08:14+01:00">2021-09-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/24/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/24/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-准备"><a href="#1-准备" class="headerlink" title="1. 准备"></a>1. 准备</h1><p>网络爬虫，是一种按照一定规则，自动抓取互联网信息的程序或者脚本。由于互联网数据的多样性和资源的有限性，根据用户需求定向抓取相关网页并分析已成为如今主流的爬取策略。爬虫的本质即为模拟浏览器打开网页，获取网页中想要的那部分数据。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/24/python%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/08/12/React%E6%89%A9%E5%B1%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="doublewhite">
-      <meta itemprop="description" content="我偏要勉强">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DoubleWhite">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/12/React%E6%89%A9%E5%B1%95/" class="post-title-link" itemprop="url">React扩展</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-12 18:07:35" itemprop="dateCreated datePublished" datetime="2021-08-12T18:07:35+01:00">2021-08-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/08/12/React%E6%89%A9%E5%B1%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/12/React%E6%89%A9%E5%B1%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-setState"><a href="#1-setState" class="headerlink" title="1. setState"></a>1. setState</h1><p>setState更新状态的两种写法：</p>
-<ol>
-<li>setState(stateChange, [callback]) —– 对象形式的setState<ul>
-<li>stateChange为状态改变对象（该对象可以体现出状态的更改）</li>
-<li>callback是可选的回调函数，它在状态更新完毕、界面也更新后（render调用后）才被调用</li>
-</ul>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/12/React%E6%89%A9%E5%B1%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/06/27/react-router%E3%80%81redux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="doublewhite">
-      <meta itemprop="description" content="我偏要勉强">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DoubleWhite">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/27/react-router%E3%80%81redux/" class="post-title-link" itemprop="url">React Router、Redux</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-27 17:15:41" itemprop="dateCreated datePublished" datetime="2021-06-27T17:15:41+01:00">2021-06-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/27/react-router%E3%80%81redux/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/27/react-router%E3%80%81redux/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>13k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-React脚手架"><a href="#1-React脚手架" class="headerlink" title="1. React脚手架"></a>1. React脚手架</h1><p>包含了所有需要的配置，制定好了所有的依赖，可以直接安装编译运行一个简单效果。React脚手架创建方法：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/27/react-router%E3%80%81redux/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1297,20 +2006,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1359,7 +2068,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1368,12 +2077,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">112k</span>
+    <span title="站点总字数">144k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:42</span>
+    <span title="站点阅读时长">2:11</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

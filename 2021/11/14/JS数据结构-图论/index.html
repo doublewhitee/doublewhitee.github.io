@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F9020030-891c23a9a2a98042.png&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639783568&t=637a0e08052f4e77e71af2b2ac4adfa7">
 <meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcdn.learnku.com%2Fuploads%2Fimages%2F202004%2F23%2F12643%2F7fYTX1YPTs.png%21large&refer=http%3A%2F%2Fcdn.learnku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1639784247&t=ef510efa445bd115cf5f6705f2d67423">
 <meta property="article:published_time" content="2021-11-14T23:13:31.000Z">
-<meta property="article:modified_time" content="2021-11-18T22:38:30.252Z">
+<meta property="article:modified_time" content="2022-02-14T23:39:43.614Z">
 <meta property="article:author" content="doublewhite">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -307,10 +307,7 @@
 <h3 id="2-3-2-深度优先搜索"><a href="#2-3-2-深度优先搜索" class="headerlink" title="2.3.2 深度优先搜索"></a>2.3.2 深度优先搜索</h3><p>深度优先算法会从指定的第一个顶点开始遍历图，沿着这条路径直到这条路径最后被访问，接着原路返回并探索下一条路径。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Graph.prototype.dfs = <span class="function"><span class="keyword">function</span> (<span class="params">initV, handler</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> colors = <span class="keyword">this</span>.initializeColor()</span><br><span class="line">  <span class="keyword">this</span>.dfsVisit(initV, colors, handler)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Graph.prototype.dfsVisit = <span class="function"><span class="keyword">function</span> (<span class="params">v, colors, handler</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将颜色设置为灰色</span></span><br><span class="line">  colors[v] = <span class="string">'gray'</span></span><br><span class="line">  handler(v)</span><br><span class="line">  <span class="comment">// 访问v相连的顶点</span></span><br><span class="line">  <span class="keyword">const</span> vList = <span class="keyword">this</span>.edges.get(v)</span><br><span class="line">  vList.forEach(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (colors[i] === <span class="string">'white'</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.dfsVisit(i, colors, handler)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 将v设置成黑色</span></span><br><span class="line">  colors[v] = <span class="string">'black'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
 <h2 id="2-4-toString"><a href="#2-4-toString" class="headerlink" title="2.4 toString()"></a>2.4 toString()</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Graph.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.vertexs.forEach(<span class="function"><span class="params">v</span> =&gt;</span> &#123;</span><br><span class="line">    res += v + <span class="string">'-&gt;'</span></span><br><span class="line">    <span class="keyword">const</span> vedges = <span class="keyword">this</span>.edges.get(v)</span><br><span class="line">    vedges.forEach(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">      res += e + <span class="string">' '</span></span><br><span class="line">    &#125;)</span><br><span class="line">    res += <span class="string">'\n'</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -411,20 +408,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -473,7 +470,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -482,12 +479,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">112k</span>
+    <span title="站点总字数">144k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:42</span>
+    <span title="站点阅读时长">2:11</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

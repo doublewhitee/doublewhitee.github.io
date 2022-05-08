@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"doublewhite.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. 简介1.1 Description Logics为什么使用DL：由于RDFS并不满足于所有的任务，有些内容无法被表达或推断。 描述逻辑（Description Logic）是基于对象的知识表示的形式化，是一阶谓词逻辑（FOPL）的一个子集。它是模型理论的形式语义，比FOPL更简单的语法。它具有以下两个重要特征：  可判别的（Decidable）：表达能力与算法复杂性的权衡  易于理解（Wel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="描述逻辑">
+<meta property="og:url" content="http://doublewhite.top/2022/04/13/%E6%8F%8F%E8%BF%B0%E9%80%BB%E8%BE%91/index.html">
+<meta property="og:site_name" content="DoubleWhite">
+<meta property="og:description" content="1. 简介1.1 Description Logics为什么使用DL：由于RDFS并不满足于所有的任务，有些内容无法被表达或推断。 描述逻辑（Description Logic）是基于对象的知识表示的形式化，是一阶谓词逻辑（FOPL）的一个子集。它是模型理论的形式语义，比FOPL更简单的语法。它具有以下两个重要特征：  可判别的（Decidable）：表达能力与算法复杂性的权衡  易于理解（Wel">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-13T21:14:42.000Z">
+<meta property="article:modified_time" content="2022-04-15T22:38:56.794Z">
+<meta property="article:author" content="doublewhite">
+<meta property="article:tag" content="RDF">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://doublewhite.top/2022/04/13/%E6%8F%8F%E8%BF%B0%E9%80%BB%E8%BE%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>描述逻辑 | DoubleWhite</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DoubleWhite</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2022/04/13/%E6%8F%8F%E8%BF%B0%E9%80%BB%E8%BE%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          描述逻辑
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-13 22:14:42" itemprop="dateCreated datePublished" datetime="2022-04-13T22:14:42+01:00">2022-04-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E4%B9%89%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">语义网</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/04/13/%E6%8F%8F%E8%BF%B0%E9%80%BB%E8%BE%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/13/%E6%8F%8F%E8%BF%B0%E9%80%BB%E8%BE%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><h2 id="1-1-Description-Logics"><a href="#1-1-Description-Logics" class="headerlink" title="1.1 Description Logics"></a>1.1 Description Logics</h2><p>为什么使用DL：由于RDFS并不满足于所有的任务，有些内容无法被表达或推断。</p>
+<p>描述逻辑（Description Logic）是基于对象的知识表示的形式化，是一阶谓词逻辑（FOPL）的一个子集。它是模型理论的形式语义，比FOPL更简单的语法。它具有以下两个重要特征：</p>
+<ul>
+<li><p>可判别的（Decidable）：表达能力与算法复杂性的权衡</p>
+</li>
+<li><p>易于理解（Well understood）：源于80年代中期到90年代早期的工作</p>
+</li>
+</ul>
+<p>描述逻辑限制了可以使用的谓词类型，其基本的依照造句法构建的模块有原子概念（一元谓词）、一元角色（二元谓词）和个体（常量）。</p>
+<ul>
+<li><p>一元谓词（Unary predicates）表示概念（concept membership）：$Person(x)$</p>
+</li>
+<li><p>二元谓词（Binary predicates）表示实例之间的角色（roles between instances）：$hasChild(x,y)$</p>
+</li>
+</ul>
+<p>关于术语的说明：DL文献中使用的术语与RDFS中的术语略有不同，类和概念（class and concept）是可以互换的术语；角色、关系和属性（role, relation and property）是可以互换的术语。</p>
+<h2 id="1-2-用描述逻辑定义本体"><a href="#1-2-用描述逻辑定义本体" class="headerlink" title="1.2 用描述逻辑定义本体"></a>1.2 用描述逻辑定义本体</h2><p>通过使用必要条件和充分条件来描述类（概念）的情况：</p>
+<p>考虑一个类C的一个属性A。</p>
+<ul>
+<li><p>属性A是C类的一个必要条件。</p>
+<ul>
+<li>如果一个对象是C的一个实例，那么它就有属性A</li>
+</ul>
+</li>
+<li><p>属性A是C类的充分条件。</p>
+<ul>
+<li>如果一个对象有属性A，那么它就是C的一个实例</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3-描述逻辑的推理任务"><a href="#1-3-描述逻辑的推理任务" class="headerlink" title="1.3 描述逻辑的推理任务"></a>1.3 描述逻辑的推理任务</h2><ul>
+<li><p>满足（Satisfaction）：这个类可以有任何实例吗？</p>
+</li>
+<li><p>归纳（Subsumption）：C类的每一个实例是否一定是D类的实例？</p>
+</li>
+<li><p>分类（Classification）：这个对象是哪些类的实例？</p>
+</li>
+</ul>
+<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h1><h2 id="2-1-Expressions"><a href="#2-1-Expressions" class="headerlink" title="2.1 Expressions"></a>2.1 Expressions</h2><p>描述逻辑的表达包括：</p>
+<ul>
+<li><p>概念和角色（concept &amp; role）描述：</p>
+<ul>
+<li><p>原子概念（Atomic concepts）：Person</p>
+</li>
+<li><p>原子角色（Atomic roles）： hasChild</p>
+</li>
+<li><p>复杂概念（Complex concepts）：“person with two living parents”</p>
+</li>
+<li><p>复杂角色（Complex roles）：“has parent’s brother” (i.e. “has uncle”) </p>
+</li>
+</ul>
+</li>
+<li><p>公理（Axioms），即对概念或角色之间的关系进行陈述：</p>
+<ul>
+<li><p>“Every person with two living parents is thankful”</p>
+</li>
+<li><p>“hasUncle is equivalent to has parent’s brother”</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-2-Concept-Constructors"><a href="#2-2-Concept-Constructors" class="headerlink" title="2.2 Concept Constructors"></a>2.2 Concept Constructors</h2><p>概念构造器用于构建复杂的概念。</p>
+<h3 id="2-2-1-布尔概念构造器（Boolean-Concept-Constructors）"><a href="#2-2-1-布尔概念构造器（Boolean-Concept-Constructors）" class="headerlink" title="2.2.1 布尔概念构造器（Boolean Concept Constructors）"></a>2.2.1 布尔概念构造器（Boolean Concept Constructors）</h3><ul>
+<li><p><strong>Intersection</strong></p>
+<ul>
+<li><p>$Child⊓Happy$</p>
+</li>
+<li><p><code>⊓</code> 代表“与”，即为既是 <code>Child</code> 又是 <code>Happy</code> 的一类事物，读作“Child AND Happy”</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Union</strong></p>
+<ul>
+<li><p>$Rich⊔Famous$</p>
+</li>
+<li><p><code>⊓</code> 代表“或”，即为是 <code>Rich</code> 或者是 <code>Famous</code> （或两者皆是）的一类事物，读作“Rich OR Famous”</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Complement</strong></p>
+<ul>
+<li><p>$¬Happy$</p>
+</li>
+<li><p><code>¬</code> 代表“非”，即为不是 <code>Happy</code> 的一类事物，读作“NOT Happy”</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-2-限制（Restrictions）"><a href="#2-2-2-限制（Restrictions）" class="headerlink" title="2.2.2 限制（Restrictions）"></a>2.2.2 限制（Restrictions）</h3><ul>
+<li><p><strong>Existential</strong></p>
+<ul>
+<li><p>$∃hasPet.Cat$</p>
+</li>
+<li><p><code>∃</code> 代表“存在”，即为有一些宠物是猫的一类事物，必须有 <strong>至少一个</strong> 宠物，读作“hasPet SOME Cat”</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Universal</strong></p>
+<ul>
+<li><p>$∀hasPet. Cat$</p>
+</li>
+<li><p><code>∀</code>代表“任意”，即为所有宠物都是猫（宠物只有猫）的一类事物，包括 <strong>没有</strong> 宠物，读作“hasPet ONLY Cat”</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Number</strong></p>
+<ul>
+<li><p>$=1 hasPet$：有且只有一只宠物的一类事物</p>
+</li>
+<li><p>$≥2 hasPet$：有至少两只宠物的一类事物</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-3-其他"><a href="#2-2-3-其他" class="headerlink" title="2.2.3 其他"></a>2.2.3 其他</h3><ul>
+<li><p><strong>Universal concept</strong></p>
+<ul>
+<li><code>⊤</code> 代表全集，读作“top”</li>
+</ul>
+</li>
+<li><p><strong>Contradiction</strong></p>
+<ul>
+<li><code>⊤</code> 代表空集，读作“bottom”</li>
+</ul>
+</li>
+<li><p><strong>Nominals (singleton concepts)</strong></p>
+<ul>
+<li>${𝑥}$</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-3-Role-Constructors"><a href="#2-3-Role-Constructors" class="headerlink" title="2.3 Role Constructors"></a>2.3 Role Constructors</h2><p>角色构造器用于构建复杂的角色。</p>
+<ul>
+<li><p>具体领域（数据类型）</p>
+</li>
+<li><p>Inverse roles：$R^-$</p>
+</li>
+<li><p>Role composition：$R ∘ S$</p>
+</li>
+<li><p>Transitive roles：$R^+$</p>
+</li>
+</ul>
+<h2 id="2-4-Knowledge-Bases"><a href="#2-4-Knowledge-Bases" class="headerlink" title="2.4 Knowledge Bases"></a>2.4 Knowledge Bases</h2><p>一个描述逻辑知识库（knowledge base, KB）由两个部分组成：</p>
+<ul>
+<li><p>TBox：术语（terminology）</p>
+<ul>
+<li><p>一组描述领域结构的公理（即概念模式）</p>
+</li>
+<li><p>Concepts, roles</p>
+</li>
+</ul>
+</li>
+<li><p>ABox：断言（assertions）</p>
+<ul>
+<li><p>一组描述具体情形（数据）的公理</p>
+</li>
+<li><p>Instances</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-1-TBox-Axioms"><a href="#2-4-1-TBox-Axioms" class="headerlink" title="2.4.1 TBox Axioms"></a>2.4.1 TBox Axioms</h3><table>
+<thead>
+<tr>
+<th align="center">含义</th>
+<th align="center">写法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Concept inclusion<br>(C是D的一个子类，即C是一个原始的或部分的类)</td>
+<td align="center">$C⊑D$</td>
+</tr>
+<tr>
+<td align="center">Concept equivalence<br> (C与D相等)</td>
+<td align="center">$C≡D$</td>
+</tr>
+<tr>
+<td align="center">Role inclusion<br> (R是S的一个子属性)</td>
+<td align="center">$R⊑S$</td>
+</tr>
+<tr>
+<td align="center">Role equivalence <br> (R与S相等)</td>
+<td align="center">$R≡S$</td>
+</tr>
+<tr>
+<td align="center">Role transitivity <br> (R composed with itself is a subproperty of R)</td>
+<td align="center">$R^+⊑R$</td>
+</tr>
+</tbody></table>
+<p>D是C的的一个必要条件：$𝐶⊑𝐷$</p>
+<p>D是C的一个充分条件：$𝐶⊒𝐷$</p>
+<p>D是C的充要条件：$C≡D$</p>
+<h3 id="2-4-2-ABox-Axioms"><a href="#2-4-2-ABox-Axioms" class="headerlink" title="2.4.2 ABox Axioms"></a>2.4.2 ABox Axioms</h3><ul>
+<li><p>概念实例化（Concept instantiation）</p>
+<ul>
+<li><p>$𝐶(𝑥)$</p>
+</li>
+<li><p>x is of type C</p>
+</li>
+</ul>
+</li>
+<li><p>角色实例化（Role instantiation）</p>
+<ul>
+<li><p>$𝑅(𝑥, 𝑦)$</p>
+</li>
+<li><p>x has R of y</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Every person is either living or dead：$Person⊑Living⊔Dead$</p>
+<p>Every child who eats only cake is unhealthy：$Child⊓∀eats.Cake⊓∃eats.Cake⊑¬Healthy$</p>
+<p>No elephants can fly：$Elephant⊓FlyingThing≡ ⊥$</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/RDF/" rel="tag"># RDF</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/23/Vue3%E6%96%B0%E7%89%B9%E6%80%A7/" rel="prev" title="Vue3新特性[组合式API].md">
+      <i class="fa fa-chevron-left"></i> Vue3新特性[组合式API].md
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-简介"><span class="nav-text">1. 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Description-Logics"><span class="nav-text">1.1 Description Logics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-用描述逻辑定义本体"><span class="nav-text">1.2 用描述逻辑定义本体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-描述逻辑的推理任务"><span class="nav-text">1.3 描述逻辑的推理任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-语法"><span class="nav-text">2. 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Expressions"><span class="nav-text">2.1 Expressions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Concept-Constructors"><span class="nav-text">2.2 Concept Constructors</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-布尔概念构造器（Boolean-Concept-Constructors）"><span class="nav-text">2.2.1 布尔概念构造器（Boolean Concept Constructors）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-限制（Restrictions）"><span class="nav-text">2.2.2 限制（Restrictions）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-其他"><span class="nav-text">2.2.3 其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Role-Constructors"><span class="nav-text">2.3 Role Constructors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Knowledge-Bases"><span class="nav-text">2.4 Knowledge Bases</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-TBox-Axioms"><span class="nav-text">2.4.1 TBox Axioms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-ABox-Axioms"><span class="nav-text">2.4.2 ABox Axioms</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="doublewhite"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">doublewhite</p>
+  <div class="site-description" itemprop="description">我偏要勉强</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/doublewhite233" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;doublewhite233" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2715336213@qq.com" title="E-Mail → mailto:2715336213@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://doublewhite.top/" title="http:&#x2F;&#x2F;doublewhite.top&#x2F;">doublewhite</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">doublewhite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">144k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'lq2cJ6y8VqpN3wgXNPCMcfvf-gzGzoHsz',
+      appKey     : 'QqPTIia71estaRmGgI21mo4b',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-50},"mobile":{"show":false},"log":false,"tagMode":false});</script></body>
+</html>

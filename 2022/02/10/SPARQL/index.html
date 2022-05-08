@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"doublewhite.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. 简介SPARQL(SPARQL Protocol and RDF Query Language)，是为RDF开发的一种查询语言和数据获取协议。 对于从数据库读取数据的查询，SPARQL语言为不同目的指定了四种不同的查询变体。  SELECT查询：用于从SPARQL端点提取原始值，结果以表格格式返回。  CONSTRUCT查询：用于从SPARQL端点提取信息并将结果转换为有效的RDF。  AS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPARQL">
+<meta property="og:url" content="http://doublewhite.top/2022/02/10/SPARQL/index.html">
+<meta property="og:site_name" content="DoubleWhite">
+<meta property="og:description" content="1. 简介SPARQL(SPARQL Protocol and RDF Query Language)，是为RDF开发的一种查询语言和数据获取协议。 对于从数据库读取数据的查询，SPARQL语言为不同目的指定了四种不同的查询变体。  SELECT查询：用于从SPARQL端点提取原始值，结果以表格格式返回。  CONSTRUCT查询：用于从SPARQL端点提取信息并将结果转换为有效的RDF。  AS">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/03/24/q3X5jO.png">
+<meta property="article:published_time" content="2022-02-10T11:50:36.000Z">
+<meta property="article:modified_time" content="2022-04-13T22:13:37.283Z">
+<meta property="article:author" content="doublewhite">
+<meta property="article:tag" content="SPARQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/03/24/q3X5jO.png">
+
+<link rel="canonical" href="http://doublewhite.top/2022/02/10/SPARQL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>SPARQL | DoubleWhite</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DoubleWhite</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2022/02/10/SPARQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SPARQL
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-10 11:50:36" itemprop="dateCreated datePublished" datetime="2022-02-10T11:50:36+00:00">2022-02-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E4%B9%89%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">语义网</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/10/SPARQL/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/10/SPARQL/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>SPARQL(SPARQL Protocol and RDF Query Language)，是为RDF开发的一种查询语言和数据获取协议。</p>
+<p>对于从数据库读取数据的查询，SPARQL语言为不同目的指定了四种不同的查询变体。</p>
+<ul>
+<li><p>SELECT查询：用于从SPARQL端点提取原始值，结果以表格格式返回。</p>
+</li>
+<li><p>CONSTRUCT查询：用于从SPARQL端点提取信息并将结果转换为有效的RDF。</p>
+</li>
+<li><p>ASK查询：用于为SPARQL端点上的查询提供简单的True / False结果。</p>
+</li>
+<li><p>DESCRIBE查询：用于从SPARQL端点提取RDF图，其内容留给端点根据维护者认为有用的信息来决定。</p>
+</li>
+</ul>
+<p>这些查询表单中的每一个都使用WHERE块来限制查询，但是，在DESCRIBE查询的情况下，WHERE是可选的。</p>
+<h1 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h1><h2 id="2-1-Simple-example"><a href="#2-1-Simple-example" class="headerlink" title="2.1 Simple example"></a>2.1 Simple example</h2><p>SPARQL中：</p>
+<ul>
+<li><p>变量的前缀是<code>?</code></p>
+</li>
+<li><p>用类似N3的语法表达三元组</p>
+</li>
+<li><p>查询返回一个变量的绑定结果集</p>
+</li>
+</ul>
+<blockquote>
+<p>_:a foaf:name “Johnny Lee Outlaw” .<br>_:a foaf:mbox &lt;mailto:<a href="mailto:jlow@example.com">jlow@example.com</a>&gt; .<br>_:b foaf:name “Peter Goodguy” .<br>_:b foaf:mbox &lt;mailto:<a href="mailto:peter@example.org">peter@example.org</a>&gt; .<br>_:c foaf:mbox &lt;mailto:<a href="mailto:carol@example.org">carol@example.org</a>&gt; .</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT ?name ?mbox</span><br><span class="line">WHERE &#123;</span><br><span class="line">    ?x foaf:name ?name .</span><br><span class="line">    ?x foaf:mbox ?mbox .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">?name</th>
+<th align="center">?mbox</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">“Johnny Lee Outlaw”</td>
+<td align="center"><a href="mailto:jlow@example.com">mailto:jlow@example.com</a></td>
+</tr>
+<tr>
+<td align="center">“Peter Goodguy”</td>
+<td align="center"><a href="mailto:peter@example.org">mailto:peter@example.org</a></td>
+</tr>
+</tbody></table>
+<h2 id="2-2-约束条件"><a href="#2-2-约束条件" class="headerlink" title="2.2 约束条件"></a>2.2 约束条件</h2><p>SPARQL中，限制条件可以应用于变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT ?title</span><br><span class="line">WHERE &#123;</span><br><span class="line">  ?x dc:title ?title .</span><br><span class="line">  FILTER regex(?title, &quot;^SPARQL&quot;)  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SELECT ?title ?price</span><br><span class="line">WHERE &#123;</span><br><span class="line">  ?x ns:price ?price .</span><br><span class="line">  FILTER (?price &lt; 30.5)</span><br><span class="line">  ?x dc:title ?title . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-Group-Graph-Patterns"><a href="#2-3-Group-Graph-Patterns" class="headerlink" title="2.3 Group Graph Patterns"></a>2.3 Group Graph Patterns</h2><p>Group Graph Patterns是用{ }括起来的一组模式，决定了FILTER操作符（和其他操作符）的作用范围。</p>
+<h3 id="2-3-1-Optional-Graph-Patterns"><a href="#2-3-1-Optional-Graph-Patterns" class="headerlink" title="2.3.1 Optional Graph Patterns"></a>2.3.1 Optional Graph Patterns</h3><p>OPTIONAL允许我们说明，为了产生绑定，不需要匹配Group Graph Patterns。</p>
+<blockquote>
+<p>_:a rdf:type foaf:Person .<br>_:a foaf:name “Alice” .<br>_:a foaf:mbox &lt;mailto:<a href="mailto:alice@example.com">alice@example.com</a>&gt; .<br>_:a foaf:mbox &lt;mailto:<a href="mailto:alice@work.example.com">alice@work.example.com</a>&gt; .<br>_:b rdf:type foaf:Person .<br>_:b foaf:name “Bob” .</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT ?name ?mbox</span><br><span class="line">WHERE &#123;</span><br><span class="line">  ?x  foaf:name  ?name .</span><br><span class="line">  OPTIONAL &#123;</span><br><span class="line">    ?x  foaf:mbox  ?mbox .</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">?name</th>
+<th align="center">?mbox</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">“Alice”</td>
+<td align="center"><a href="mailto:alice@example.com">mailto:alice@example.com</a></td>
+</tr>
+<tr>
+<td align="center">“Alice”</td>
+<td align="center"><a href="mailto:alice@work.example.com">mailto:alice@work.example.com</a></td>
+</tr>
+<tr>
+<td align="center">“Bob”</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="2-3-2-Union-Graph-Patterns"><a href="#2-3-2-Union-Graph-Patterns" class="headerlink" title="2.3.2 Union Graph Patterns"></a>2.3.2 Union Graph Patterns</h3><p>UNION有效地给我们提供了一个二择一的查询：要么匹配这个，要么匹配那个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PREFIX dc10: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.0&#x2F;&gt;</span><br><span class="line">PREFIX dc11: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt;</span><br><span class="line">SELECT ?title</span><br><span class="line">WHERE &#123;    </span><br><span class="line">  &#123; ?book dc10:title ?title . &#125; </span><br><span class="line">  UNION </span><br><span class="line">  &#123; ?book dc11:title ?title . &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-Default-Graph-amp-Named-Graphs"><a href="#2-4-Default-Graph-amp-Named-Graphs" class="headerlink" title="2.4 Default Graph &amp; Named Graphs"></a>2.4 Default Graph &amp; Named Graphs</h2><p>SPARQL 查询针对表示图形集合的RDF 数据集执行。一个 RDF 数据集包括一个图，即没有名称的默认图，以及0或多个命名图，其中每个命名图由 IRI 标识。</p>
+<h3 id="2-4-1-Default-Graph"><a href="#2-4-1-Default-Graph" class="headerlink" title="2.4.1 Default Graph"></a>2.4.1 Default Graph</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT  ?name</span><br><span class="line">FROM &lt;http:&#x2F;&#x2F;example.org&#x2F;foaf&#x2F;aliceFoaf&gt;</span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:name ?name .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>http://example.org/foaf/aliceFoaf</code>是默认图，除非另有说明，所有的triples都会来自该图。</p>
+<h3 id="2-4-2-Named-Graphs"><a href="#2-4-2-Named-Graphs" class="headerlink" title="2.4.2 Named Graphs"></a>2.4.2 Named Graphs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">PREFIX dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt;</span><br><span class="line">SELECT ?who ?g ?mbox</span><br><span class="line">FROM &lt;http:&#x2F;&#x2F;example.org&#x2F;dft.ttl&gt;</span><br><span class="line">FROM NAMED &lt;http:&#x2F;&#x2F;example.org&#x2F;alice&gt;</span><br><span class="line">FROM NAMED &lt;http:&#x2F;&#x2F;example.org&#x2F;bob&gt;</span><br><span class="line">WHERE &#123;</span><br><span class="line">  ?g dc:publisher ?who .</span><br><span class="line">  GRAPH ?g &#123; ?who foaf:mbox ?mbox . &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-Ordering-amp-LIMIT-amp-OFFSET-amp-DISTINCT"><a href="#2-5-Ordering-amp-LIMIT-amp-OFFSET-amp-DISTINCT" class="headerlink" title="2.5 Ordering &amp; LIMIT &amp; OFFSET &amp; DISTINCT"></a>2.5 Ordering &amp; LIMIT &amp; OFFSET &amp; DISTINCT</h2><h3 id="2-5-1-Ordering"><a href="#2-5-1-Ordering" class="headerlink" title="2.5.1 Ordering"></a>2.5.1 Ordering</h3><p>按<code>?name</code>升序排列结果，然后按<code>?emp</code>降序排列。ASC()：升序排序；DESC()降序排序。默认为升序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">PREFIX ont: &lt;http:&#x2F;&#x2F;example.org&#x2F;ontology&#x2F;&gt;</span><br><span class="line">SELECT ?name</span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:name ?name ; </span><br><span class="line">     ont:empId ?emp .</span><br><span class="line">&#125;</span><br><span class="line">ORDER BY ?name DESC(?emp)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-2-LIMIT-and-OFFSET"><a href="#2-5-2-LIMIT-and-OFFSET" class="headerlink" title="2.5.2 LIMIT and OFFSET"></a>2.5.2 LIMIT and OFFSET</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT ?name</span><br><span class="line">WHERE &#123;</span><br><span class="line">  ?x foaf:name ?name .</span><br><span class="line">&#125;</span><br><span class="line">ORDER BY ?name</span><br><span class="line">LIMIT   5</span><br><span class="line">OFFSET  10</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-3-DISTINCT"><a href="#2-5-3-DISTINCT" class="headerlink" title="2.5.3 DISTINCT"></a>2.5.3 DISTINCT</h3><p>DISTINCT：删除重复的结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT DISTINCT ?name </span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:name ?name .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-6-Other-SPARQL-Verbs"><a href="#2-6-Other-SPARQL-Verbs" class="headerlink" title="2.6 Other SPARQL Verbs"></a>2.6 Other SPARQL Verbs</h2><p>除了SELECT之外，还有CONSTRUCT、ASK和DESCRIBE。</p>
+<h3 id="2-6-1-CONSTRUCT"><a href="#2-6-1-CONSTRUCT" class="headerlink" title="2.6.1 CONSTRUCT"></a>2.6.1 CONSTRUCT</h3><h4 id="2-6-1-1-基本用法"><a href="#2-6-1-1-基本用法" class="headerlink" title="2.6.1.1 基本用法"></a>2.6.1.1 基本用法</h4><p>CONSTRUCT查询返回一个RDF图，由一个图模板指定。对于结果集中的每一行，用该行的值替换模板中的变量，将得到的图合并为一个图（set union of triples）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf:  &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">PREFIX vcard: &lt;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;vcard-rdf&#x2F;3.0#&gt;</span><br><span class="line">CONSTRUCT   &#123;</span><br><span class="line">  ?x vcard:FN ?name .</span><br><span class="line">  ?x vcard:EMAIL ?mail . </span><br><span class="line">&#125;</span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:name ?name .</span><br><span class="line">  ?x foaf:mbox ?mail . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-1-2-CONSTRUCT-and-bNodes"><a href="#2-6-1-2-CONSTRUCT-and-bNodes" class="headerlink" title="2.6.1.2 CONSTRUCT and bNodes"></a>2.6.1.2 CONSTRUCT and bNodes</h4><p>模板可以创建包含空白节点的 RDF 图。空白节点标签的范围仅限于每个解决方案的模板。如果同一个标签在模板中出现两次，那么每个查询解决方案都会创建一个空白节点，但不同查询解决方案生成的三元组会有不同的空白节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CONSTRUCT &#123; </span><br><span class="line">  ?x  vcard:N _:v .</span><br><span class="line">  _:v vcard:givenName ?gname .</span><br><span class="line">  _:v vcard:familyName ?fname .</span><br><span class="line">&#125;</span><br><span class="line">WHERE &#123;</span><br><span class="line">  &#123; ?x foaf:firstname ?gname &#125; UNION &#123; ?x foaf:givenname   ?gname &#125; .</span><br><span class="line">  &#123; ?x foaf:surname   ?fname &#125; UNION &#123; ?x foaf:family_name ?fname &#125; .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-1-3-访问-RDF-数据集中的图"><a href="#2-6-1-3-访问-RDF-数据集中的图" class="headerlink" title="2.6.1.3 访问 RDF 数据集中的图"></a>2.6.1.3 访问 RDF 数据集中的图</h4><p>使用<code>CONSTRUCT</code>，可以从目标 RDF 数据集中提取部分或全部图形。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CONSTRUCT &#123; </span><br><span class="line">  ?s ?p ?o .</span><br><span class="line">&#125; </span><br><span class="line">WHERE &#123; </span><br><span class="line">  GRAPH &lt;http:&#x2F;&#x2F;example.org&#x2F;aGraph&gt; &#123; ?s ?p ?o &#125; . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-2-ASK"><a href="#2-6-2-ASK" class="headerlink" title="2.6.2 ASK"></a>2.6.2 ASK</h3><p>ASK查询是用来检查一个查询模式是否有解决方案。不返回关于查询解决方案的信息（没有变量绑定），只有一个布尔值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_:a  foaf:name  &quot;Alice&quot; .</span><br><span class="line">_:a  foaf:homepage  &lt;http:&#x2F;&#x2F;work.example.org&#x2F;alice&#x2F;&gt; .</span><br><span class="line">_:b  foaf:name  &quot;Bob&quot; ._:b  foaf:mbox  &lt;mailto:bob@work.example&gt; .</span><br><span class="line"></span><br><span class="line">ASK &#123; ?x foaf:name  &quot;Alice&quot; &#125;</span><br><span class="line"></span><br><span class="line">(returns true)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-3-DESCRIBE"><a href="#2-6-3-DESCRIBE" class="headerlink" title="2.6.3 DESCRIBE"></a>2.6.3 DESCRIBE</h3><p><code>DESCRIBE</code>返回包含一个或多个资源信息的单一graph。返回数据的结构由SPARQL查询处理器决定。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DESCRIBE &lt;http:&#x2F;&#x2F;example.org&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">DESCRIBE ?x</span><br><span class="line">WHERE &#123; </span><br><span class="line">    ?x foaf:name &quot;Alice&quot; .</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DESCRIBE ?x ?y &lt;http:&#x2F;&#x2F;example.org&#x2F;&gt;</span><br><span class="line">WHERE &#123;</span><br><span class="line">    ?x foaf:knows ?y .</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-SPARQL-1-1"><a href="#3-SPARQL-1-1" class="headerlink" title="3. SPARQL 1.1"></a>3. SPARQL 1.1</h2><p>SPARQL 1.0 在2008年被 W3C 认可为官方推荐，SPARQL 1.1在其基础上增加了一些新功能，2013年SPARQL 1.1被W3C认可。</p>
+<p>SPARQL只提供了一种查询数据库的方法，但许多应用程序需要的其他功能。SPARQL 1.1的更新源于早期的SPARUL提案。</p>
+<h2 id="3-1-Update"><a href="#3-1-Update" class="headerlink" title="3.1 Update"></a>3.1 Update</h2><h3 id="3-1-1-INSERT-DATA"><a href="#3-1-1-INSERT-DATA" class="headerlink" title="3.1.1 INSERT DATA"></a>3.1.1 INSERT DATA</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; </span><br><span class="line">INSERT DATA </span><br><span class="line">&#123; </span><br><span class="line">  &lt;http:&#x2F;&#x2F;example&#x2F;book1&gt; dc:title &quot;A new book&quot; ; </span><br><span class="line">                         dc:creator &quot;A.N.Other&quot; . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-2-DELETE-DATA"><a href="#3-1-2-DELETE-DATA" class="headerlink" title="3.1.2 DELETE DATA"></a>3.1.2 DELETE DATA</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; </span><br><span class="line">DELETE DATA </span><br><span class="line">&#123; </span><br><span class="line">  &lt;http:&#x2F;&#x2F;example&#x2F;book2&gt; dc:title &quot;David Copperfield&quot; ; </span><br><span class="line">                         dc:creator &quot;Edmund Wells&quot; . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-3-DELETE-INSERT"><a href="#3-1-3-DELETE-INSERT" class="headerlink" title="3.1.3 DELETE/INSERT"></a>3.1.3 DELETE/INSERT</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt; </span><br><span class="line">WITH &lt;http:&#x2F;&#x2F;example&#x2F;addresses&gt; </span><br><span class="line">DELETE </span><br><span class="line">&#123; </span><br><span class="line">  ?person foaf:givenName &#39;Bill&#39; </span><br><span class="line">&#125; </span><br><span class="line">INSERT </span><br><span class="line">&#123; </span><br><span class="line">  ?person foaf:givenName &#39;William&#39; </span><br><span class="line">&#125; </span><br><span class="line">WHERE </span><br><span class="line">&#123; </span><br><span class="line">  ?person a foaf:Person . </span><br><span class="line">  ?person foaf:givenName &#39;Bill&#39; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-4-Graph-Operations"><a href="#3-1-4-Graph-Operations" class="headerlink" title="3.1.4 Graph Operations"></a>3.1.4 Graph Operations</h3><ul>
+<li><p>LOAD: load triples from URI into graph</p>
+</li>
+<li><p>CLEAR: clear all triples from graph</p>
+</li>
+<li><p>CREATE: create new graph in store</p>
+</li>
+<li><p>DROP: remove graph from store</p>
+</li>
+<li><p>COPY: copy all triples from one graph to another</p>
+</li>
+<li><p>MOVE: move all triples from one graph to another (remove from source)</p>
+</li>
+<li><p>ADD: add all triples in one graph to another</p>
+</li>
+</ul>
+<h2 id="3-2-Aggregates"><a href="#3-2-Aggregates" class="headerlink" title="3.2 Aggregates"></a>3.2 Aggregates</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PREFIX : &lt;http:&#x2F;&#x2F;books.example&#x2F;&gt; </span><br><span class="line">SELECT (SUM(?lprice) AS ?totalPrice) </span><br><span class="line">WHERE &#123; </span><br><span class="line">    ?org :affiliates ?auth . </span><br><span class="line">    ?auth :writesBook ?book . </span><br><span class="line">    ?book :price ?lprice . </span><br><span class="line">&#125; </span><br><span class="line">GROUP BY ?org </span><br><span class="line">HAVING (SUM(?lprice) &gt; 10)</span><br></pre></td></tr></table></figure>
+
+<p>GROUP BY - 计算出的组的合计值（single implicit group if no GROUP BY statement）。</p>
+<p>HAVING - 对组的过滤。</p>
+<p>AS - 聚合投影限制。</p>
+<p>其他聚合函数: COUNT, MIN, MAX, GROUP_CONCAT, SAMPLE</p>
+<h2 id="3-3-Subqueries"><a href="#3-3-Subqueries" class="headerlink" title="3.3 Subqueries"></a>3.3 Subqueries</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PREFIX : &lt;http:&#x2F;&#x2F;people.example&#x2F;&gt; </span><br><span class="line">PREFIX : &lt;http:&#x2F;&#x2F;people.example&#x2F;&gt; </span><br><span class="line">SELECT ?y ?minName </span><br><span class="line">WHERE &#123; </span><br><span class="line">  :alice :knows ?y . </span><br><span class="line">  &#123; </span><br><span class="line">    SELECT ?y (MIN(?name) AS ?minName) </span><br><span class="line">    WHERE &#123; </span><br><span class="line">      ?y :name ?name . </span><br><span class="line">    &#125; </span><br><span class="line">    GROUP BY ?y </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4-SELECT-Expressions"><a href="#3-4-SELECT-Expressions" class="headerlink" title="3.4 SELECT Expressions"></a>3.4 SELECT Expressions</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PREFIX dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt; </span><br><span class="line">PREFIX ns: &lt;http:&#x2F;&#x2F;example.org&#x2F;ns#&gt; </span><br><span class="line">SELECT ?title (?p*(1-?discount) AS ?price) </span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x ns:price ?p . </span><br><span class="line">  ?x dc:title ?title . </span><br><span class="line">  ?x ns:discount ?discount </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-5-Property-Paths"><a href="#3-5-Property-Paths" class="headerlink" title="3.5 Property Paths"></a>3.5 Property Paths</h2><h3 id="3-5-1-Alternatives"><a href="#3-5-1-Alternatives" class="headerlink" title="3.5.1 Alternatives"></a>3.5.1 Alternatives</h3><p>“|” 是 UNION 的语法糖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PREFIX dc: &lt;http:&#x2F;&#x2F;purl.org&#x2F;dc&#x2F;elements&#x2F;1.1&#x2F;&gt;</span><br><span class="line">SELECT ?displayString</span><br><span class="line">WHERE &#123; </span><br><span class="line">  :book1 dc:title|rdfs:label ?displayString </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-2-Sequences"><a href="#3-5-2-Sequences" class="headerlink" title="3.5.2 Sequences"></a>3.5.2 Sequences</h3><p><code>?x foaf:knows [ foaf:name ?name]</code>的语法糖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT ?name</span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:mbox &lt;mailto:alice@example&gt; . </span><br><span class="line">  ?x foaf:knows&#x2F;foaf:name ?name . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-3-Arbitrary-Sequences"><a href="#3-5-3-Arbitrary-Sequences" class="headerlink" title="3.5.3 Arbitrary Sequences"></a>3.5.3 Arbitrary Sequences</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT ?name</span><br><span class="line">WHERE &#123; </span><br><span class="line">  ?x foaf:mbox &lt;mailto:alice@example&gt; . </span><br><span class="line">  ?x foaf:knows+&#x2F;foaf:name ?name . </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Repeat operators:</strong></p>
+<ul>
+<li>* (zero or more occurrences)</li>
+</ul>
+<ul>
+<li><p>+ (one or more occurrences)</p>
+</li>
+<li><p>{n} (exactly n occurrences)</p>
+</li>
+<li><p>{n,m} (between n and m occurrences)</p>
+</li>
+</ul>
+<h3 id="3-5-4-Inverses"><a href="#3-5-4-Inverses" class="headerlink" title="3.5.4 Inverses"></a>3.5.4 Inverses</h3><p>反转属性方向，交换主体和对象的角色。以下例子表示查找所有认识<code>?x</code>认识的人（Find all the people who know someone ?x knows）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PREFIX foaf: &lt;http:&#x2F;&#x2F;xmlns.com&#x2F;foaf&#x2F;0.1&#x2F;&gt;</span><br><span class="line">SELECT ?y</span><br><span class="line">WHERE &#123;</span><br><span class="line">    &lt;mailto:alice@example&gt; ^foaf:mbox ?x . </span><br><span class="line">    ?x foaf:knows&#x2F;^foaf:knows ?y . </span><br><span class="line">    FILTER(?x !&#x3D; ?y) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-6-Entailment-Regimes"><a href="#3-6-Entailment-Regimes" class="headerlink" title="3.6 Entailment Regimes"></a>3.6 Entailment Regimes</h2><p>到目前为止，我们只看了没有引用的图的查询。引用改变了问题：我们的模式可以与推理出的三元组相匹配，哪些三元组被推断出来取决于<code>Entailment Regimes</code>。</p>
+<p>多种<code>Entailment Regimes</code>，分别对应于：</p>
+<ul>
+<li><p>使用的本体语言：RDF、RDFS、OWL</p>
+</li>
+<li><p>数据类型的使用</p>
+</li>
+<li><p>规则语言的使用</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT ?pub WHERE &#123; ?pub rdf:type ex:Publication &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Without entailment: ex:book1</p>
+<p>With entailment: ex:book1, ex:book2, ex:book3</p>
+<p><img src="https://s1.ax1x.com/2022/03/24/q3X5jO.png" alt="img"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SPARQL/" rel="tag"># SPARQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/03/%E8%B5%84%E6%BA%90%E6%8F%8F%E8%BF%B0%E6%A1%86%E6%9E%B6RDF%E5%8F%8ATurtle/" rel="prev" title="资源描述框架RDF及Turtle">
+      <i class="fa fa-chevron-left"></i> 资源描述框架RDF及Turtle
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/23/Vue3%E6%96%B0%E7%89%B9%E6%80%A7/" rel="next" title="Vue3新特性[组合式API].md">
+      Vue3新特性[组合式API].md <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-简介"><span class="nav-text">1. 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-语法"><span class="nav-text">2. 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Simple-example"><span class="nav-text">2.1 Simple example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-约束条件"><span class="nav-text">2.2 约束条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Group-Graph-Patterns"><span class="nav-text">2.3 Group Graph Patterns</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-Optional-Graph-Patterns"><span class="nav-text">2.3.1 Optional Graph Patterns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-Union-Graph-Patterns"><span class="nav-text">2.3.2 Union Graph Patterns</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Default-Graph-amp-Named-Graphs"><span class="nav-text">2.4 Default Graph &amp; Named Graphs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-Default-Graph"><span class="nav-text">2.4.1 Default Graph</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-Named-Graphs"><span class="nav-text">2.4.2 Named Graphs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-Ordering-amp-LIMIT-amp-OFFSET-amp-DISTINCT"><span class="nav-text">2.5 Ordering &amp; LIMIT &amp; OFFSET &amp; DISTINCT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-1-Ordering"><span class="nav-text">2.5.1 Ordering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-2-LIMIT-and-OFFSET"><span class="nav-text">2.5.2 LIMIT and OFFSET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-3-DISTINCT"><span class="nav-text">2.5.3 DISTINCT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-Other-SPARQL-Verbs"><span class="nav-text">2.6 Other SPARQL Verbs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-1-CONSTRUCT"><span class="nav-text">2.6.1 CONSTRUCT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-1-1-基本用法"><span class="nav-text">2.6.1.1 基本用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-1-2-CONSTRUCT-and-bNodes"><span class="nav-text">2.6.1.2 CONSTRUCT and bNodes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-1-3-访问-RDF-数据集中的图"><span class="nav-text">2.6.1.3 访问 RDF 数据集中的图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-2-ASK"><span class="nav-text">2.6.2 ASK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-3-DESCRIBE"><span class="nav-text">2.6.3 DESCRIBE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-SPARQL-1-1"><span class="nav-text">3. SPARQL 1.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Update"><span class="nav-text">3.1 Update</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-INSERT-DATA"><span class="nav-text">3.1.1 INSERT DATA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-DELETE-DATA"><span class="nav-text">3.1.2 DELETE DATA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-DELETE-INSERT"><span class="nav-text">3.1.3 DELETE&#x2F;INSERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-Graph-Operations"><span class="nav-text">3.1.4 Graph Operations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Aggregates"><span class="nav-text">3.2 Aggregates</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Subqueries"><span class="nav-text">3.3 Subqueries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-SELECT-Expressions"><span class="nav-text">3.4 SELECT Expressions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-Property-Paths"><span class="nav-text">3.5 Property Paths</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-Alternatives"><span class="nav-text">3.5.1 Alternatives</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-Sequences"><span class="nav-text">3.5.2 Sequences</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-Arbitrary-Sequences"><span class="nav-text">3.5.3 Arbitrary Sequences</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-4-Inverses"><span class="nav-text">3.5.4 Inverses</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-Entailment-Regimes"><span class="nav-text">3.6 Entailment Regimes</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="doublewhite"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">doublewhite</p>
+  <div class="site-description" itemprop="description">我偏要勉强</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/doublewhite233" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;doublewhite233" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2715336213@qq.com" title="E-Mail → mailto:2715336213@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://doublewhite.top/" title="http:&#x2F;&#x2F;doublewhite.top&#x2F;">doublewhite</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">doublewhite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">144k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:11</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'lq2cJ6y8VqpN3wgXNPCMcfvf-gzGzoHsz',
+      appKey     : 'QqPTIia71estaRmGgI21mo4b',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-50},"mobile":{"show":false},"log":false,"tagMode":false});</script></body>
+</html>

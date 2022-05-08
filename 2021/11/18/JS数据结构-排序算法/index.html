@@ -28,7 +28,7 @@
 <meta property="og:description" content="1. 简介排序算法有很多：冒泡排序、选择排序、归并排序、基数排序、计数排序、希尔排序、堆排序、桶排序。 简单排序：冒泡排序、选择排序、插入排序。 高级排序：希尔排序、快速排序。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-18T22:40:36.000Z">
-<meta property="article:modified_time" content="2021-11-24T23:09:31.998Z">
+<meta property="article:modified_time" content="2022-02-14T23:28:13.854Z">
 <meta property="article:author" content="doublewhite">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -286,7 +286,6 @@
 <h1 id="6-快速排序"><a href="#6-快速排序" class="headerlink" title="6. 快速排序"></a>6. 快速排序</h1><p>快速排序（Quick Sort）是对冒泡排序算法的一种改进。快速排序可以在一次循环中（其实是递归调用）找出某个元素正确的位置，且该元素之后不需要任何移动。快速排序最重要的思想是分而治之。理想的情况是，每次划分所选择的中间数恰好将当前序列几乎等分，经过log2n趟划分，便可得到长度为1的子表。这样，整个算法的时间复杂度为$O(nlog_2n)$，最坏的情况时间复杂度为$O(n)$。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span> (<span class="params">array</span>) </span>&#123;</span><br><span class="line">  quick(<span class="number">0</span>, array.length - <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">quick</span> (<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) <span class="keyword">return</span></span><br><span class="line">    <span class="comment">// 获取枢纽</span></span><br><span class="line">    <span class="keyword">const</span> pivot = getMedian(left, right)</span><br><span class="line">    <span class="comment">// 记录左右位置</span></span><br><span class="line">    <span class="keyword">let</span> i = left</span><br><span class="line">    <span class="keyword">let</span> j = right - <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">      <span class="keyword">while</span> (array[i] &lt; pivot) &#123; i++ &#125;</span><br><span class="line">      <span class="keyword">while</span> (array[j] &gt; pivot) &#123; j-- &#125;</span><br><span class="line">      <span class="keyword">if</span> (i &lt; j &amp;&amp; array[i] !== array[j]) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = array[i]</span><br><span class="line">        array[i] = array[j]</span><br><span class="line">        array[j] = temp</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'changed'</span>, array)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(j)</span><br><span class="line">    <span class="comment">// 枢纽放置在正确的位置</span></span><br><span class="line">    <span class="keyword">let</span> temp = array[j + <span class="number">1</span>]</span><br><span class="line">    array[j + <span class="number">1</span>] = array[right - <span class="number">1</span>]</span><br><span class="line">    array[right - <span class="number">1</span>] = temp</span><br><span class="line">    <span class="comment">// 分而治之</span></span><br><span class="line">    quick(left, i - <span class="number">1</span>)</span><br><span class="line">    quick(i + <span class="number">1</span>, right)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getMedian</span> (<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 取出中间位置</span></span><br><span class="line">    <span class="keyword">const</span> center = <span class="built_in">Math</span>.floor((left + right) / <span class="number">2</span>)</span><br><span class="line">    <span class="comment">// 判断大小并进行交换</span></span><br><span class="line">    <span class="keyword">if</span> (array[left] &gt; array[center]) &#123;</span><br><span class="line">      <span class="keyword">let</span> temp = array[left]</span><br><span class="line">      array[left] = array[center]</span><br><span class="line">      array[center] = temp</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (array[center] &gt; array[right]) &#123;</span><br><span class="line">      <span class="keyword">let</span> temp = array[center]</span><br><span class="line">      array[center] = array[right]</span><br><span class="line">      array[right] = temp</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (array[left] &gt; array[center]) &#123;</span><br><span class="line">      <span class="keyword">let</span> temp = array[left]</span><br><span class="line">      array[left] = array[center]</span><br><span class="line">      array[center] = temp</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将center换到right-1位置</span></span><br><span class="line">    <span class="keyword">let</span> temp = array[right - <span class="number">1</span>]</span><br><span class="line">    array[right - <span class="number">1</span>] = array[center]</span><br><span class="line">    array[center] = temp</span><br><span class="line">    <span class="keyword">return</span> array[right - <span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
     </div>
 
     
@@ -307,7 +306,10 @@
     <a href="/2021/11/14/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%9B%BE%E8%AE%BA/" rel="prev" title="JS数据结构-图论">
       <i class="fa fa-chevron-left"></i> JS数据结构-图论
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/02/03/%E8%B5%84%E6%BA%90%E6%8F%8F%E8%BF%B0%E6%A1%86%E6%9E%B6RDF%E5%8F%8ATurtle/" rel="next" title="资源描述框架RDF及Turtle">
+      资源描述框架RDF及Turtle <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -383,20 +385,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -445,7 +447,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -454,12 +456,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">112k</span>
+    <span title="站点总字数">144k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:42</span>
+    <span title="站点阅读时长">2:11</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
