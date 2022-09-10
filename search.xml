@@ -1440,6 +1440,8 @@
     <url>/2022/02/10/SPARQL/</url>
     <content><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>SPARQL(SPARQL Protocol and RDF Query Language)，是为RDF开发的一种查询语言和数据获取协议。</p>
 <p>对于从数据库读取数据的查询，SPARQL语言为不同目的指定了四种不同的查询变体。</p>
+<a id="more"></a>
+
 <ul>
 <li><p>SELECT查询：用于从SPARQL端点提取原始值，结果以表格格式返回。</p>
 </li>
@@ -2276,10 +2278,12 @@
       </tags>
   </entry>
   <entry>
-    <title>a</title>
+    <title>OWL</title>
     <url>/2022/05/28/OWL/</url>
     <content><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>网络本体语言(Web Ontology Language, OWL)是W3C开发的一种网络本体语言，用于对本体进行语义描述。</p>
 <p>对于许多人来说，RDF Schema是一种具有足够表现力的本体语言。然而，有些用例需要更有表现力的形式，如实例分类、一致性检查、归纳推理等。OWL是一种将DL公理编码为RDF三元组的方式，其语义与RDF(S)广泛兼容。</p>
+<a id="more"></a>
+
 <p>OWL有两个版本：<code>OWL 1.0</code> 和 <code>OWL2</code>。 相较于 <code>OWL 1.0</code>，<code>OWL 2</code> 具有更强的表达能力。</p>
 <h1 id="2-OWL-1-0"><a href="#2-OWL-1-0" class="headerlink" title="2. OWL 1.0"></a>2. OWL 1.0</h1><p>OWL功能的不同子集产生了以下子语言（OWL 1.0 Species），其中在表征语言的表现力和对使用该语言建立的表征进行推理的难度之间存在着权衡。：</p>
 <ul>
