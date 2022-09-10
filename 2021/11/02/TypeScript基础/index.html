@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"doublewhite.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. TypeScript开发环境搭建npm全局安装typescript：  npm i -g typescript  创建一个ts文件后使用tsc对ts文件进行编译：  tsc xxx.ts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript基础">
+<meta property="og:url" content="http://doublewhite.top/2021/11/02/TypeScript%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="DoubleWhite">
+<meta property="og:description" content="1. TypeScript开发环境搭建npm全局安装typescript：  npm i -g typescript  创建一个ts文件后使用tsc对ts文件进行编译：  tsc xxx.ts">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-01T17:25:10.000Z">
+<meta property="article:modified_time" content="2021-11-14T23:13:00.178Z">
+<meta property="article:author" content="doublewhite">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://doublewhite.top/2021/11/02/TypeScript%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>TypeScript基础 | DoubleWhite</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DoubleWhite</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/11/02/TypeScript%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TypeScript基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-02 01:25:10" itemprop="dateCreated datePublished" datetime="2021-11-02T01:25:10+08:00">2021-11-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/11/02/TypeScript%E5%9F%BA%E7%A1%80/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/02/TypeScript%E5%9F%BA%E7%A1%80/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-TypeScript开发环境搭建"><a href="#1-TypeScript开发环境搭建" class="headerlink" title="1. TypeScript开发环境搭建"></a>1. TypeScript开发环境搭建</h1><p>npm全局安装typescript：</p>
+<blockquote>
+<p>npm i -g typescript</p>
+</blockquote>
+<p>创建一个ts文件后使用tsc对ts文件进行编译：</p>
+<blockquote>
+<p>tsc xxx.ts</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="2-基本类型"><a href="#2-基本类型" class="headerlink" title="2. 基本类型"></a>2. 基本类型</h1><p><strong>类型声明</strong>：类型声明是TS非常重要的一个特点，通过类型声明可以指定TS中变量（参数、形参）的类型。指定类型后，当为变量赋值时，TS编译器会自动检查值是否符合类型声明，符合则赋值，反之报错。语法：</p>
+<blockquote>
+<p>let 变量: 类型</p>
+<p>let 变量: 类型 = 值</p>
+<p>function fn(参数: 类型, 参数: 类型): 类型 { … }</p>
+</blockquote>
+<p><strong>自动类型判断</strong>：TS拥有自动的类型判断机制，当对变量的声明和赋值是同时进行的，TS编译器会自动判断变量的类型。因此变量的声明和赋值是同时进行时，可以省略类型声明。</p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">案例</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">number</td>
+<td align="center">1,2.5</td>
+<td align="center">任意数字</td>
+</tr>
+<tr>
+<td align="center">string</td>
+<td align="center">‘hi’</td>
+<td align="center">任意字符串</td>
+</tr>
+<tr>
+<td align="center">boolean</td>
+<td align="center">true, false</td>
+<td align="center">布尔值true/false</td>
+</tr>
+<tr>
+<td align="center">字面量</td>
+<td align="center">其本身</td>
+<td align="center">限制变量的值就是该字面量的值</td>
+</tr>
+<tr>
+<td align="center">any</td>
+<td align="center">*</td>
+<td align="center">任意类型</td>
+</tr>
+<tr>
+<td align="center">unknown</td>
+<td align="center">*</td>
+<td align="center">类型安全的any</td>
+</tr>
+<tr>
+<td align="center">void</td>
+<td align="center">空值（undefined）</td>
+<td align="center">没有值（或undefined）</td>
+</tr>
+<tr>
+<td align="center">never</td>
+<td align="center">没有值</td>
+<td align="center">不能是任何值</td>
+</tr>
+<tr>
+<td align="center">object</td>
+<td align="center">{ name: ‘Tom’ }</td>
+<td align="center">任意的JS对象</td>
+</tr>
+<tr>
+<td align="center">array</td>
+<td align="center">[1, 2, 3]</td>
+<td align="center">任意的JS数组</td>
+</tr>
+<tr>
+<td align="center">tuple</td>
+<td align="center">[4, 5]</td>
+<td align="center">元素，TS新增类型，固定长度数组</td>
+</tr>
+<tr>
+<td align="center">enum</td>
+<td align="center">enum{A, B}</td>
+<td align="center">枚举，TS新增类型</td>
+</tr>
+</tbody></table>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字面量进行类型声明</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="number">10</span></span><br><span class="line"><span class="keyword">let</span> b: <span class="string">'male'</span> | <span class="string">'female'</span></span><br><span class="line"><span class="comment">// 联合类型</span></span><br><span class="line"><span class="keyword">let</span> c: <span class="built_in">boolean</span> | <span class="built_in">string</span></span><br></pre></td></tr></table></figure>
+
+<p>any和unknown的区别在于：unknown是top type（任何类型都是它的subtype），而any既是top type又是bottom type（它是任何类型的subtype），这导致any基本上就是放弃了任何类型检查。同时，TypeScript还有bottom type为never，表示空集。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明变量如果不指定类型，则TS解析器会自动判断变量类型为any（隐式any）</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="built_in">any</span></span><br><span class="line"><span class="keyword">let</span> b</span><br><span class="line"><span class="keyword">let</span> c: unknown</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> s: <span class="built_in">string</span></span><br><span class="line">s = a <span class="comment">// a的类型为any，可以赋值给任何变量</span></span><br><span class="line">s = c <span class="comment">// 类型检测错误，unknown类型的变量不能直接赋值给其他变量</span></span><br><span class="line"><span class="comment">// 赋值方法1：类型判断</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> c === <span class="string">'string'</span>) &#123;</span><br><span class="line">    s = c</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 赋值方法2：类型断言，告诉解析器变量的实际类型</span></span><br><span class="line">s = c <span class="keyword">as</span> <span class="built_in">string</span></span><br><span class="line">s = &lt;<span class="built_in">string</span>&gt;c</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无返回值函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>): <span class="title">void</span></span>&#123;&#125;</span><br><span class="line"><span class="comment">// never 永远不会返回结果</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>): <span class="title">never</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Error!'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a: object</span><br><span class="line">a = &#123;&#125;</span><br><span class="line">a = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 指定对象中可以包含哪些属性，属性名后加上?表示可选属性</span></span><br><span class="line"><span class="keyword">let</span> b: &#123; name: <span class="built_in">string</span>, age?: <span class="built_in">number</span> &#125;</span><br><span class="line"><span class="keyword">let</span> c: &#123; name: <span class="built_in">string</span>, [propName: <span class="built_in">string</span>]: <span class="built_in">any</span> &#125;</span><br><span class="line"><span class="keyword">let</span> d: <span class="function">(<span class="params">a: <span class="built_in">number</span>, b: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">number</span></span><br><span class="line">d = <span class="function"><span class="keyword">function</span> (<span class="params">n1, n2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1 + n2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组的类型声明</span></span><br><span class="line"><span class="keyword">let</span> a: <span class="built_in">string</span>[]</span><br><span class="line"><span class="keyword">let</span> b: <span class="built_in">Array</span>&lt;<span class="built_in">number</span>&gt;</span><br><span class="line"><span class="comment">// 元组：固定长度的数组</span></span><br><span class="line"><span class="keyword">let</span> c: [<span class="built_in">string</span>, <span class="built_in">string</span>]</span><br><span class="line"><span class="comment">// 枚举</span></span><br><span class="line"><span class="keyword">enum</span> Gender &#123;</span><br><span class="line">    Male,</span><br><span class="line">    Female</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> d = &#123; name: <span class="built_in">string</span>, gender: Gender &#125;</span><br><span class="line">d = &#123;</span><br><span class="line">    name: <span class="string">'Tom'</span>,</span><br><span class="line">    gender: Gender.Male</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类型的别名</span></span><br><span class="line"><span class="keyword">type</span> myType = <span class="number">1</span> | <span class="number">2</span> | <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> e: myType</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-TypeScript编译选项"><a href="#3-TypeScript编译选项" class="headerlink" title="3. TypeScript编译选项"></a>3. TypeScript编译选项</h1><h2 id="3-1-自动编译文件"><a href="#3-1-自动编译文件" class="headerlink" title="3.1 自动编译文件"></a>3.1 自动编译文件</h2><p>编译文件时，使用-w命令后，TS编译器会自动监视文件的变化，并在文件发生变化时对文件进行重新编译。</p>
+<blockquote>
+<p>tsc xxx.ts -w</p>
+</blockquote>
+<h2 id="3-2-自动编译整个项目"><a href="#3-2-自动编译整个项目" class="headerlink" title="3.2 自动编译整个项目"></a>3.2 自动编译整个项目</h2><p>如果直接使用tsc指令，则可以自动将当前项目下的所有ts文件编译为js文件。但是能直接使用tsc命令的前提是，要现在项目的根目录下创建一个ts的配置文件tsconfig.json（可以直接使用tsc –init命令）。tsconfig.json是一个JSON文件，添加配置文件后，只需tsc命令即可完成对整个项目的编译。</p>
+<p><strong>配置选项</strong>：</p>
+<ol>
+<li><p>include</p>
+<ul>
+<li>定义希望被编译文件所在的目录</li>
+<li>默认值：[“*<em>/\</em>“]</li>
+</ul>
+<blockquote>
+<p>“include”: [“src/*<em>/\</em>“, “test/**/*“]  // 所有src目录和test目录下文件都会被编译</p>
+</blockquote>
+</li>
+<li><p>exclude</p>
+<ul>
+<li>定义需要排除在外的目录</li>
+<li>默认值：[“node_modules”, “bower_components”, “jspm_packages”]</li>
+</ul>
+<blockquote>
+<p>“exclude”: [“./src/hello/**/*“]  // src/hello目录下的文件都不会被编译</p>
+</blockquote>
+</li>
+<li><p>extends</p>
+<ul>
+<li>定义被继承的配置文件</li>
+</ul>
+<blockquote>
+<p>“extends”: “./configs/base”  // 当前配置文件中会自动包含config目录下base.json中所有配置信息</p>
+</blockquote>
+</li>
+<li><p>files</p>
+<ul>
+<li>指定被编译文件的列表，只有需要编译的文件少时才会用到</li>
+</ul>
+</li>
+<li><p>compilerOptions</p>
+<ul>
+<li>编译选项是配置文件中非常重要也比较复杂的配置选项</li>
+<li>在compilerOptions中包含多个子选项，用来完成对编译的配置<ul>
+<li>target:<ul>
+<li>设置ts代码编译器的目标版本</li>
+<li>可选值：ES3、ES5、ES6/ES2015…</li>
+</ul>
+</li>
+<li>module<ul>
+<li>指定要使用的模块化规范</li>
+</ul>
+</li>
+<li>lib<ul>
+<li>指定代码运行时所包含的库（宿主环境）</li>
+</ul>
+</li>
+<li>outDir<ul>
+<li>指定编译后文件所在目录</li>
+</ul>
+</li>
+<li>alwaysStrict<ul>
+<li>编译后的文件是否使用严格模式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="4-使用webpack打包ts代码"><a href="#4-使用webpack打包ts代码" class="headerlink" title="4. 使用webpack打包ts代码"></a>4. 使用webpack打包ts代码</h1><blockquote>
+<p>yarn add webpack webpack-cli typescript ts-loader –dev</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./1.ts'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'bundle.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.ts$/</span>,</span><br><span class="line">        use: <span class="string">'ts-loader'</span>,</span><br><span class="line">        exclude: <span class="regexp">/node-modules/</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-泛型"><a href="#5-泛型" class="headerlink" title="5. 泛型"></a>5. 泛型</h1><p>在定义函数或者类时，如果遇到类型不明确就可以使用泛型。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>&lt;<span class="title">T</span>&gt;(<span class="params">a: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 可以直接调用具有泛型的函数</span></span><br><span class="line"><span class="comment">// 不指定泛型，ts可以自动对类型进行推断</span></span><br><span class="line"><span class="keyword">let</span> res = fn(<span class="number">10</span>)</span><br><span class="line"><span class="comment">// 指定泛型</span></span><br><span class="line"><span class="keyword">let</span> res2 = fn&lt;<span class="built_in">string</span>&gt;(<span class="string">'hello'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>&lt;<span class="title">T</span>, <span class="title">K</span>&gt;(<span class="params">a: T, b: K</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(b)</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/01/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91/" rel="prev" title="JS数据结构-树">
+      <i class="fa fa-chevron-left"></i> JS数据结构-树
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/15/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%9B%BE%E8%AE%BA/" rel="next" title="JS数据结构-图论">
+      JS数据结构-图论 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-TypeScript开发环境搭建"><span class="nav-text">1. TypeScript开发环境搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-基本类型"><span class="nav-text">2. 基本类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-TypeScript编译选项"><span class="nav-text">3. TypeScript编译选项</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-自动编译文件"><span class="nav-text">3.1 自动编译文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-自动编译整个项目"><span class="nav-text">3.2 自动编译整个项目</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-使用webpack打包ts代码"><span class="nav-text">4. 使用webpack打包ts代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-泛型"><span class="nav-text">5. 泛型</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="doublewhite"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">doublewhite</p>
+  <div class="site-description" itemprop="description">我偏要勉强</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/doublewhite233" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;doublewhite233" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2715336213@qq.com" title="E-Mail → mailto:2715336213@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://doublewhite.top/" title="http:&#x2F;&#x2F;doublewhite.top&#x2F;">doublewhite</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">doublewhite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">152k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:18</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'lq2cJ6y8VqpN3wgXNPCMcfvf-gzGzoHsz',
+      appKey     : 'QqPTIia71estaRmGgI21mo4b',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-50},"mobile":{"show":false},"log":false,"tagMode":false});</script></body>
+</html>

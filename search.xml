@@ -77,7 +77,7 @@
   </entry>
   <entry>
     <title>React基础</title>
-    <url>/2021/06/13/React%E5%9F%BA%E7%A1%80/</url>
+    <url>/2021/06/14/React%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h1 id="1-React基本使用"><a href="#1-React基本使用" class="headerlink" title="1. React基本使用"></a>1. React基本使用</h1><h2 id="1-1-React高效的原因"><a href="#1-1-React高效的原因" class="headerlink" title="1.1 React高效的原因"></a>1.1 React高效的原因</h2><ul>
 <li>虚拟DOM，不总是直接操作DOM</li>
 <li>DOM Diff算法，最小化页面重绘</li>
@@ -399,7 +399,7 @@
   </entry>
   <entry>
     <title>React扩展</title>
-    <url>/2021/08/12/React%E6%89%A9%E5%B1%95/</url>
+    <url>/2021/08/13/React%E6%89%A9%E5%B1%95/</url>
     <content><![CDATA[<h1 id="1-setState"><a href="#1-setState" class="headerlink" title="1. setState"></a>1. setState</h1><p>setState更新状态的两种写法：</p>
 <ol>
 <li>setState(stateChange, [callback]) —– 对象形式的setState<ul>
@@ -525,7 +525,7 @@
   </entry>
   <entry>
     <title>Vue的基础语法</title>
-    <url>/2020/05/27/Vue%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <url>/2020/05/28/Vue%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h1 id="1-插值操作"><a href="#1-插值操作" class="headerlink" title="1. 插值操作"></a>1. 插值操作</h1><h2 id="1-1-Mustache语法"><a href="#1-1-Mustache语法" class="headerlink" title="1.1 Mustache语法"></a>1.1 Mustache语法</h2><p>Mustache语法中不仅可以直接写变量，还可以写一些简单的表达式：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>message:&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; firstName + ' ' + lastName &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; firstName &#125;&#125; &#123;&#123; lastName &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -686,7 +686,7 @@
   </entry>
   <entry>
     <title>React Router、Redux</title>
-    <url>/2021/06/27/react-router%E3%80%81redux/</url>
+    <url>/2021/06/28/react-router%E3%80%81redux/</url>
     <content><![CDATA[<h1 id="1-React脚手架"><a href="#1-React脚手架" class="headerlink" title="1. React脚手架"></a>1. React脚手架</h1><p>包含了所有需要的配置，制定好了所有的依赖，可以直接安装编译运行一个简单效果。React脚手架创建方法：</p>
 <a id="more"></a>
 
@@ -849,7 +849,7 @@
   </entry>
   <entry>
     <title>JS数据结构-链表</title>
-    <url>/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/</url>
+    <url>/2021/10/09/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/</url>
     <content><![CDATA[<h1 id="1-链表结构"><a href="#1-链表结构" class="headerlink" title="1. 链表结构"></a>1. 链表结构</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><p>链表和数组一样，可以用于存储一系列的元素，但是链表和数组的实现机制完全不同。</p>
 <p>要存储多个元素，数组可能是最常用的数据结构，但数组也有很多缺点：数组的创建通常需要申请一段连续的内存空间（一整块的内存），并且大小是固定的，所以当当前数组不能满足容量需求时，需要扩容。同时，在数组开头或中间位置插入数据的成本很高，需要进行大量元素的位移。</p>
 <a id="more"></a>
@@ -915,7 +915,7 @@
   </entry>
   <entry>
     <title>JS数据结构-栈、队列</title>
-    <url>/2021/10/08/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/</url>
+    <url>/2021/10/09/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/</url>
     <content><![CDATA[<h1 id="1-栈结构"><a href="#1-栈结构" class="headerlink" title="1. 栈结构"></a>1. 栈结构</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><p>栈（stack）是一种受限的线性表，后进先出（LIFO）。</p>
 <p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimgs.itxueyuan.com%2F454511-20190702081704226-59575462.png&refer=http%3A%2F%2Fimgs.itxueyuan.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637099431&t=b150857637a26dc0bc2a04c963882244" alt="stack"></p>
 <p>其限制是仅允许在表的一端进行插入和删除运算，这一端被称为栈顶。相对地，把另一端称为栈底。</p>
@@ -1068,7 +1068,7 @@
   </entry>
   <entry>
     <title>JS数据结构-图论</title>
-    <url>/2021/11/14/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%9B%BE%E8%AE%BA/</url>
+    <url>/2021/11/15/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%9B%BE%E8%AE%BA/</url>
     <content><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>图结构是一种与树结构有些相似的结构。图论是数学的一个分支，并且在数学的概念上树是图的一种。它以图为研究对象，研究顶点和边组成的图形的数学理论和方法。主要研究目的是事物之间的关系，顶点代表事物，边代表两个事物间的关系。</p>
 <p>图的特点：（1）一组顶点，通常用V（Vertex）表示顶点的结合（2）一组边：通常用E（Edge）表示边的集合。</p>
 <a id="more"></a>
@@ -1119,7 +1119,7 @@
   </entry>
   <entry>
     <title>TypeScript基础</title>
-    <url>/2021/11/01/TypeScript%E5%9F%BA%E7%A1%80/</url>
+    <url>/2021/11/02/TypeScript%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h1 id="1-TypeScript开发环境搭建"><a href="#1-TypeScript开发环境搭建" class="headerlink" title="1. TypeScript开发环境搭建"></a>1. TypeScript开发环境搭建</h1><p>npm全局安装typescript：</p>
 <blockquote>
 <p>npm i -g typescript</p>
@@ -1406,7 +1406,7 @@
   </entry>
   <entry>
     <title>JS数据结构-排序算法</title>
-    <url>/2021/11/18/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
+    <url>/2021/11/19/JS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>排序算法有很多：冒泡排序、选择排序、归并排序、基数排序、计数排序、希尔排序、堆排序、桶排序。</p>
 <p>简单排序：冒泡排序、选择排序、插入排序。</p>
 <p>高级排序：希尔排序、快速排序。</p>
@@ -1629,6 +1629,8 @@
     <url>/2022/04/13/%E6%8F%8F%E8%BF%B0%E9%80%BB%E8%BE%91/</url>
     <content><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><h2 id="1-1-Description-Logics"><a href="#1-1-Description-Logics" class="headerlink" title="1.1 Description Logics"></a>1.1 Description Logics</h2><p>为什么使用DL：由于RDFS并不满足于所有的任务，有些内容无法被表达或推断。</p>
 <p>描述逻辑（Description Logic）是基于对象的知识表示的形式化，是一阶谓词逻辑（FOPL）的一个子集。它是模型理论的形式语义，比FOPL更简单的语法。它具有以下两个重要特征：</p>
+<a id="more"></a>
+
 <ul>
 <li><p>可判别的（Decidable）：表达能力与算法复杂性的权衡</p>
 </li>
@@ -1728,7 +1730,7 @@
 <ul>
 <li><p>$∀hasPet. Cat$</p>
 </li>
-<li><p><code>∀</code>代表“任意”，即为所有宠物都是猫（宠物只有猫）的一类事物，包括 <strong>没有</strong> 宠物，读作“hasPet ONLY Cat”</p>
+<li><p><code>∀</code> 代表“任意”，即为所有宠物都是猫（宠物只有猫）的一类事物，包括 <strong>没有</strong> 宠物，读作“hasPet ONLY Cat”</p>
 </li>
 </ul>
 </li>
@@ -1749,7 +1751,7 @@
 </li>
 <li><p><strong>Contradiction</strong></p>
 <ul>
-<li><code>⊤</code> 代表空集，读作“bottom”</li>
+<li><code>⊥</code> 代表空集，读作“bottom”</li>
 </ul>
 </li>
 <li><p><strong>Nominals (singleton concepts)</strong></p>
@@ -1842,18 +1844,61 @@
 <p>Every child who eats only cake is unhealthy：$Child⊓∀eats.Cake⊓∃eats.Cake⊑¬Healthy$</p>
 <p>No elephants can fly：$Elephant⊓FlyingThing≡ ⊥$</p>
 </blockquote>
+<h1 id="3-描述逻辑和谓词逻辑"><a href="#3-描述逻辑和谓词逻辑" class="headerlink" title="3. 描述逻辑和谓词逻辑"></a>3. 描述逻辑和谓词逻辑</h1><p>描述逻辑（Description Logics）是一阶谓词逻辑的一个子集，具有简化的句法。每一个DL表达式都可以转换为一个等价的FOPL表达式。</p>
+<p>谓词逻辑（Predicate Logic）是一种形式语言，其中命题用谓词、变量和量词表示。在谓词逻辑中：</p>
+<p>每个概念 𝐶 都被转化为一个公式 $ϕ_C(𝑥)$ 。</p>
+<p>每个角色 𝑅 都被翻译成一个公式 $ ϕ_R(𝑥，𝑦) $ 。</p>
+<p>布尔概念构造器：</p>
+<ul>
+<li><p>$ ϕ_(¬C) (x)=¬ϕ_C (x) $ </p>
+</li>
+<li><p>$ϕ_(C⊔D) (x)=ϕ_C (x)∨ϕ_D (x)$</p>
+</li>
+<li><p>$ϕ_(C⊓D) (x)=ϕ_C (x)∧ϕ_D<br>(x)$</p>
+</li>
+</ul>
+<p>限制条件：</p>
+<ul>
+<li><p>$ϕ_(∃R.C) (x)=∃y.ϕ_R (x,y)∧ϕ_C (y)$</p>
+</li>
+<li><p>$ϕ_(∀R.C) (x)=∀y.ϕ_R (x,y)⇒ϕ_C<br>(y)$</p>
+</li>
+</ul>
+<p>Axioms通过如下方式翻译：</p>
+<ul>
+<li><p>Concept inclusion $C⊑D$</p>
+<ul>
+<li>$∀x.ϕ_C (x)⇒ϕ_D<br>(x)$</li>
+</ul>
+</li>
+<li><p>Concept equivalence $C≡D$</p>
+<ul>
+<li>$∀x.ϕ_C (x)⇔ϕ_D<br>(x)$</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>example: “Every child who eats cake is happy”</p>
+<p>DL: $Child⊓∃eats.Cake⊑Happy$ </p>
+<p>(1) $∀x ϕ_(Child⊓∃eats.Cake) (x)⇒ϕ_Happy (x)$ </p>
+<p>(2) $∀x ϕ<em>Child (x)∧ϕ</em>(∃eats.Cake) (x)⇒ϕ_Happy (x)$ </p>
+<p>(3) $∀x ϕ_Child (x)∧∃y ϕ_eats (x,y)∧ϕ_Cake (y)⇒ϕ_Happy (x)$</p>
+<p>因此我们可以得到最终的PL即为（3）</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>语义网</category>
       </categories>
       <tags>
-        <tag>RDF</tag>
+        <tag>DL</tag>
       </tags>
   </entry>
   <entry>
     <title>Vue3新特性[组合式API].md</title>
     <url>/2022/03/23/Vue3%E6%96%B0%E7%89%B9%E6%80%A7/</url>
     <content><![CDATA[<h1 id="1-组合式API-常用"><a href="#1-组合式API-常用" class="headerlink" title="1. 组合式API(常用)"></a>1. 组合式API(常用)</h1><h2 id="1-1-setup"><a href="#1-1-setup" class="headerlink" title="1.1 setup"></a>1.1 setup</h2><p>新的 <code>setup</code> 选项在组件创建<strong>之前</strong>执行，一旦 <code>props</code> 被解析，就将作为组合式 API 的入口。函数如果返回对象, 对象中的属性或方法, 模板中可以直接使用。</p>
+<a id="more"></a>
+
 <h3 id="1-1-1-执行时机"><a href="#1-1-1-执行时机" class="headerlink" title="1.1.1 执行时机"></a>1.1.1 执行时机</h3><p><code>setup</code> 在 beforeCreate 之前执行(一次), 此时组件对象还没有创建，也就意味着此时this是 <code>undefined</code>, 不能通过 this 来访问 data / computed / methods / props（其实所有的composition API 相关回调函数中也都不可以）。</p>
 <h3 id="1-1-2-setup返回值"><a href="#1-1-2-setup返回值" class="headerlink" title="1.1.2 setup返回值"></a>1.1.2 setup返回值</h3><p><code>setup</code> 中一般都返回一个对象，为模板提供数据，也就是模板中可以直接使用此对象中的所有属性和方法。<code>setup</code> 返回对象中的属性会与 <code>data</code> 函数返回对象的属性合并成为组件对象的属性；返回对象中的方法会与 <code>methods</code> 中的方法合并成功组件对象的方法。如果有重名，则以<code>setup</code>优先。</p>
 <p>注意：</p>
@@ -2108,7 +2153,7 @@
   </entry>
   <entry>
     <title>资源描述框架RDF及Turtle</title>
-    <url>/2022/02/03/%E8%B5%84%E6%BA%90%E6%8F%8F%E8%BF%B0%E6%A1%86%E6%9E%B6RDF%E5%8F%8ATurtle/</url>
+    <url>/2022/02/04/%E8%B5%84%E6%BA%90%E6%8F%8F%E8%BF%B0%E6%A1%86%E6%9E%B6RDF%E5%8F%8ATurtle/</url>
     <content><![CDATA[<h1 id="1-RDF"><a href="#1-RDF" class="headerlink" title="1. RDF"></a>1. RDF</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><p>RDF（Resource Description Framework）语义网的标准数据模型，是一个用于描述 Web 上的资源的框架。RDF本身用XML文件的形式表示。</p>
 <p>RDF规定了主-谓-宾这种描述形式（in the form of subject-predicate-object triples）来表示资源之间的关系，RDF语句的集合代表了一个标记的、有方向的图。</p>
 <p>RDF被用来作为语义网中其他知识表示和本体语言的基础。</p>
@@ -2228,6 +2273,301 @@
       </categories>
       <tags>
         <tag>RDF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>a</title>
+    <url>/2022/05/28/OWL/</url>
+    <content><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>网络本体语言(Web Ontology Language, OWL)是W3C开发的一种网络本体语言，用于对本体进行语义描述。</p>
+<p>对于许多人来说，RDF Schema是一种具有足够表现力的本体语言。然而，有些用例需要更有表现力的形式，如实例分类、一致性检查、归纳推理等。OWL是一种将DL公理编码为RDF三元组的方式，其语义与RDF(S)广泛兼容。</p>
+<p>OWL有两个版本：<code>OWL 1.0</code> 和 <code>OWL2</code>。 相较于 <code>OWL 1.0</code>，<code>OWL 2</code> 具有更强的表达能力。</p>
+<h1 id="2-OWL-1-0"><a href="#2-OWL-1-0" class="headerlink" title="2. OWL 1.0"></a>2. OWL 1.0</h1><p>OWL功能的不同子集产生了以下子语言（OWL 1.0 Species），其中在表征语言的表现力和对使用该语言建立的表征进行推理的难度之间存在着权衡。：</p>
+<ul>
+<li><p>OWL Lite</p>
+</li>
+<li><p>OWL DL</p>
+</li>
+<li><p>OWL Full</p>
+</li>
+</ul>
+<h2 id="2-1-Ontology-header"><a href="#2-1-Ontology-header" class="headerlink" title="2.1 Ontology header"></a>2.1 Ontology header</h2><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="params">&lt;&gt;</span> rdf:type owl:Ontology ;</span><br><span class="line"><span class="symbol">   owl:</span>versionInfo “<span class="number">1.4</span>” ;</span><br><span class="line"><span class="symbol">   rdfs:</span>comment “An example ontology” ;</span><br><span class="line"><span class="symbol">   owl:</span>imports <span class="params">&lt;http://example.org/base/&gt;</span> .</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-OWL-class-types"><a href="#2-2-OWL-class-types" class="headerlink" title="2.2 OWL class types"></a>2.2 OWL class types</h2><ul>
+<li><p><strong>owl:Class</strong>: 区别于rdfs:Class - 需要OWL Lite/DL</p>
+</li>
+<li><p><strong>owl:Thing (⊤)</strong>: 全集</p>
+</li>
+<li><p><strong>owl:Nothing (⊥)</strong>: 空集</p>
+</li>
+</ul>
+<h2 id="2-3-OWL-property-types"><a href="#2-3-OWL-property-types" class="headerlink" title="2.3 OWL property types"></a>2.3 OWL property types</h2><ul>
+<li><p><strong>owl:ObjectProperty</strong>: 资源价值的属性类</p>
+</li>
+<li><p><strong>owl:DatatypeProperty</strong>: 字面价值的属性类</p>
+</li>
+<li><p><strong>owl:AnnotationProperty</strong>: 用于对注解类和属性的属性进行类型化，OWL推理器会忽略其谓词被标记为注释属性的任何三联体。</p>
+</li>
+</ul>
+<h2 id="2-4-OWL-restrictions"><a href="#2-4-OWL-restrictions" class="headerlink" title="2.4 OWL restrictions"></a>2.4 OWL restrictions</h2><h3 id="2-4-1-Local-cardinality-constraints"><a href="#2-4-1-Local-cardinality-constraints" class="headerlink" title="2.4.1 Local cardinality constraints"></a>2.4.1 Local cardinality constraints</h3><p>根据一个属性所取的值的数量来定义一个类。</p>
+<ul>
+<li><p><strong>owl:minCardinality</strong> (≥ n R)</p>
+</li>
+<li><p><strong>owl:maxCardinality</strong> (≤ n R)</p>
+</li>
+<li><p><strong>owl:cardinality</strong> (= n R)</p>
+</li>
+</ul>
+<blockquote>
+<p>Example: “Single malt whiskies are whiskies which are distilled by one and only one thing”</p>
+<p>$SingleMaltWhisky ≡Whisky ⊓ =1.distilledBy$</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ont</span>:SingleMaltWhisky <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Class ;</span><br><span class="line">  <span class="attribute">owl</span>:equivalentClass [ <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Class ;</span><br><span class="line">                        <span class="attribute">owl</span>:intersectionOf </span><br><span class="line">                          ( <span class="attribute">ont</span>:Whisky</span><br><span class="line">                            [ <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Restriction ;</span><br><span class="line">                              <span class="attribute">owl</span>:onProperty <span class="attribute">ont</span>:distilledBy ;</span><br><span class="line">                              <span class="attribute">owl</span>:cardinality <span class="number">1</span> ] ) ] .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-2-Local-range-constraints"><a href="#2-4-2-Local-range-constraints" class="headerlink" title="2.4.2 Local range constraints"></a>2.4.2 Local range constraints</h3><p>根据属性值的类型来定义一个类别，区别于RDF模式中的全局范围约束（rdfs:range）。</p>
+<ul>
+<li><p><strong>owl:someValuesFrom</strong> (∃R.C)</p>
+</li>
+<li><p><strong>owl:allValuesFrom</strong> (∀R.C)</p>
+</li>
+</ul>
+<blockquote>
+<p>Example: “Carnivores are things which eat some things which are animals”</p>
+<p>$Carnivore ≡∃eats.Animal$</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ont</span>:Carnivore <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Class ;</span><br><span class="line">              <span class="attribute">owl</span>:equivalentClass [ <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Restriction ;</span><br><span class="line">                                    <span class="attribute">owl</span>:onProperty <span class="attribute">ont</span>:eats ;</span><br><span class="line">                                    <span class="attribute">owl</span>:someValuesFrom <span class="attribute">ont</span>:Animal ] .</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Example: “Vegetarians are things which eat only things which are plants”</p>
+<p>$Vegetarian≡∀eats.Plant$</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ont</span>:Vegetarian <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Class ;</span><br><span class="line">               <span class="attribute">owl</span>:equivalentClass [ <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Restriction ;</span><br><span class="line">                                     <span class="attribute">owl</span>:onProperty <span class="attribute">ont</span>:eats ;</span><br><span class="line">                                     <span class="attribute">owl</span>:allValuesFrom <span class="attribute">ont</span>:Plant ] .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-3-Local-value-constraints"><a href="#2-4-3-Local-value-constraints" class="headerlink" title="2.4.3 Local value constraints"></a>2.4.3 Local value constraints</h3><p>根据一个特定属性值的存在来定义一个类别。无法在OWL Lite中使用。</p>
+<ul>
+<li><strong>owl:hasValue</strong> (∃R.{x})</li>
+</ul>
+<blockquote>
+<p>Example: “Green things are things which are coloured green”</p>
+<p>$GreenThing≡∃hasColour.{green}$</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ont</span>:GreenThing <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Class ;</span><br><span class="line">               <span class="attribute">owl</span>:equivalentClass [ <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Restriction ;</span><br><span class="line">                                     <span class="attribute">owl</span>:onProperty <span class="attribute">ont</span>:hasColour ;</span><br><span class="line">                                     <span class="attribute">owl</span>:hasValue <span class="attribute">ont</span>:green ] .</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-Set-constructors"><a href="#2-5-Set-constructors" class="headerlink" title="2.5 Set constructors"></a>2.5 Set constructors</h2><ul>
+<li><p><strong>owl:intersectionOf</strong> (C⊓D)</p>
+</li>
+<li><p><strong>owl:unionOf</strong> (C⊔D)</p>
+</li>
+<li><p><strong>owl:complementOf</strong> (¬C)</p>
+</li>
+</ul>
+<blockquote>
+<p>$GreenApple≡Apple⊓∃hasColour.{green}$</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ont</span>:GreenApple <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Class ;</span><br><span class="line">  <span class="attribute">owl</span>:equivalentClass [ <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Class ;</span><br><span class="line">                        <span class="attribute">owl</span>:intersectionOf </span><br><span class="line">                          ( <span class="attribute">ont</span>:Apple</span><br><span class="line">                            [ <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Restriction ;</span><br><span class="line">                              <span class="attribute">owl</span>:onProperty <span class="attribute">ont</span>:hasColour ;</span><br><span class="line">                              <span class="attribute">owl</span>:hasValue <span class="attribute">ont</span>:green ] ) ] .</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-6-Equivalence-and-identity-relations"><a href="#2-6-Equivalence-and-identity-relations" class="headerlink" title="2.6 Equivalence and identity relations"></a>2.6 Equivalence and identity relations</h2><ul>
+<li><p><strong>owl:sameAs</strong> (MorningStar=EveningStar)</p>
+</li>
+<li><p><strong>owl:equivalentClass</strong> (C≡D)</p>
+</li>
+<li><p><strong>owl:equivalentProperty</strong> (R≡S)</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ont</span><span class="selector-pseudo">:morningStar</span> <span class="selector-tag">rdf</span><span class="selector-pseudo">:type</span> <span class="selector-tag">owl</span><span class="selector-pseudo">:Thing</span> ;</span><br><span class="line">                <span class="selector-tag">owl</span><span class="selector-pseudo">:sameAs</span> <span class="selector-tag">ont</span><span class="selector-pseudo">:eveningStar</span> .</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-7-Non-equivalence-relations"><a href="#2-7-Non-equivalence-relations" class="headerlink" title="2.7 Non-equivalence relations"></a>2.7 Non-equivalence relations</h2><ul>
+<li><strong>owl:differentFrom</strong>：可用于指定一个有限的唯一的名称假设</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">Ont</span><span class="selector-pseudo">:HarryCorbett</span> <span class="selector-tag">rdf</span><span class="selector-pseudo">:type</span> <span class="selector-tag">owl</span><span class="selector-pseudo">:Thing</span> ;</span><br><span class="line">                 <span class="selector-tag">owl</span><span class="selector-pseudo">:differentFrom</span> <span class="selector-tag">ont</span><span class="selector-pseudo">:HarryHCorbett</span> .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>owl:AllDifferent</strong> and <strong>owl:distinctMembers</strong>：用于指定一组相互不同的个体</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">[ <span class="string">rdf:</span>type <span class="string">owl:</span>AllDifferent ;</span><br><span class="line"><span class="symbol">  owl:</span>distinctMembers ( <span class="string">ont:</span>John <span class="string">ont:</span>Paul <span class="string">ont:</span>George <span class="string">ont:</span>Ringo ) ] .</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-8-Necessary-Sufficient-Class-Definitions"><a href="#2-8-Necessary-Sufficient-Class-Definitions" class="headerlink" title="2.8 Necessary/Sufficient Class Definitions"></a>2.8 Necessary/Sufficient Class Definitions</h2><ul>
+<li><p>Primitive / partial classes (⊑)：Necessary</p>
+<ul>
+<li><p>如果我们知道某物是X，那么它就必须满足条件……</p>
+</li>
+<li><p>使用 <strong>rdfs:subClassOf</strong> 定义</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>$Person⊑∃hasBirthdate.⊤$</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ont</span>:Person <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Class ;</span><br><span class="line">           <span class="attribute">rdfs</span>:subClassOf [ <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Restriction ;</span><br><span class="line">                             <span class="attribute">owl</span>:onProperty <span class="attribute">ont</span>:hasBirthdate ;</span><br><span class="line">                             <span class="attribute">owl</span>:SomeValuesFrom <span class="attribute">owl</span>:Thing ] .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Describes a subset of the class (⊒)：Sufficient</p>
+<ul>
+<li><p>如果我们知道某个东西有这个属性，那么它就属于这个类别……</p>
+</li>
+<li><p>使用 <strong>rdfs:subClassOf</strong> 定义(in the other direction)</p>
+</li>
+</ul>
+</li>
+<li><p>Defined / complete classes (≡)：Necessary and Sufficient</p>
+<ul>
+<li><p>如果某物满足了……的条件，那么它就是一个X</p>
+</li>
+<li><p>使用 <strong>owl:equivalentClass</strong> 定义</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-9-Property-types"><a href="#2-9-Property-types" class="headerlink" title="2.9 Property types"></a>2.9 Property types</h2><ul>
+<li><p><strong>Inverse</strong></p>
+<ul>
+<li><p>将一个属性定义为另一个属性的相反（$R≡R^-$）</p>
+</li>
+<li><p><strong>owl:inverseOf</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ont</span><span class="selector-pseudo">:hasAuthor</span> <span class="selector-tag">rdf</span><span class="selector-pseudo">:type</span> <span class="selector-tag">owl</span><span class="selector-pseudo">:ObjectProperty</span> ;</span><br><span class="line">            <span class="selector-tag">owl</span><span class="selector-pseudo">:inverseOf</span> <span class="selector-tag">ont</span><span class="selector-pseudo">:wrote</span> .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>Symmetric</strong></p>
+<ul>
+<li><p>如果$∀x∀y ⟨x,y⟩∈R^I⟺⟨y,x⟩∈R^I$成立，则称属性R是对称的</p>
+</li>
+<li><p><strong>owl:SymmetricProperty</strong></p>
+</li>
+<li><p>在DL中：$𝑅≡𝑅^-$（对称属性是它们自己的反证）</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Transitive</strong></p>
+<ul>
+<li><p>如果$∀x∀y∀z ⟨x,y⟩∈R^I∧⟨y,z⟩∈R^I⇒⟨x,z⟩∈R^I$成立，则称属性R是传递的</p>
+</li>
+<li><p><strong>owl:TransitiveProperty</strong></p>
+</li>
+<li><p>在DL中：$R⊑R^+$</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Functional</strong></p>
+<ul>
+<li><p>如果$∀x∀y∀z ⟨x,y⟩∈R^I∧⟨x,z⟩∈R^I⇒y=z$成立，则称属性R是Functional的</p>
+</li>
+<li><p><strong>owl:FunctionalProperty</strong></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Inverse Functional</strong></p>
+<ul>
+<li><p>如果$∀x∀y∀z ⟨y,x⟩∈R^I∧⟨z,x⟩∈R^I⇒y=z$成立，则称属性R是Inverse Functional的</p>
+</li>
+<li><p><strong>owl:InverseFunctionalProperty</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-10-Disjoint-classes"><a href="#2-10-Disjoint-classes" class="headerlink" title="2.10 Disjoint classes"></a>2.10 Disjoint classes</h2><ul>
+<li><strong>owl:disjointWith</strong>：一个类的成员不能同时是另一个特定类的成员</li>
+</ul>
+<blockquote>
+<p>$Duck⊓Goose≡ ⊥$</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ont</span><span class="selector-pseudo">:Duck</span> <span class="selector-tag">rdf</span><span class="selector-pseudo">:type</span> <span class="selector-tag">owl</span><span class="selector-pseudo">:Class</span> ;</span><br><span class="line">         <span class="selector-tag">owl</span><span class="selector-pseudo">:disjointWith</span> <span class="selector-tag">ont</span><span class="selector-pseudo">:Goose</span> .</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-11-Enumerated-classes"><a href="#2-11-Enumerated-classes" class="headerlink" title="2.11 Enumerated classes"></a>2.11 Enumerated classes</h2><ul>
+<li><strong>owl:oneOf</strong> (C ≡ {a,b,c})：将一个类定义为其成员的直接枚举</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ont</span><span class="selector-pseudo">:Beatles</span> <span class="selector-tag">rdf</span><span class="selector-pseudo">:type</span> <span class="selector-tag">owl</span><span class="selector-pseudo">:Class</span> ;</span><br><span class="line">            <span class="selector-tag">owl</span><span class="selector-pseudo">:oneOf</span> ( <span class="selector-tag">ont</span><span class="selector-pseudo">:John</span> <span class="selector-tag">ont</span><span class="selector-pseudo">:Paul</span> <span class="selector-tag">ont</span><span class="selector-pseudo">:George</span> <span class="selector-tag">ont</span><span class="selector-pseudo">:Ringo</span> ) .</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-12-Ontology-modularisation"><a href="#2-12-Ontology-modularisation" class="headerlink" title="2.12 Ontology modularisation"></a>2.12 Ontology modularisation</h2><p>通过 <code>owl:imports</code> 机制可以包含其他本体。也可以使用其他本体的术语而不明确地导入它们。导入需要一定的连带关系（entailments），而简单使用则不需要（但也不妨碍）这些连带关系。</p>
+<p>如本体1包含 <code>BBB rdfs:subClassOf AAA .</code> ，本体2包含 <code>ont2 owl:imports ont1 .</code> 和 <code>CCC rdfs:subClassOf BBB .</code>，则本体2<strong>必须</strong>包含 <code>CCC rdfs:subClassOf AAA</code>。</p>
+<p>如本体1包含 <code>BBB rdfs:subClassOf AAA .</code> ，本体3包含 <code>CCC rdfs:subClassOf BBB .</code>，则本体3<strong>不是一定要</strong>包含 <code>CCC rdfs:subClassOf AAA</code>。</p>
+<h1 id="3-OWL-2"><a href="#3-OWL-2" class="headerlink" title="3. OWL 2"></a>3. OWL 2</h1><p>OWL 2主要有以下几点变化：</p>
+<ol>
+<li><p>语法糖（Syntactic sugar）</p>
+</li>
+<li><p>提高表达能力的结构（Constructs for increased expressivity）</p>
+</li>
+<li><p>数据类型支持（Datatype support）</p>
+</li>
+<li><p>元模式（Metamodelling）</p>
+</li>
+<li><p>注释（Annotation）</p>
+</li>
+</ol>
+<h2 id="3-1-语法糖"><a href="#3-1-语法糖" class="headerlink" title="3.1 语法糖"></a>3.1 语法糖</h2><h3 id="3-1-1-Disjoint-Classes"><a href="#3-1-1-Disjoint-Classes" class="headerlink" title="3.1.1 Disjoint Classes"></a>3.1.1 Disjoint Classes</h3><p>在OWL 1.0中我们可以说明两个类是不相交的（owl:disjointWith）。OWL 2可以让我们说明<strong>一组类</strong>是成对不相交的。</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">[ <span class="string">rdf:</span>type <span class="string">owl:</span>AllDisjointClasses ;</span><br><span class="line"><span class="symbol">  owl:</span>members ( <span class="string">ont:</span>Duck <span class="string">ont:</span>Goose <span class="string">ont:</span>Swan ) ] .</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-2-Disjoint-Union"><a href="#3-1-2-Disjoint-Union" class="headerlink" title="3.1.2 Disjoint Union"></a>3.1.2 Disjoint Union</h3><p>允许我们将一个类定义为一些其他类的联合，所有这些类都是成对不相交的。</p>
+<p>$$<br>C≡C_1⊔C_2⊔…⊔C_n<br>$$</p>
+<p>$$<br>C_1⊓C_2≡ ⊥<br>$$</p>
+<p>$$<br>C_1⊓C_3≡ ⊥<br>$$</p>
+<p>$$<br>…<br>$$</p>
+<p>$$<br>C_(n-1)⊓C_n≡ ⊥<br>$$</p>
+<blockquote>
+<p>$Monotreme≡Platypus⊔Echidna$</p>
+<p>$Platypus⊓Echidna≡ ⊥$</p>
+</blockquote>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">on</span><span class="variable">t:Monotreme</span> <span class="keyword">ow</span><span class="variable">l:disjointUnionOf</span> ( <span class="keyword">on</span><span class="variable">t:Platypus</span> <span class="keyword">on</span><span class="variable">t:Echidna</span> ) .</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-3-Negative-Property-Assertions"><a href="#3-1-3-Negative-Property-Assertions" class="headerlink" title="3.1.3 Negative Property Assertions"></a>3.1.3 Negative Property Assertions</h3><p>OWL 1中可以断言一个个体的属性值，OWL 2可以让我们断言一个个体没有某个特定的属性值。</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">[ <span class="string">rdf:</span>type <span class="string">owl:</span>NegativePropertyAssertion ;</span><br><span class="line"><span class="symbol">  owl:</span>sourceIndividual <span class="string">ont:</span>John ;</span><br><span class="line"><span class="symbol">  owl:</span>assertionProperty <span class="string">ont:</span>hasChild ;</span><br><span class="line"><span class="symbol">  owl:</span>targetIndividual <span class="string">ont:</span>Susan ] .</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-New-Constructs"><a href="#3-2-New-Constructs" class="headerlink" title="3.2 New Constructs"></a>3.2 New Constructs</h2><h3 id="3-2-1-Self-Restriction"><a href="#3-2-1-Self-Restriction" class="headerlink" title="3.2.1 Self Restriction"></a>3.2.1 Self Restriction</h3><p>定义了一类个体，这些个体通过一个给定的属性与自己相关。</p>
+<blockquote>
+<p>$∃R.Self$</p>
+</blockquote>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">[ rdf:<span class="keyword">type</span> owl:Restriction ;</span><br><span class="line">  owl:onProperty <span class="keyword">property</span><span class="title"> </span>;</span><br><span class="line">  owl:hasSelf “<span class="literal">true</span>”^^xsd:boolean ] .</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>$Narcissist≡Person⊓∃loves.Self$</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ont</span>:Narcissist <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Class ;</span><br><span class="line">  <span class="attribute">owl</span>:equivalentClass </span><br><span class="line">    [ <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Class ;</span><br><span class="line">      <span class="attribute">owl</span>:intersectionOf ( <span class="attribute">ont</span>:Person </span><br><span class="line">                           [ <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Restriction ;</span><br><span class="line">                             <span class="attribute">owl</span>:onProperty <span class="attribute">ont</span>:loves ;</span><br><span class="line">                             <span class="attribute">owl</span>:hasSelf “true”^^<span class="attribute">xsd</span>:boolean ] ) ] .</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-2-Qualified-Cardinality"><a href="#3-2-2-Qualified-Cardinality" class="headerlink" title="3.2.2 Qualified Cardinality"></a>3.2.2 Qualified Cardinality</h3><p>OWL 1让我们指定一个属性的局部范围，或者指定该属性的取值数量。OWL 2中我们可以同时指定两者。</p>
+<blockquote>
+<p>$∃_(=4)hasPart.Wheel or =4 hasPart.Wheel$</p>
+</blockquote>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">[ <span class="string">rdf:</span>type <span class="string">owl:</span>Restriction ;</span><br><span class="line"><span class="symbol">  owl:</span>onProperty <span class="string">ont:</span>hasPart ;</span><br><span class="line"><span class="symbol">  owl:</span>onClass <span class="string">ont:</span>Wheel ;</span><br><span class="line"><span class="symbol">  owl:</span>cardinality <span class="number">4</span> ] .</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-3-Reflexive-Irreflexive-Properties"><a href="#3-2-3-Reflexive-Irreflexive-Properties" class="headerlink" title="3.2.3 Reflexive/Irreflexive Properties"></a>3.2.3 Reflexive/Irreflexive Properties</h3><ul>
+<li><strong>owl:ReflexiveProperty</strong>：允许我们断言，一个属性将每个对象与它自己联系起来。如果属性R具有$∀x ⟨x,x⟩∈R^I$，则可以称它是反射的。</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">on</span><span class="variable">t:sameAgeAs</span> rdf:<span class="built_in">type</span> <span class="keyword">ow</span><span class="variable">l:ReflexiveProperty</span> .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>owl:IrreflexiveProperty</strong>：允许我们断言一个属性不涉及任何对象与自身的关系。如果属性R具有$∀x ⟨x,x⟩∉R^I$，则可以称它是不反射的。</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">on</span><span class="variable">t:strictlyTallerThan</span> rdf:<span class="built_in">type</span> <span class="keyword">ow</span><span class="variable">l:IrreflexiveProperty</span> .</span><br><span class="line"><span class="keyword">on</span><span class="variable">t:marriedTo</span> rdf:<span class="built_in">type</span> <span class="keyword">ow</span><span class="variable">l:IrreflexiveProperty</span> .</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-4-Asymmetric-Properties"><a href="#3-2-4-Asymmetric-Properties" class="headerlink" title="3.2.4 Asymmetric Properties"></a>3.2.4 Asymmetric Properties</h3><ul>
+<li><strong>owl:AsymmetricProperty</strong>：如果属性R具有$∀x∀y ⟨x,y⟩∈R^I⇒⟨y,x⟩∉R^I$，则可以称它是不对称的。</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">on</span><span class="variable">t:strictlyTallerThan</span> rdf:<span class="built_in">type</span> <span class="keyword">ow</span><span class="variable">l:AsymmetricProperty</span> .</span><br><span class="line"></span><br><span class="line"><span class="keyword">on</span><span class="variable">t:marriedTo</span> rdf:<span class="built_in">type</span> <span class="keyword">ow</span><span class="variable">l:SymmetricProperty</span> .</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-5-Disjoint-Properties"><a href="#3-2-5-Disjoint-Properties" class="headerlink" title="3.2.5 Disjoint Properties"></a>3.2.5 Disjoint Properties</h3><p>我们可以说明，两个个体不能通过两个不同的属性相互关联，而这些属性被宣布为不相干的。如果$R^I∩ S^I=∅$成立，两个属性R和S是不相交的。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ont</span><span class="selector-pseudo">:separatedFrom</span> <span class="selector-tag">rdf</span><span class="selector-pseudo">:type</span> <span class="selector-tag">owl</span><span class="selector-pseudo">:ObjectProperty</span> ;</span><br><span class="line">                  <span class="selector-tag">owl</span><span class="selector-pseudo">:propertyDisjointWith</span> <span class="selector-tag">ont</span><span class="selector-pseudo">:contiguousWith</span> .</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-6-Property-Chain-Inclusion"><a href="#3-2-6-Property-Chain-Inclusion" class="headerlink" title="3.2.6 Property Chain Inclusion"></a>3.2.6 Property Chain Inclusion</h3><p>OWL 1不允许我们将一个属性定义为其他属性的组合，例如$hasUncle ≡ hasParent∘hasBrother$ ，但OWL 2让我们定义这种属性组合。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ont</span><span class="selector-pseudo">:hasUncle</span> <span class="selector-tag">rdf</span><span class="selector-pseudo">:type</span> <span class="selector-tag">owl</span><span class="selector-pseudo">:ObjectProperty</span> ;</span><br><span class="line">             <span class="selector-tag">owl</span><span class="selector-pseudo">:propertyChainAxiom</span> ( <span class="selector-tag">ont</span><span class="selector-pseudo">:hasParent</span> <span class="selector-tag">ont</span><span class="selector-pseudo">:hasBrother</span> ) .</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-7-Keys"><a href="#3-2-7-Keys" class="headerlink" title="3.2.7 Keys"></a>3.2.7 Keys</h3><p>OWL 1让我们定义一个属性是功能性的，因此个人可以通过该属性的值来唯一地识别。OWL 2让我们定义唯一的识别键，包括几个属性。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">ont</span><span class="selector-pseudo">:Person</span> <span class="selector-tag">rdf</span><span class="selector-pseudo">:type</span> <span class="selector-tag">owl</span><span class="selector-pseudo">:Class</span> ;</span><br><span class="line">           <span class="selector-tag">owl</span><span class="selector-pseudo">:hasKey</span> ( <span class="selector-tag">ont</span><span class="selector-pseudo">:hasSSN</span> <span class="selector-tag">ont</span><span class="selector-pseudo">:hasBirthDate</span> ) .</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-8-Datatype-Restrictions"><a href="#3-2-8-Datatype-Restrictions" class="headerlink" title="3.2.8 Datatype Restrictions"></a>3.2.8 Datatype Restrictions</h3><p>允许我们定义数据类型的子集，限制数据类型所允许的数值范围。例如，大于或等于5的整数的数据类型可以定义为：</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ont</span>:IntGEFive <span class="attribute">rdf</span>:type <span class="attribute">owl</span>:Datatype ;</span><br><span class="line">  <span class="attribute">owl</span>:withRestrictions ( [ <span class="attribute">rdf</span>:type <span class="attribute">xsd</span>:minInclusive “<span class="number">5</span>”^^<span class="attribute">xsd</span>:integer ] ) .</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-Metamodelling"><a href="#3-3-Metamodelling" class="headerlink" title="3.3 Metamodelling"></a>3.3 Metamodelling</h2><h3 id="3-3-1-Punning"><a href="#3-3-1-Punning" class="headerlink" title="3.3.1 Punning"></a>3.3.1 Punning</h3><p>OWL 1要求用于识别类、属性、个体和数据类型的名称必须是不相干的。OWL 2放宽了这一点，同一个名字（URI）可以用于一个类和一个个体。</p>
+<p>但是，一个名字不能同时用于一个类和一个数据类型；一个名字不能用于一个以上的属性类型（DataProperty vs ObjectProperty）。</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">on</span><span class="variable">t:Eagle</span> rdf:<span class="built_in">type</span> <span class="keyword">ow</span><span class="variable">l:Class</span> .</span><br><span class="line"><span class="keyword">on</span><span class="variable">t:Harry</span> rdf:<span class="built_in">type</span> <span class="keyword">on</span><span class="variable">t:Eagle</span> .</span><br><span class="line"><span class="keyword">on</span><span class="variable">t:Eagle</span> rdf:<span class="built_in">type</span> <span class="keyword">on</span><span class="variable">t:EndangeredSpecies</span> .</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>语义网</category>
+      </categories>
+      <tags>
+        <tag>OWL</tag>
       </tags>
   </entry>
 </search>

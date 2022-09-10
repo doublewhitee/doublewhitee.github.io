@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"doublewhite.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. React脚手架包含了所有需要的配置，制定好了所有的依赖，可以直接安装编译运行一个简单效果。React脚手架创建方法：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Router、Redux">
+<meta property="og:url" content="http://doublewhite.top/2021/06/28/react-router%E3%80%81redux/index.html">
+<meta property="og:site_name" content="DoubleWhite">
+<meta property="og:description" content="1. React脚手架包含了所有需要的配置，制定好了所有的依赖，可以直接安装编译运行一个简单效果。React脚手架创建方法：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images2.pianshen.com/401/56/568b9babb2be65845dda416c5d4fae81.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210510124058586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NzgzNjYw,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-06-27T16:15:41.000Z">
+<meta property="article:modified_time" content="2021-08-12T10:07:16.265Z">
+<meta property="article:author" content="doublewhite">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images2.pianshen.com/401/56/568b9babb2be65845dda416c5d4fae81.png">
+
+<link rel="canonical" href="http://doublewhite.top/2021/06/28/react-router%E3%80%81redux/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>React Router、Redux | DoubleWhite</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">DoubleWhite</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://doublewhite.top/2021/06/28/react-router%E3%80%81redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="doublewhite">
+      <meta itemprop="description" content="我偏要勉强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleWhite">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React Router、Redux
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-28 00:15:41" itemprop="dateCreated datePublished" datetime="2021-06-28T00:15:41+08:00">2021-06-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/06/28/react-router%E3%80%81redux/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/28/react-router%E3%80%81redux/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-React脚手架"><a href="#1-React脚手架" class="headerlink" title="1. React脚手架"></a>1. React脚手架</h1><p>包含了所有需要的配置，制定好了所有的依赖，可以直接安装编译运行一个简单效果。React脚手架创建方法：</p>
+<a id="more"></a>
+
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">npm </span><span class="string">install </span>-g <span class="built_in">create-react-app</span></span><br><span class="line"><span class="built_in">create-react-app</span> <span class="string">xxx</span></span><br><span class="line"><span class="string">cd </span><span class="string">xxx</span></span><br><span class="line"><span class="string">npm </span><span class="string">start</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-React-Ajax"><a href="#2-React-Ajax" class="headerlink" title="2. React Ajax"></a>2. React Ajax</h1><p>React本身只关注与界面，并不包含发送ajax请求的代码，前端应用需要通过ajax请求与后台进行交互（json数据）。</p>
+<h2 id="2-1-配置代理"><a href="#2-1-配置代理" class="headerlink" title="2.1 配置代理"></a>2.1 配置代理</h2><h3 id="2-1-1-方法一"><a href="#2-1-1-方法一" class="headerlink" title="2.1.1 方法一"></a>2.1.1 方法一</h3><p>在package.json中配置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"proxy": "http://localhost:5000"</span><br></pre></td></tr></table></figure>
+
+<p>优点：配置简单，前端请求资源时可以不加任何前缀。</p>
+<p>缺点：不能配置多个代理。</p>
+<p>工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000（优先匹配前端资源）</p>
+<h3 id="2-1-2-方法二"><a href="#2-1-2-方法二" class="headerlink" title="2.1.2 方法二"></a>2.1.2 方法二</h3><p>如果想配置多个代理，则需在src中新建setupProxy.js文件，其中使用cjs语法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proxy = <span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">app</span>) </span>&#123;</span><br><span class="line">  app.use(</span><br><span class="line">    proxy(<span class="string">'/api1'</span>, &#123;</span><br><span class="line">      target: <span class="string">'http://localhost:5000'</span>,</span><br><span class="line">      <span class="comment">// changeOrigin为true,服务器收到的请求头中的host为：localhost:5000</span></span><br><span class="line">       <span class="comment">// changeOrigin为false,服务器收到的请求头中的host为：localhost:3000</span></span><br><span class="line">      changeOrigin: <span class="literal">true</span>,</span><br><span class="line">      pathRewrite: &#123; <span class="string">'^/api1'</span>: <span class="string">''</span> &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    proxy(<span class="string">'/api2'</span>, &#123;</span><br><span class="line">      target: <span class="string">'http://localhost:5001'</span>,</span><br><span class="line">      changeOrigin: <span class="literal">true</span>,</span><br><span class="line">      pathRewrite: &#123; <span class="string">'^/api2'</span>: <span class="string">''</span> &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-使用axios"><a href="#2-2-使用axios" class="headerlink" title="2.2 使用axios"></a>2.2 使用axios</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MostStarRepo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    repoName: <span class="string">''</span>,</span><br><span class="line">    repoUrl: <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount () &#123;</span><br><span class="line">    <span class="comment">// 发送异步ajax请求</span></span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">`https://api.github.com/search/repositories?q=r&amp;sort=stars`</span></span><br><span class="line">    axios.get(url).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> result = response.data</span><br><span class="line">      <span class="keyword">const</span> &#123;name, html_url&#125; = result.items[<span class="number">0</span>]</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;<span class="attr">repoName</span>:name, <span class="attr">repoUrl</span>: html_url&#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;repoName,repoUrl&#125; = <span class="keyword">this</span>.state</span><br><span class="line">    <span class="keyword">if</span> (!repoName) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Loading...<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Most star repo is <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#123;repoUrl&#125;</span>&gt;</span>&#123;repoName&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MostStarRepo</span>/&gt;</span></span>,<span class="built_in">document</span>.getElementById(<span class="string">'example'</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-使用fetch"><a href="#2-3-使用fetch" class="headerlink" title="2.3 使用fetch"></a>2.3 使用fetch</h2><p>原生函数，采用关注分离的设计思想，但老版本浏览器不支持。fetch不再使用XmlHttpRequest对象提交ajax请求，为了兼容低版本的浏览器，可以引入兼容库fetch.js。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount () &#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">`https://api.github.com/search/repositories?q=r&amp;sort=stars`</span></span><br><span class="line">  fetch(url).then(</span><br><span class="line">    response =&gt; &#123;</span><br><span class="line">      <span class="keyword">return</span> response.json()</span><br><span class="line">    &#125;</span><br><span class="line">  ).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; name, html_url &#125; = data.items[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">repoName</span>:name, <span class="attr">repoUrl</span>: html_url&#125;)</span><br><span class="line">  &#125;).catch(</span><br><span class="line">    error =&gt; &#123; <span class="built_in">console</span>.log(<span class="string">'error!'</span>, error) &#125;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount () &#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">`https://api.github.com/search/repositories?q=r&amp;sort=stars`</span></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> fetch(url)</span><br><span class="line">    <span class="keyword">const</span> data = <span class="keyword">await</span> response.json()</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error!'</span>, error)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-React-Router"><a href="#3-React-Router" class="headerlink" title="3. React Router"></a>3. React Router</h1><h2 id="3-1-路由"><a href="#3-1-路由" class="headerlink" title="3.1 路由"></a>3.1 路由</h2><p>一个路由就是一个映射关系（key:value），key为路径，value可能是function或者component。</p>
+<p>后端路由：</p>
+<ul>
+<li>理解：value是function，用来处理客户端提交的请求。</li>
+<li>注册路由：router.get(path, function(req, res))</li>
+<li>工作过程：当node接收到一个请求时，根据请求路径找到匹配的路由，调用路由中的函数来处理请求，返回响应数据。</li>
+</ul>
+<p>前端路由：</p>
+<ul>
+<li>浏览器路由，value是component，用于展示页面内容。</li>
+<li>注册路由：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path&#x3D;&#39;&#x2F;test&#39; component&#x3D;&#123;Test&#125;&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>工作过程：当浏览器的path变为/test时，当前路由组件就会变为Test组件。</li>
+</ul>
+<h2 id="3-2-基本使用"><a href="#3-2-基本使用" class="headerlink" title="3.2 基本使用"></a>3.2 基本使用</h2><h3 id="3-2-1-路由基本使用"><a href="#3-2-1-路由基本使用" class="headerlink" title="3.2.1 路由基本使用"></a>3.2.1 路由基本使用</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> react-router-dom</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">BrowserRouter</span>&gt;</span></span><br><span class="line">  &#123;/* 编写路由链接 */&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/home"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">  &#123;/* 注册路由 */&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">"/about"</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">"/home"</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">BrowserRouter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>路由组件和一般组件接收到的props不同，一般组件写组件标签时传递了什么就接收到什么。路由组件接收到三个固定的属性：history、location、match。</p>
+<h3 id="3-2-2-NavLink的封装"><a href="#3-2-2-NavLink的封装" class="headerlink" title="3.2.2 NavLink的封装"></a>3.2.2 NavLink的封装</h3><p>NavLink是Link的特定版本，会在匹配上当前的url的时候给已经渲染的元素添加参数，如activeClassName（默认值为active）等。</p>
+<p>可以对于NavLink进行进一步的封装：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NavLink &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyNavLink</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="comment">// &lt;NavLink activeClassName="active" className="item" &#123;...this.props&#125;&gt;&#123;this.props.children&#125;&lt;/NavLink&gt;</span></span><br><span class="line">      &lt;NavLink activeClassName=<span class="string">"active"</span> className=<span class="string">"item"</span> &#123;...this.props&#125; /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> MyNavLink;</span><br></pre></td></tr></table></figure>
+
+<p>标签体内容是一个特殊的标签属性，通过this.props.children可以获取标签体内容。</p>
+<h3 id="3-2-3-使用Switch"><a href="#3-2-3-使用Switch" class="headerlink" title="3.2.3 使用Switch"></a>3.2.3 使用Switch</h3><p>通常情况下，path和component是一一对应的关系。通过使用Switch组件可以提高路由匹配效率（单一匹配）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Route, Switch &#125; from 'react-router-dom'</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">Switch</span>&gt;</span></span><br><span class="line">  &#123;/* 注册路由 */&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">"/about"</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">"/home"</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Switch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-4-路由的严格匹配和模糊匹配"><a href="#3-2-4-路由的严格匹配和模糊匹配" class="headerlink" title="3.2.4 路由的严格匹配和模糊匹配"></a>3.2.4 路由的严格匹配和模糊匹配</h3><p>路由默认使用的是模糊匹配，即输入的路径必须要包含匹配的路径，且顺序要一致。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">exact</span>=<span class="string">&#123;true&#125;</span> <span class="attr">path</span>=<span class="string">"/about"</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>严格匹配不要随便开启，有时开启严格匹配会导致无法继续匹配二级路由。</p>
+<h3 id="3-2-5-使用Redirect"><a href="#3-2-5-使用Redirect" class="headerlink" title="3.2.5 使用Redirect"></a>3.2.5 使用Redirect</h3><p>Redirect一般写在所有路由注册的最下方，当所有路由都无法匹配时，则跳转到Redirect指定的路由。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Switch</span>&gt;</span></span><br><span class="line">  &#123;/* 注册路由 */&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">"/about"</span> <span class="attr">component</span>=<span class="string">&#123;About&#125;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">"/home"</span> <span class="attr">component</span>=<span class="string">&#123;Home&#125;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Redirect</span> <span class="attr">to</span>=<span class="string">"/about"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Switch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-嵌套路由的使用"><a href="#3-3-嵌套路由的使用" class="headerlink" title="3.3 嵌套路由的使用"></a>3.3 嵌套路由的使用</h2><p>路由的匹配是按照注册路由的顺序进行的，因此注册子路由时要写上父路由的path值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">MyNavLink</span> <span class="attr">to</span>=<span class="string">"/home/news"</span>&gt;</span>News<span class="tag">&lt;/<span class="name">MyNavLink</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">MyNavLink</span> <span class="attr">to</span>=<span class="string">"/home/message"</span>&gt;</span>Message<span class="tag">&lt;/<span class="name">MyNavLink</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">Switch</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">"/home/news"</span> <span class="attr">component</span>=<span class="string">&#123;News&#125;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Route</span> <span class="attr">path</span>=<span class="string">"/home/message"</span> <span class="attr">component</span>=<span class="string">&#123;Message&#125;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Redirect</span> <span class="attr">to</span>=<span class="string">"/home/news"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Switch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4-向路由组件传递参数数据"><a href="#3-4-向路由组件传递参数数据" class="headerlink" title="3.4 向路由组件传递参数数据"></a>3.4 向路由组件传递参数数据</h2><h3 id="3-4-1-params参数"><a href="#3-4-1-params参数" class="headerlink" title="3.4.1 params参数"></a>3.4.1 params参数</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="comment">/* 路由链接：向路由组件传递params参数 */</span>&#125;</span><br><span class="line">&lt;Link to=&#123;<span class="string">`/home/message/detail/<span class="subst">$&#123;msgObj.id&#125;</span>/<span class="subst">$&#123;msgObj.title&#125;</span>`</span>&#125;&gt;&#123;msgObj.title&#125;&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&#123;/</span>* 注册路由：声明接受params参数 *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">&lt;Route path="/</span>home/message/detail/:id/:title<span class="string">" component=&#123;Detail&#125;/&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 接收参数</span></span><br><span class="line"><span class="string">const &#123;id, title&#125; = this.props.match.params</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-2-search参数"><a href="#3-4-2-search参数" class="headerlink" title="3.4.2 search参数"></a>3.4.2 search参数</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="comment">/* 路由链接：向路由组件传递search参数 */</span>&#125;</span><br><span class="line">&lt;Link to=&#123;<span class="string">`/home/message/detail/?id=<span class="subst">$&#123;msgObj.id&#125;</span>&amp;title=<span class="subst">$&#123;msgObj.title&#125;</span>`</span>&#125;&gt;&#123;msgObj.title&#125;&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&#123;/</span>* search参数无需声明接受，正常注册路由 *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">&lt;Route path="/</span>home/message/detail<span class="string">" component=&#123;Detail&#125;/&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 接收参数</span></span><br><span class="line"><span class="string">// 获取到的是search是urlencoded编码字符串，需要借助querystring解析</span></span><br><span class="line"><span class="string">import qs from 'querystring'</span></span><br><span class="line"><span class="string">const &#123;search&#125; = this.props.location</span></span><br><span class="line"><span class="string">const &#123;id, title&#125; = qs.parse(search.slice(1))</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-3-state参数"><a href="#3-4-3-state参数" class="headerlink" title="3.4.3 state参数"></a>3.4.3 state参数</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="comment">/* 路由链接：向路由组件传递state参数 */</span>&#125;</span><br><span class="line">&lt;Link to=&#123;&#123;<span class="attr">pathname</span>: <span class="string">'/home/message/detail'</span>, <span class="attr">state</span>: &#123; <span class="attr">id</span>: msgObj.id, <span class="attr">title</span>: msgObj.title &#125;&#125;&#125;&gt;&#123;msgObj.title&#125;&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&#123;/</span>* state参数无需声明接受，正常注册路由 *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">&lt;Route path="/</span>home/message/detail<span class="string">" component=&#123;Detail&#125;/&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 接收参数</span></span><br><span class="line"><span class="string">// 刷新也可以保留参数</span></span><br><span class="line"><span class="string">const &#123;id, title&#125; = this.props.location.state || &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-5-编程式路由导航"><a href="#3-5-编程式路由导航" class="headerlink" title="3.5 编程式路由导航"></a>3.5 编程式路由导航</h2><p>借助this.props.history对象上的API操作路由跳转、前进、后退。</p>
+<blockquote>
+<p>this.props.history.push()</p>
+<p>this.props.history.replace()</p>
+<p>this.props.history.goBack()</p>
+<p>this.props.history.goForward()</p>
+<p>this.props.history.go()</p>
+</blockquote>
+<h2 id="3-6-withRouter的使用"><a href="#3-6-withRouter的使用" class="headerlink" title="3.6 withRouter的使用"></a>3.6 withRouter的使用</h2><p>withRouter可以加工一般组件，让一般组件具备路由组件所特有的API。withRouter的返回值是一个新组件。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> &#123; withRouter &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Header</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> withRouter(Header)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-7-BrowserRouter与HashRouter的区别"><a href="#3-7-BrowserRouter与HashRouter的区别" class="headerlink" title="3.7 BrowserRouter与HashRouter的区别"></a>3.7 BrowserRouter与HashRouter的区别</h2><ol>
+<li>底层原理不同：BrowserRouter使用的是H5的history API，不兼容IE9及以下版本。HashRouter使用的是URL的哈希值。</li>
+<li>url表现形式不同：BrowserRouter的路径中没有#，HashRouter的路径包含#。</li>
+<li>刷新后对路由state参数的影响：BrowserRouter没有任何影响，因为state保存在history对象中。HashRouter刷新后会导致路由state参数的丢失。</li>
+<li>HashRouter可以用于解决一些路径错误相关的问题。</li>
+</ol>
+<h1 id="4-redux"><a href="#4-redux" class="headerlink" title="4. redux"></a>4. redux</h1><h2 id="4-1-redux理解"><a href="#4-1-redux理解" class="headerlink" title="4.1 redux理解"></a>4.1 redux理解</h2><p>redux是一个专门用于做状态管理的JS库（不是react插件库），可以集中式管理react应用中多个组件共享的状态。</p>
+<p><img src="https://images2.pianshen.com/401/56/568b9babb2be65845dda416c5d4fae81.png" alt="img"></p>
+<h2 id="4-2-redux的三个核心概念"><a href="#4-2-redux的三个核心概念" class="headerlink" title="4.2 redux的三个核心概念"></a>4.2 redux的三个核心概念</h2><h3 id="4-2-1-actions"><a href="#4-2-1-actions" class="headerlink" title="4.2.1 actions"></a>4.2.1 actions</h3><p>动作的对象，包含两个属性：</p>
+<ul>
+<li>type：标识属性，值为字符串，唯一，必要属性</li>
+<li>data：数据属性，值类型任意，可选属性</li>
+</ul>
+<blockquote>
+<p>{ type: ‘ADD_STUDENT’, data: { name: ‘tom’, age: 18 } }</p>
+</blockquote>
+<h3 id="4-2-2-store"><a href="#4-2-2-store" class="headerlink" title="4.2.2 store"></a>4.2.2 store</h3><p>将state、action、reducer联系在一起的对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入createStore，用于创建store对象</span></span><br><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="comment">// 引入reducer</span></span><br><span class="line"><span class="keyword">import</span> countReducer <span class="keyword">from</span> <span class="string">'./count_reducer'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> createStore(countReducer)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-3-reducers"><a href="#4-2-3-reducers" class="headerlink" title="4.2.3 reducers"></a>4.2.3 reducers</h3><p>用于初始化和加工状态。加工时根据旧的state（preState）和action，产生新的state纯函数。reducer被第一次调用时，是store自动触发的，传递的preState是undefined。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; INCREMENT, DECREMENT &#125; <span class="keyword">from</span> <span class="string">'./constant'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> initState = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">countReducer</span>(<span class="params">preState = initState, action</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; type,data &#125; = action</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">    <span class="keyword">case</span> INCREMENT:</span><br><span class="line">      <span class="keyword">return</span> preState + data</span><br><span class="line">    <span class="keyword">case</span> DECREMENT:</span><br><span class="line">      <span class="keyword">return</span> preState - data</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> preState</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-3-异步action"><a href="#4-3-异步action" class="headerlink" title="4.3 异步action"></a>4.3 异步action</h2><p>想要对状态进行操作，但是具体的数据靠异步任务返回就可以采用异步action（非必须）。使用异步action需要使用中间件redux-thunk。</p>
+<p>store.js中的配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入createStore，用于创建store对象</span></span><br><span class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="comment">// 引入reducer</span></span><br><span class="line"><span class="keyword">import</span> countReducer <span class="keyword">from</span> <span class="string">'./count_reducer'</span></span><br><span class="line"><span class="comment">// 引入redux-thunk</span></span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">'redux-thunk'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> createStore(countReducer, applyMiddleware(thunk))</span><br></pre></td></tr></table></figure>
+
+<p>action.js：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; INCREMENT, DECREMENT &#125; <span class="keyword">from</span> <span class="string">'./constant'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> createIncrementAction = <span class="function">(<span class="params">data</span>) =&gt;</span> (&#123; <span class="attr">type</span>: INCREMENT, data &#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> createDecrementAction = <span class="function">(<span class="params">data</span>) =&gt;</span> (&#123; <span class="attr">type</span>: DECREMENT, data &#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> createIncrementAsyncAction = <span class="function">(<span class="params">data, time</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">dispatch</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      dispatch(createIncrementAction(data))</span><br><span class="line">    &#125;, time)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-4-react-redux"><a href="#4-4-react-redux" class="headerlink" title="4.4 react-redux"></a>4.4 react-redux</h2><h3 id="4-4-1-模型图"><a href="#4-4-1-模型图" class="headerlink" title="4.4.1 模型图"></a>4.4.1 模型图</h3><p><img src="https://img-blog.csdnimg.cn/20210510124058586.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NzgzNjYw,size_16,color_FFFFFF,t_70" alt="img"></p>
+<h3 id="4-4-2-基本使用"><a href="#4-4-2-基本使用" class="headerlink" title="4.4.2 基本使用"></a>4.4.2 基本使用</h3><p>容器组件中的store是靠props传进去的，而不是在容器组件中直接引入。mapDispatchToProps也可以是一个对象。</p>
+<p>container/Count：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入Count UI组件</span></span><br><span class="line"><span class="keyword">import</span> CountUI <span class="keyword">from</span> <span class="string">"../../components/Count"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createIncrementAction, createDecrementAction, createIncrementAsyncAction &#125; <span class="keyword">from</span> <span class="string">"../../redux/count_action"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入connect用于连接UI组件与redux</span></span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// mapStateToProps函数返回的是一个对象，</span></span><br><span class="line"><span class="comment">// 对象中的key就作为传递给UI组件props的key，value就作为传递给UI组件props的value</span></span><br><span class="line"><span class="comment">// mapStateToProps用于传递状态</span></span><br><span class="line"><span class="keyword">const</span> mapStateToProps = <span class="function"><span class="params">state</span> =&gt;</span> (&#123; <span class="attr">count</span>: state &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// mapDispatchToProps函数返回的是一个对象，</span></span><br><span class="line"><span class="comment">// 对象中的key就作为传递给UI组件props的key，value就作为传递给UI组件props的value</span></span><br><span class="line"><span class="comment">// mapDispatchToProps用于传递操作状态的方法</span></span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = <span class="function"><span class="params">dispatch</span> =&gt;</span> (</span><br><span class="line">  &#123; </span><br><span class="line">    increment: <span class="function"><span class="params">data</span> =&gt;</span> dispatch(createIncrementAction(data)),</span><br><span class="line">    decrement: <span class="function"><span class="params">data</span> =&gt;</span> dispatch(createDecrementAction(data)),</span><br><span class="line">    incrementAsync: <span class="function">(<span class="params">data, time</span>) =&gt;</span> dispatch(createIncrementAsyncAction(data, time))</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用connect()()创建并暴露一个Count容器组件</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapStateToProps, mapDispatchToProps)(CountUI)</span><br></pre></td></tr></table></figure>
+
+<p>App.js：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Count <span class="keyword">from</span> <span class="string">'./containers/Count'</span>;</span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./redux/store'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Count store=&#123;store&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default App;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-3-优化"><a href="#4-4-3-优化" class="headerlink" title="4.4.3 优化"></a>4.4.3 优化</h3><p>container/Count的优化：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入Count UI组件</span></span><br><span class="line"><span class="keyword">import</span> CountUI <span class="keyword">from</span> <span class="string">"../../components/Count"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createIncrementAction, createDecrementAction, createIncrementAsyncAction &#125; <span class="keyword">from</span> <span class="string">"../../redux/count_action"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入connect用于连接UI组件与redux</span></span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用connect()()创建并暴露一个Count容器组件</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(</span><br><span class="line">  state =&gt; (&#123; <span class="attr">count</span>: state &#125;),</span><br><span class="line">  &#123;</span><br><span class="line">    increment: createIncrementAction,</span><br><span class="line">    decrement: createDecrementAction,</span><br><span class="line">    incrementAsync: createIncrementAsyncAction</span><br><span class="line">  &#125;)(CountUI)</span><br></pre></td></tr></table></figure>
+
+<p>connect方法生成容器组件以后，需要让容器组件拿到state对象，才能生成 UI 组件的参数。对于拥有多个容器组件的情况，可以通过使用Provider组件让所有容器组件拿到state。在index.js中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./redux/store'</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;App /&gt;</span><br><span class="line">  &lt;<span class="regexp">/Provider&gt;,</span></span><br><span class="line"><span class="regexp">  document.getElementById('root')</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+
+<p>同时，可以将容器组件和容器组件整合起来：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createIncrementAction, createDecrementAction, createIncrementAsyncAction &#125; <span class="keyword">from</span> <span class="string">"../../redux/count_action"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入connect用于连接UI组件与redux</span></span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Count</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  increment = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; value &#125; = <span class="keyword">this</span>.selectedNumber</span><br><span class="line">    <span class="keyword">this</span>.props.increment(value * <span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  decrement = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; value &#125; = <span class="keyword">this</span>.selectedNumber</span><br><span class="line">    <span class="keyword">this</span>.props.decrement(value * <span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  incrementIfOdd = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; value &#125; = <span class="keyword">this</span>.selectedNumber</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.props.count % <span class="number">2</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.props.increment(value * <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  incrementAsync = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; value &#125; = <span class="keyword">this</span>.selectedNumber</span><br><span class="line">    <span class="keyword">this</span>.props.incrementAsync(value * <span class="number">1</span>, <span class="number">500</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Current Count: &#123;<span class="keyword">this</span>.props.count&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">        &lt;select ref=&#123;c =&gt; this.selectedNumber = c&#125;&gt;</span></span><br><span class="line"><span class="regexp">          &lt;option value="1"&gt;1&lt;/</span>option&gt;</span><br><span class="line">          &lt;option value=<span class="string">"2"</span>&gt;<span class="number">2</span>&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">          &lt;option value="3"&gt;3&lt;/</span>option&gt;</span><br><span class="line">        &lt;<span class="regexp">/select&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;this.increment&#125;&gt;+&lt;/</span>button&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.decrement&#125;&gt;-&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;this.incrementIfOdd&#125;&gt;+ if odd&lt;/</span>button&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.incrementAsync&#125;&gt;+ <span class="keyword">async</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用connect()()创建并暴露一个Count容器组件</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(</span><br><span class="line">  state =&gt; (&#123; <span class="attr">count</span>: state &#125;),</span><br><span class="line">  &#123;</span><br><span class="line">    increment: createIncrementAction,</span><br><span class="line">    decrement: createDecrementAction,</span><br><span class="line">    incrementAsync: createIncrementAsyncAction</span><br><span class="line">  &#125;)(Count)</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-5-开发者工具"><a href="#4-5-开发者工具" class="headerlink" title="4.5 开发者工具"></a>4.5 开发者工具</h2><blockquote>
+<p>npm install –save-dev redux-devtools-extension</p>
+</blockquote>
+<p>安装完成后在store.js中添加：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入createStore，用于创建store对象</span></span><br><span class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware, combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="comment">// 引入reducer</span></span><br><span class="line"><span class="keyword">import</span> countReducer <span class="keyword">from</span> <span class="string">'./reducers/count'</span></span><br><span class="line"><span class="keyword">import</span> PersonReducer <span class="keyword">from</span> <span class="string">'./reducers/person'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入redux-thunk</span></span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">'redux-thunk'</span></span><br><span class="line"><span class="comment">// 引入redux-devtools-extension</span></span><br><span class="line"><span class="keyword">import</span> &#123; composeWithDevTools &#125; <span class="keyword">from</span> <span class="string">'redux-devtools-extension'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 汇总reducers</span></span><br><span class="line"><span class="keyword">const</span> allReducer = combineReducers(&#123;</span><br><span class="line">  count: countReducer,</span><br><span class="line">  person: PersonReducer</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> createStore(allReducer, composeWithDevTools(applyMiddleware(thunk)))</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/14/React%E5%9F%BA%E7%A1%80/" rel="prev" title="React基础">
+      <i class="fa fa-chevron-left"></i> React基础
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/13/React%E6%89%A9%E5%B1%95/" rel="next" title="React扩展">
+      React扩展 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-React脚手架"><span class="nav-text">1. React脚手架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-React-Ajax"><span class="nav-text">2. React Ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-配置代理"><span class="nav-text">2.1 配置代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-方法一"><span class="nav-text">2.1.1 方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-方法二"><span class="nav-text">2.1.2 方法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-使用axios"><span class="nav-text">2.2 使用axios</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-使用fetch"><span class="nav-text">2.3 使用fetch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-React-Router"><span class="nav-text">3. React Router</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-路由"><span class="nav-text">3.1 路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-基本使用"><span class="nav-text">3.2 基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-路由基本使用"><span class="nav-text">3.2.1 路由基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-NavLink的封装"><span class="nav-text">3.2.2 NavLink的封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-使用Switch"><span class="nav-text">3.2.3 使用Switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-路由的严格匹配和模糊匹配"><span class="nav-text">3.2.4 路由的严格匹配和模糊匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-5-使用Redirect"><span class="nav-text">3.2.5 使用Redirect</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-嵌套路由的使用"><span class="nav-text">3.3 嵌套路由的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-向路由组件传递参数数据"><span class="nav-text">3.4 向路由组件传递参数数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-params参数"><span class="nav-text">3.4.1 params参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-search参数"><span class="nav-text">3.4.2 search参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-3-state参数"><span class="nav-text">3.4.3 state参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-编程式路由导航"><span class="nav-text">3.5 编程式路由导航</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-withRouter的使用"><span class="nav-text">3.6 withRouter的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-BrowserRouter与HashRouter的区别"><span class="nav-text">3.7 BrowserRouter与HashRouter的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-redux"><span class="nav-text">4. redux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-redux理解"><span class="nav-text">4.1 redux理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-redux的三个核心概念"><span class="nav-text">4.2 redux的三个核心概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-actions"><span class="nav-text">4.2.1 actions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-store"><span class="nav-text">4.2.2 store</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-reducers"><span class="nav-text">4.2.3 reducers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-异步action"><span class="nav-text">4.3 异步action</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-react-redux"><span class="nav-text">4.4 react-redux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-模型图"><span class="nav-text">4.4.1 模型图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-2-基本使用"><span class="nav-text">4.4.2 基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-3-优化"><span class="nav-text">4.4.3 优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-开发者工具"><span class="nav-text">4.5 开发者工具</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="doublewhite"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">doublewhite</p>
+  <div class="site-description" itemprop="description">我偏要勉强</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/doublewhite233" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;doublewhite233" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2715336213@qq.com" title="E-Mail → mailto:2715336213@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://doublewhite.top/" title="http:&#x2F;&#x2F;doublewhite.top&#x2F;">doublewhite</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">doublewhite</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">152k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:18</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'lq2cJ6y8VqpN3wgXNPCMcfvf-gzGzoHsz',
+      appKey     : 'QqPTIia71estaRmGgI21mo4b',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-50},"mobile":{"show":false},"log":false,"tagMode":false});</script></body>
+</html>
