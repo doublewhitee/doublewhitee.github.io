@@ -8,10 +8,13 @@ $(document).ready(function () {
     var tocSelector = '.post-toc';
     var $tocElement = $(tocSelector);
     var activeCurrentSelector = '.active-current';
+    console.log('======================aaaa', $tocElement)
 
     $tocElement
-      .on('activate.bs.scrollspy', function () {
+      .on('activate.bs.scrollspy', function () { 
+        console.log('======================bbbb')
         var $currentActiveElement = $(tocSelector + ' .active').last();
+        console.log('======================bbbb1', $currentActiveElement)
 
         removeCurrentActiveClass();
         $currentActiveElement.addClass('active-current');
@@ -73,6 +76,8 @@ $(document).ready(function () {
   $('.post-toc a').on('click', function (e) {
     e.preventDefault();
     var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+    // 对获取到的url进行重编码，解决目录中中文点击报错无法跳转的问题
+    targetSelector = decodeURI(this.getAttribute('href'))
     var offset = $(targetSelector).offset().top;
 
     hasVelocity ?
